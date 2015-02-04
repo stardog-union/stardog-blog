@@ -1,0 +1,15 @@
+languageCode = "en-us"
+footnotereturnlinkcontents = "↩"
+builddrafts = false
+title = "STARDOG★WEBLOG"
+baseurl = "/"
+canonifyurls = true
+
+[permalinks]
+  posts = "/:title/"
+
+[params]
+  description = ""
+  author = "Complexible Inc"
+  sidebarrecentlimit = 3
+  

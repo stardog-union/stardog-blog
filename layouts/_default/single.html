@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{{ .Site.Title }}&rarr;{{ .Title }}</title>
+        {{ partial "fonts.html" }}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="canonical" href="http://blog.stardog.com{{ .RelPermalink }}" />
+        <link href="/img/favicon.png" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="/css/s.css">
+    </head>
+    <body class="site" id="top">
+      <svg id="svg-source" height="0" version="1.1" 
+  xmlns="http://www.w3.org/2000/svg" style="position:absolute; margin-left: -100%" 
+           xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g id="users" data-iconmelon="Dripicons:2b284359e7934c3a68a30261eac0011c">
+    <g>
+      <path d="M12.408,19.143c4.054,0,7.351-3.297,7.351-7.351c0-4.053-3.297-7.351-7.351-7.351c-4.053,0-7.351,3.298-7.351,7.351
+		C5.057,15.846,8.354,19.143,12.408,19.143z M12.408,6.986c2.65,0,4.807,2.155,4.807,4.806s-2.156,4.807-4.807,4.807
+		s-4.807-2.156-4.807-4.807S9.757,6.986,12.408,6.986z"></path>
+      <path d="M15.775,19.416c-0.417-0.133-0.873-0.041-1.207,0.241l-2.161,1.829l-2.161-1.829c-0.334-0.282-0.791-0.374-1.207-0.241
+		C6.92,20.089,0,22.574,0,26.286c0,0.703,0.57,1.272,1.272,1.272h22.271c0.703,0,1.272-0.569,1.272-1.272
+		C24.816,22.574,17.896,20.089,15.775,19.416z M3.422,25.014c1.21-1.022,3.494-2.17,5.728-2.951l2.436,2.062
+		c0.475,0.401,1.169,0.401,1.644,0l2.437-2.062c2.233,0.781,4.518,1.929,5.727,2.951H3.422z"></path>
+      <path d="M27.704,19.333c-0.471-0.233-1.043-0.041-1.278,0.431s-0.042,1.045,0.43,1.279c0.778,0.388,2.167,1.283,2.844,2.191h-3.392
+		c-0.527,0-0.954,0.428-0.954,0.955c0,0.526,0.427,0.954,0.954,0.954h4.738c0.527,0,0.954-0.428,0.954-0.954
+		C32,21.538,28.144,19.551,27.704,19.333z"></path>
+      <path d="M22.975,17.705c-0.781,0-1.515-0.304-2.067-0.855c-0.373-0.373-0.977-0.373-1.35-0.001c-0.373,0.373-0.373,0.978,0,1.351
+		c0.913,0.912,2.126,1.415,3.417,1.415c2.665,0,4.832-2.168,4.832-4.833c0-2.664-2.167-4.832-4.832-4.832
+		c-0.651,0-1.284,0.128-1.881,0.381c-0.485,0.205-0.713,0.765-0.508,1.25s0.766,0.713,1.25,0.508c0.36-0.152,0.744-0.23,1.138-0.23
+		c1.612,0,2.923,1.312,2.923,2.924C25.898,16.394,24.586,17.705,22.975,17.705z"></path>
+    </g>
+  </g>
+  <g id="calendar" data-iconmelon="Dripicons:75f28bbf4a5690a9ba36f0c13c816b4c">
+    <g>
+      <path d="M9.28,9.594c0.973,0,1.762-0.789,1.762-1.763V3.414c0-0.973-0.789-1.762-1.762-1.762c-0.974,0-1.762,0.789-1.762,1.762
+		v4.417C7.518,8.805,8.306,9.594,9.28,9.594z"></path>
+      <path d="M22.739,9.594c0.974,0,1.763-0.789,1.763-1.763V3.414c0-0.973-0.789-1.762-1.763-1.762c-0.973,0-1.762,0.789-1.762,1.762
+		v4.417C20.978,8.805,21.767,9.594,22.739,9.594z"></path>
+      <path d="M30.59,4.202h-3.247c-0.778,0-1.41,0.631-1.41,1.409s0.632,1.41,1.41,1.41h1.838v5.725H2.819V7.021h1.838
+		c0.778,0,1.41-0.632,1.41-1.41s-0.631-1.409-1.41-1.409H1.41C0.631,4.202,0,4.833,0,5.611v23.327c0,0.778,0.631,1.409,1.41,1.409
+		h29.18c0.779,0,1.41-0.631,1.41-1.409V5.611C32,4.833,31.369,4.202,30.59,4.202z M2.819,27.528V14.86h26.361v12.668H2.819z"></path>
+      <path d="M13.808,7.021h4.385c0.779,0,1.41-0.632,1.41-1.41s-0.631-1.409-1.41-1.409h-4.385c-0.779,0-1.41,0.631-1.41,1.409
+		S13.029,7.021,13.808,7.021z"></path>
+    </g>
+  </g>
+</svg>
+      {{ partial "header.html" . }}
+      <div class="wrapper clearfix content site-content" id="content">
+        <div id="topdate">
+         <h1 id="theTitle">{{ .Title }}</h1>
+         <span id="artdate">{{ .Date.Format "2 January 2006" }}</span>
+         <br>
+         <span id="twitterbtn"> {{ partial "twitter.html" . }} </span>
+        </div>
+       <div id="md">
+         {{ .Content }}
+       </div>
+       <div id="butt">
+         <div class="media">
+           <p class="media-figure iconmelon">
+             <svg viewBox="0 0 32 32">
+               <use xlink:href="#users"></use>
+             </svg>
+           </p>
+           <p class="media-body" id="authors">{{.Params.author}}</p>
+         </div>
+         <div id="dateblock" class="media">
+           <p class="media-figure iconmelon">
+             <svg viewBox="0 0 32 32">
+               <use xlink:href="#calendar"></use>
+             </svg>
+           </p>
+           <p class="media-body" id="slugdate">{{ .Date.Format "2 January 2006" }}</p>
+         </div>
+         <div id="socialFoot">
+           {{partial "social.html"}}
+         </div>
+       </div>
+       <div id="disqusfeet">
+       <hr width="50%" class="footrule">
+       {{ partial "disqus.html" . }}
+       <hr width="50%" class="footrule">
+       </div>
+     </div>
+     <div class="wrapper clearfix" id="content_foot">
+       <a href="http://stardog.com/">
+         <img id="dog" width="129" height="113" src="/img/sc3.png"></a>
+     </div>
+     {{ partial "footer.html" }}
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+     <script>hljs.initHighlightingOnLoad()</script>
+    </body>
+</html>

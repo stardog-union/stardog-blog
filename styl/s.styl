@@ -1,0 +1,218 @@
+@import "nib"
+@import "axis"
+@import "jeet"
+@import "rupture" //'rupture/index'
+@import "underline"
+
+normalize-css()
+mypink = #444444 
+font-color = #444444 //rgba(0, 0, 0, 0.8)
+base-line-height = (font-size * 1.6)
+font-size  = 16px
+blog-font  = "Source Sans Pro", "Fira Mono"
+head1-color = font-color 
+head2-color = font-color
+base(fonts = blog-font)
+typography()
+ligatures = true
+sdlime =  rgba(205,237,136,100)
+text-selection(color = sdlime)
+otherblue = rgba(0,10.2,17.3,.78)
+inkblue = rgba(15, 117, 150, .78)
+inkbluefoot = rgba(15,117,150,1)
+rupture.scale = 0 415px 600px 800px 1050px 1280px
+rupture.mobile-cutoff = 415px
+//texture = "/img/random-grey-variations.png"
+//texture = "/img/dotnoise-light-grey.png"
+texture = "/img/first-aid-kit.png"
+//texture = "/img/felt.png"
+
+html
+  background-image url(texture)
+  background-color font-color //otherblue
+
+.site
+  display flex
+  min-height 100vh
+  flex-direction column
+
+.site-content
+  flex 1
+
+a, a:hover, a:visited
+  reset-link()
+img
+  max-width 100%
+  height auto
+.inliner
+  width 50% //do I really want this?
+  +mobile()
+    display none
+#header
+  col(12/12, gutter: 20px)
+  background-color inkbluefoot
+  border-bottom 1px solid white
+  #logo
+    col(8/12, offset:1/5, gutter: 20px)
+    #title
+      fs((font-size * 3))
+      upcase()
+      font-weight 700
+      a
+        color white
+      a:hover
+        color white
+      +mobile()
+        font-weight 400
+        fs((font-size * 1.33))
+      #star
+        fs((font-size * 1.75))
+        vertical-align bottom
+        color sdlime
+        bold()
+#dog
+  center()
+  +mobile()
+    display none
+  +below(5)
+    padding: 30px
+#theSocial
+  col(2/9, offset: 3/4, gutter: 0px)
+  p
+    text-align right
+  +mobile()
+    col(4/12, offset: 2/4, gutter: 1px)
+    padding 10px
+.myicon
+  margin-left 5px
+  margin-right 5px
+#theTitle
+  margin-bottom -10px
+  +below(4)
+    line-height 1em
+    margin-bottom 0px
+  +mobile()
+    fs (font-size * 1.33)
+    margin-bottom 5px
+    upcase()
+#topdate
+  span(1)
+  margin-top -20px
+  padding 0 
+#md
+  span(1)
+  margin-right 15px
+figure.inliner
+  margin 0px
+blockquote
+  border 0
+  p
+    fs(font-size)
+    font-weight 400
+#content, #content_foot
+  col(8/12, offset:1/5, gutter: 20px)
+  a:not(.no-underline)
+    linkUnderlines white, black
+  +mobile()
+    col(8/12, offset: 1/6, gutter: 10px)
+  background rgba(255,255,255,1)
+  padding 30px
+#footer
+  background inkbluefoot
+  //background-image url(texture)
+#thefoot
+  +mobile()
+    span(1)
+    padding-left 5px
+  col(8/12, offset: 1/5, gutter: 20px)
+  padding-bottom 10px
+  p
+    color white
+    bold()
+    a
+      linkUnderlines inkblue, white 
+p > code
+  color mypink
+  fs(font-size * .9)
+  font-family "Fira Mono"
+pre > code
+  font-family "Fira Mono"
+  fs(font-size * .9)
+  background rgba(255,255,255,0)
+  border rgba(0,0,0,.1)
+  border-radius 2px 3px / 4px 5px
+  bold()
+  +mobile()
+    fs(font-size / 1.5)
+//header#site>h1
+//  font-weight 700
+//  color head1-color
+h1,h2,h3,h4,h5,h6
+  font-weight 400
+  color head2-color
+  +mobile()
+    fs(font-size * 1.5)
+    line-height (font-size * 1.4)
+h1
+  font-weight 500
+.inline
+  inline-list()
+#butt
+  span(1)
+  margin-bottom 30px
+  div
+    col(1/3, cycle: 3, gutter: 1)
+    +mobile()
+      stack()
+    #slugdate
+      upcase()
+div#socialFoot
+  #theSocial
+   span(1)
+   +mobile()
+     display none
+.frontslug
+  margin-top -20px
+  upcase()
+#footer 
+  width: 100%
+  height: 90px
+#dog
+  z-index: 1000
+  position relative
+.footrule
+  col(8/12, offset:1/5, gutter: 20px)
+  margin-bottom 10px
+  color mypink
+
+.iconmelon, .im
+  position: relative
+  width: 32px
+  height: 32px
+  fill: inkblue
+
+.iconmelon:after, .im:after
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+.media
+  display: flex
+  align-items: flex-start
+
+.media-figure 
+  margin-right: 1em
+
+.media-body
+  flex: 1
+  
+h3.post-title
+  a
+    upcase()
+    color otherblue
+#disqusfeet
+  +mobile()
+    display none

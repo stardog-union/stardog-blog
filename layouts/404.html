@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{{ .Site.Title }}</title>
+        <link href='http://fonts.googleapis.com/css?family=Fira+Sans:400,500,700|Fira+Mono&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/css/s.css">
+    </head>
+    <body>
+      <div id="header">
+        <div class="clearfix" id="logo">
+          <h1 id="title"><a href="">{{ .Site.Title }}</a></h1>
+        </div>
+      </div>
+      <div class="wrapper clearfix content" id="content">
+          <p>That didn't work out for either of us, eh?</p>
+     </div>
+     <div class="wrapper clearfix" id="content_foot">
+       <a href="http://stardog.com/">
+         <img id="dog" width="129" height="113" src="/img/sc3.png"></a>
+     </div>
+     {{ partial "footer.html" . }}
+    </body>
+</html>
