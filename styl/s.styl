@@ -22,22 +22,23 @@ inkblue = rgba(15, 117, 150, .78)
 inkbluefoot = rgba(15,117,150,1)
 rupture.scale = 0 415px 600px 800px 1050px 1280px
 rupture.mobile-cutoff = 415px
-//texture = "/img/random-grey-variations.png"
-//texture = "/img/dotnoise-light-grey.png"
 texture = "/img/first-aid-kit.png"
-//texture = "/img/felt.png"
 
 html
   background-image url(texture)
   background-color font-color //otherblue
 
+.dummy
+  color white
+
 .site
   display flex
   min-height 100vh
   flex-direction column
+  height 100%
 
 .site-content
-  flex 1
+  flex 1 0 auto
 
 a, a:hover, a:visited
   reset-link()
