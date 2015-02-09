@@ -58,10 +58,10 @@ module.exports = function(grunt) {
             }
         },
         //WARNING: never put this in a git repo dir...
-        aws: grunt.file.readJSON("../../../grunt-aws-SECRET.json"),
+        aws: grunt.file.readJSON("../grunt-aws-SECRET.json"),
         aws_s3: {
              options: {
-                    accessKeyId: "<%= aws.secret %>", 
+                    accessKeyId: "<%= aws.secret %>",
                     secretAccessKey: '<%= aws.key %>',
                     bucket: "<%= aws.bucket %>",
                     region: "us-east-1",
@@ -159,7 +159,7 @@ module.exports = function(grunt) {
         algorithm: 'sha1',
         length: 16,
         baseDir: "public/"
-        
+
     },
       assets: {
           expand: true,
@@ -168,7 +168,7 @@ module.exports = function(grunt) {
           dest: "public/"
     }
   },
-        availabletasks: {     
+        availabletasks: {
             tasks: {}
       },
         prompt: {
@@ -206,7 +206,7 @@ module.exports = function(grunt) {
                   {
                       expand: true,
                       cwd: "preflight/",
-                      src: "index.html",
+                      src: ["/index.html", "index.html/", "index.html"],
                       dest: ''
                   }
               ]
@@ -216,7 +216,7 @@ module.exports = function(grunt) {
                   {
                       expand: true,
                       cwd: "preflight/",
-                      src: "**/*.html",
+                      src: ["why-we--docker/", "index.html", "why-we--docker", "why-we--docker/index.html" ],
                       dest: ''
                   }
               ]
