@@ -17,7 +17,7 @@ we'll look at notable improvements in Stardog 3, including
 
 Stardog HA Cluster beta was released in Fall, 2014; while it was
 usable, it wasn't as robust as we wanted. Let's start by saying that
-distributed systems of any kind are hard And distributed semantic
+distributed systems of any kind are hard. And distributed semantic
 graph databases are even harder. But for the 3.0 release Edgar
 Rodriguez Diaz and Fernando Hernandez beat the Cluster into shape.
 
