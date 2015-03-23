@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>{{ .Site.Title }}&rarr;{{ .Title }}</title>
+        <title>{{ .Title }}</title>
         {{ partial "fonts.html" }}
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="canonical" href="http://blog.stardog.com{{ .RelPermalink }}" />
@@ -50,9 +50,9 @@
       <div class="wrapper clearfix content site-content" id="content">
         <div id="topdate">
          <h1 id="theTitle">{{ .Title }}</h1>
-         <span id="artdate">{{ .Date.Format "2 January 2006" }}</span>
-         <br>
-         <span id="twitterbtn"> {{ partial "twitter.html" . }} </span>
+           <a href="https://twitter.com/share" class="twitter-share-button" data-size="large">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+             <br/> <span id="artdate">{{ .Date.Format "2 January 2006" }}</span>
         </div>
        <div id="md">
          {{ .Content }}
@@ -91,5 +91,6 @@
      {{ partial "footer.html" }}
      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
      <script>hljs.initHighlightingOnLoad()</script>
+     <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us10.list-manage.com","uuid":"3b7e256df23c05b8bee52a1d0","lid":"7d534f48d0"}) })</script>
     </body>
 </html>

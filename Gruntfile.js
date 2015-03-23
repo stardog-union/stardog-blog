@@ -247,10 +247,10 @@ module.exports = function(grunt) {
                                "shell:update",
                                "autoprefixer",
                                "hugo",
-                               "cacheBust",
+           //                    "cacheBust",
                                "htmlmin",
                                "compress",//minify and compress because overkill is a thing!
                                'push_production',
-                               'kill_cdn'
+//                               'kill_cdn'
                               ]);
 };

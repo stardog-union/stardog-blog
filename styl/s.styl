@@ -24,9 +24,9 @@ rupture.scale = 0 415px 600px 800px 1050px 1280px
 rupture.mobile-cutoff = 415px
 texture = "/img/first-aid-kit.png"
 
-html
-  background-image url(texture)
-  background-color font-color //otherblue
+body//html
+  //background-image url(texture)
+  background #575B5E
 
 .dummy
   color white
@@ -50,7 +50,8 @@ img
   +mobile()
     display none
 #header
-  col(12/12, gutter: 20px)
+  //col(12/12, gutter: 20px)
+  span()
   background-color inkbluefoot
   border-bottom 1px solid white
   #logo
@@ -176,7 +177,7 @@ div#socialFoot
   margin-top -20px
   upcase()
 #footer 
-  width: 100%
+  //width: 100%
   height: 90px
 #dog
   z-index: 1000
@@ -185,7 +186,6 @@ div#socialFoot
   col(8/12, offset:1/5, gutter: 20px)
   margin-bottom 10px
   color mypink
-
 .iconmelon, .im
   position: relative
   width: 32px
