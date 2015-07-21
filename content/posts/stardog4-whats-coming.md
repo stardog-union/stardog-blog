@@ -17,13 +17,13 @@ graphs. In fact Stardog is the only graph system that exposes the full power of 
 and OWL reasoning to graph traversals and the property graph model generally.
 
 [Apache TinkerPop](http://tinkerpop.incubator.apache.org/) is the de facto API
-for property graph implementations, and Gremlin is a (widely implemented) DSL
-for traversing graphs. Gremlin is to property graphs as SPARQL is to RDF graphs.
+for property graph implementations, and Gremlin is a DSL for traversing graphs.
+Gremlin is to property graphs as SPARQL is to RDF graphs.
 
-Stardog customers increasingly understand that smart graphs are better than dumb
-graphs and that smart data is better than smart code. They want to query *and*
-traverse (and search and learn and...) *semantic* graphs, and that's why Stardog
-4's support for Gremlin including rules and axiomatic reasoning.
+Stardog customers understand that smart graphs are better than dumb graphs and
+that smart data is better than smart code. They want to query *and* traverse
+(and search and learn and...) *semantic* graphs, which is why Stardog 4's
+support for Gremlin including rules and axiomatic reasoning.
 
 ## Virtual Graphs and Enterprise Integration 
 
@@ -34,6 +34,9 @@ Put another way, the relationship between *systems of record* data and graph
 data is crucial and largely ignored in graph databases. Stardog takes this
 relationship to be central: it can model (and integrate and analyze) data that
 lives in non-graph (and graph!) systems of record.
+
+Stardog 4 virtual graphs support declarative mappings of any JDBC-accessible
+RDBMS into a Stardog graph with query-time instatiation of the mappings.
 
 **The real potential of graph databases is integrating hetereogenous enterprise
 data behind the firewall in order to reduce the cost and increase the quality of
@@ -62,9 +65,9 @@ Gist
 
 **Stardog 4 requires Java 8 and will not work with an earlier version of Java.**
 
-Java 6 is officially dead and Java 7 won't be alive that much longer. We decided
-to jump all the way to Java 8, especially since it offers some new capabilities
-we were dying to bake into Stardog like lambdas, parallelism, streams, etc.
+Java 6 and 7 are officially dead. So we jumped all the way to Java 8, especially
+since it offers some new capabilities we were dying to bake into Stardog like
+lambdas, parallelism, streams, etc.
 
 ## Core API Changes
 
@@ -76,3 +79,14 @@ we were dying to bake into Stardog like lambdas, parallelism, streams, etc.
 **Stardog 4 simplifies the High Availability Cluster by eliminating separate proxy.**
 
 Dumping proxy for yr load balancer...
+
+## What's Next?
+
+For the 4.x release cycle we'll focus on three areas:
+
+- scalability
+   1. [HDFS](http://hadoop.apache.org/docs/r1.2.1/hdfs_design.html)-based LSM tree indexes;
+   1. concurrent query evaluation; and
+   1. a distributed cost model
+- SPARQL performance
+- refinement of existing capabilities
