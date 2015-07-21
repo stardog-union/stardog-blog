@@ -82,11 +82,13 @@ Dumping proxy for yr load balancer...
 
 ## What's Next?
 
-For the 4.x release cycle we'll focus on three areas:
+For the 4.x release cycle we'll focus on 
 
-- scalability
-   1. [HDFS](http://hadoop.apache.org/docs/r1.2.1/hdfs_design.html)-based LSM tree indexes;
-   1. concurrent query evaluation; and
-   1. a distributed cost model
-- SPARQL performance
 - refinement of existing capabilities
+- scaling from billions to trillions
+   1. [HDFS](http://hadoop.apache.org/docs/r1.2.1/hdfs_design.html)-based LSM tree indexes
+   1. distributed query evaluation
+   1. distributed cost model
+- SPARQL performance
+
+**[Download Stardog today](http://stardog.com/) to start your free 30-day evaluation.**
