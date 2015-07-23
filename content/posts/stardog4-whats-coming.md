@@ -10,12 +10,10 @@ release announcement early this fall. <!--more-->
 
 ## Gremlin Joins SPARQL
 
-**Stardog 4 supports property graphs, Gremlin, and TinkerPop 3.**
-
-Stardog is now a polyglot graph database, equally useful for RDF and property
-graphs. In fact Stardog is the only graph system that exposes the full power of
-rules and OWL reasoning to graph traversals and the property graph model
-generally.
+**Stardog 4 supports property graphs, Gremlin, and TinkerPop 3.** Stardog is now
+a polyglot graph database and handles both RDF and property graphs. In fact
+Stardog is the only graph system that exposes the full power of rules and OWL
+reasoning to graph traversals and the property graph model generally.
 
 [Apache TinkerPop](http://tinkerpop.incubator.apache.org/) is the de facto API
 for property graph implementations, and Gremlin is a DSL for traversing graphs.
@@ -28,77 +26,56 @@ support for Gremlin including rules and axiomatic reasoning.
 
 ## Virtual Graphs and Enterprise Integration 
 
-**Stardog 4 supports Virtual Graphs for enterprise integration.**
-
-In the enterprise, *where the data comes from* is an important consideration.
-Put another way, the relationship between *systems of record* data and graph
-data is crucial and largely ignored in graph databases. Stardog takes this
-relationship to be central: it can model (and integrate and analyze) data that
-lives in non-graph (and graph!) systems of record.
+**Stardog 4 supports Virtual Graphs for enterprise integration.** In the
+enterprise, *where the data comes from* is an important consideration. Put
+another way, the relationship between *systems of record* data and graph data is
+crucial and largely ignored in graph databases. Stardog takes this relationship
+to be central: it can model (and integrate and analyze) data that lives in
+non-graph (and graph!) systems of record.
 
 Stardog 4 virtual graphs support declarative mappings of any JDBC-accessible
 RDBMS into a Stardog graph with query-time instatiation of the mappings.
 
+Examples of mappings, etc.
+
 **The real potential of graph databases is integrating hetereogenous enterprise
 data to reduce the cost and increase the quality of analytics.**
 
-## Faceted Graph Browsing with Pelorus
-
-**Stardog 4 embeds Pelorus, a faceted graph navigation browser.**
-
-Stardog's semantic graphs often integrate very complex domains that are made up
-of very many data sources. The domain model may itself be complex and dynamic in
-a way that makes queries (or traversals) non-trivial.
-
-One way to deal with complexity is good UI. Pelorus is good UI for graphs.  It's
-also ~1500 lines of Clojurescript-React-functional goodness.
-
-{{screenshot}}
-
-Pelorus is now available for faceted browsing of any Stardog database.
-
 ## Geospatial Query
 
-**Stardog 4 includes geospatial query support.**
+**Stardog 4 includes geospatial query support.** Graph data that uses the
+  [WGS 84](http://www.w3.org/2003/01/geo/) vocabulary to
+  [encode](http://www.w3.org/2003/01/geo/wgs84_pos) latitude & longitude will
+  trigger Stardog 4 to spatially index every `geo:Feature` it can find. Then you
+  can do `geo:relate`, `:distance`, `:within`, and `:area` in SPARQL queries.
 
-What geospatial query? What Lucene supports (but don't say it that way).
+All of this is user extensible by grabbing
+[JTS](http://www.vividsolutions.com/jts/JTSHome.htm) and dropping the JAR into
+the classpath, then setting `spatial.use.jts=true`, which enables WKT shapes,
+including polygons, etc.
 
-Gist...
-
-What predicates does it index?
+Gist link...
 
 ## Moving to Java 8
 
 **Stardog 4 requires Java 8 and will not work with an earlier version of Java.**
-
 Java 6 and 7 are officially dead. So we jumped all the way to Java 8, especially
 since it offers some new capabilities we were dying to bake into Stardog like
 lambdas, parallelism, streams, etc.
 
-Some perf bump in places...
-
 ## Core API Changes
 
-**Stardog 4 includes core API changes.** More lambda, more streaming, more
-  auto-closing, etc. Move to Java 8 opens up possibilities.
-
-## HA Cluster Simplified
-
-**Stardog 4 simplifies the High Availability Cluster by eliminating separate
-  proxy.**
-
-Dumping proxy for yr load balancer...
+**Stardog 4 includes core API changes.** Some of these changes are to take
+  advantage of Java 8 features like `Stream` and `java.nio#Path`. Others are
+  cleanups to move Stardog to RDF 1.1.
 
 ## What's Next?
 
-For the 4.x release cycle we'll focus on 
+In the 4.1 we'll integrate Pelorus, a faceted graph browser, into the Stardog
+Web Console. In the rest of the 4.x release cycle we'll focus on scaling from
+gigabyte to petabyte graphs, HDFS integration, SPARQL performance, and
+refinement of existing capabilities.
 
-- scaling from gigabyte to petabyte graphs
-   1. [HDFS](http://hadoop.apache.org/docs/r1.2.1/hdfs_design.html)-based LSM
-      tree indexes
-   1. distributed query evaluation
-   1. distributed cost model
-- SPARQL performance
 
 **[Download Stardog today](http://stardog.com/) to start your free 30-day
-  evaluation.**
+evaluation.**
