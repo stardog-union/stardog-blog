@@ -27,10 +27,12 @@ support for Gremlin including rules and axiomatic reasoning.
 ### Namespace-less Mode
 
 Our property graph friends don't use URIs for node or edge labels; and sometimes even
-semantic graph applications don't really need to pay that cost upfront. Stardog 4 includes
-
-- default support for RDF, RDFS, OWL, and XSD namespaces; they can be used without any declarations
-- inserting, deleting, querying data in a default, unnamed namespace for simplicity
+semantic graph applications don't really need to pay that cost upfront. Stardog already 
+supported stored namespaces and using these namespaces in SPARQL queries without prefix 
+declarations making it easier to work with URIs. Stardog 4 now supports omitting namespace 
+declarations in RDF files as well. Namespaces for RDF, RDFS, OWL, and XSD vocabularies are 
+automatically added to Stardog databases along with a default namespace making it possible 
+to insert, delete, and query data without any prefix declarations at all.
 
 ## Virtual Graphs and Enterprise Integration 
 
