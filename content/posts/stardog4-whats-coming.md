@@ -55,7 +55,7 @@ All of this is user extensible by grabbing
 the classpath, then setting `spatial.use.jts=true`, which enables WKT shapes,
 including polygons, etc.
 
-Gist link...
+What does it look like? [Check it out](https://gist.github.com/kendall/b699db38ec4c0034eba2).
 
 ## Moving to Java 8
 
