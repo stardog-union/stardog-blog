@@ -29,9 +29,9 @@ support for Gremlin including rules and axiomatic reasoning.
 Our property graph friends don't use URIs for node or edge labels; and sometimes even
 semantic graph applications don't really need to pay that cost upfront. Stardog already 
 supported stored namespaces and using these namespaces in SPARQL queries without prefix 
-declarations making it easier to work with URIs. Stardog 4 now supports omitting namespace 
-declarations in RDF files as well. Namespaces for RDF, RDFS, OWL, and XSD vocabularies are 
-automatically added to Stardog databases along with a default namespace making it possible 
+declarations making it easier to work with URIs. 
+
+Stardog 4 supports omitting namespace  declarations in RDF files as well. Namespaces for RDF, RDFS, OWL, and XSD vocabularies are  automatically added to Stardog databases along with a default namespace making it possible 
 to insert, delete, and query data without any prefix declarations at all.
 
 ## Virtual Graphs and Enterprise Integration 
@@ -45,8 +45,6 @@ non-graph (and graph!) systems of record.
 
 Stardog 4 virtual graphs support declarative mappings of any JDBC-accessible
 RDBMS into a Stardog graph with query-time instatiation of the mappings.
-
-Examples of mappings, etc.
 
 **The real potential of graph databases is integrating hetereogenous enterprise
 data to reduce the cost and increase the quality of analytics.**
