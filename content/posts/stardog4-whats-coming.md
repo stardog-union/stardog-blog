@@ -44,7 +44,7 @@ data to reduce the cost and increase the quality of analytics.**
 ## Geospatial Query
 
 **Stardog 4 includes geospatial query support.** Graph data that uses the
-  [WGS 84](http://www.w3.org/2003/01/geo/) vocabulary to
+  [WGS 84](http://www.w3.org/2003/01/geo/) or [OGC GeoSparql](http://www.opengeospatial.org/standards/geosparql)vocabulary to
   [encode](http://www.w3.org/2003/01/geo/wgs84_pos) latitude & longitude will
   trigger Stardog 4 to spatially index every `geo:Feature` it can find. Then you
   can do `geo:relate`, `:distance`, `:within`, and `:area` in SPARQL queries.
