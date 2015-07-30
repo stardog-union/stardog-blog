@@ -67,7 +67,7 @@ lambdas, parallelism, streams, etc.
 ## Core API Changes
 
 **Stardog 4 includes core API changes.** Some of these changes are to take
-  advantage of Java 8 features like `Stream` and `java.nio#Path`. Others are
+  advantage of Java 8 features like `Stream` and `java.nio.file#Path`. Others are
   cleanups to move Stardog to RDF 1.1.
 
 ## What's Next?
