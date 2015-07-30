@@ -24,6 +24,14 @@ that smart data is better than smart code. They want to query *and* traverse
 (and search and learn and...) *semantic* graphs, which is why Stardog 4's
 support for Gremlin including rules and axiomatic reasoning.
 
+### Namespace-less Mode
+
+Our property graph friends don't use URIs for node or edge labels; and sometimes even
+semantic graph applications don't really need to pay that cost upfront. Stardog 4 includes
+
+- default support for RDF, RDFS, OWL, and XSD namespaces; they can be used without any declarations
+- inserting, deleting, querying data in a default, unnamed namespace for simplicity
+
 ## Virtual Graphs and Enterprise Integration 
 
 **Stardog 4 supports Virtual Graphs for enterprise integration.** In the
