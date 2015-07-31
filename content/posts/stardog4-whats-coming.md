@@ -6,7 +6,7 @@ title = "A Preview of Stardog 4"
 +++
 
 Let's preview the big changes coming in Stardog 4. Watch this space for the
-release announcement early this fall. <!--more-->
+release soon. <!--more-->
 
 ## Gremlin Joins SPARQL
 
@@ -19,10 +19,10 @@ reasoning to graph traversals and the property graph model generally.
 for property graph implementations, and Gremlin is a DSL for traversing graphs.
 Gremlin is to property graphs as SPARQL is to RDF graphs.
 
-Stardog customers understand that smart graphs are better than dumb graphs and
-that smart data is better than smart code. They want to query *and* traverse
-(and search and learn and...) *semantic* graphs, which is why Stardog 4's
-support for Gremlin including rules and axiomatic reasoning.
+Stardog users understand that smart graphs are better than dumb graphs and that
+smart data is better than smart code. They want to query *and* traverse (and
+search and learn and...) *semantic* graphs, which is why Stardog 4's support for
+Gremlin including rules and axiomatic reasoning.
 
 ### Namespace-less Mode
 
@@ -56,7 +56,8 @@ data to reduce the cost and increase the quality of analytics.**
   vocabulary to
   [encode](http://www.w3.org/2003/01/geo/wgs84_pos) latitude & longitude will
   trigger Stardog 4 to spatially index every `geo:Feature` it can find. Then you
-  can do `geo:relate`, `:distance`, `:within`, and `:area` in SPARQL queries.
+  can do `geo:relate`, `geo:distance`, `geo:within`, and `geo:area`, etc. in
+  SPARQL queries.
 
 All of this is user extensible by grabbing
 [JTS](http://www.vividsolutions.com/jts/JTSHome.htm) and dropping the JAR into
@@ -65,7 +66,7 @@ including polygons, etc.
 
 What does it look like? [Check it out](https://gist.github.com/kendall/b699db38ec4c0034eba2).
 
-## Moving to Java 8
+## Java 8
 
 **Stardog 4 requires Java 8 and will not work with an earlier version of Java.**
 Java 6 and 7 are officially dead. So we jumped all the way to Java 8, especially
@@ -80,11 +81,10 @@ lambdas, parallelism, streams, etc.
 
 ## What's Next?
 
-In the 4.1 we'll integrate Pelorus, a faceted graph browser, into the Stardog
-Web Console. In the rest of the 4.x release cycle we'll focus on scaling from
-gigabyte to petabyte graphs, HDFS integration, SPARQL performance, and
-refinement of existing capabilities.
-
+In the 4.1 we'll release [Pelorus](http://nasa.clarkparsia.com/)---our faceted
+graph browser---integrated into the Stardog Web Console. Then in the remainder
+of the 4.x release cycle we'll focus on scalability, HDFS integration, SPARQL
+performance, and refinement of existing capabilities.
 
 **[Download Stardog today](http://stardog.com/) to start your free 30-day
 evaluation.**
