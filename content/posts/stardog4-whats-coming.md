@@ -1,6 +1,6 @@
 +++
 date = "2015-07-15T15:04:24-04:00"
-draft = true 
+draft = false
 author = "Kendall Clark"
 title = "A Preview of Stardog 4"
 +++
