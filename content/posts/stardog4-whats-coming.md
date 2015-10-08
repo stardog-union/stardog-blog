@@ -31,8 +31,10 @@ semantic graph applications don't really need to pay that cost upfront. Stardog 
 supported stored namespaces and using these namespaces in SPARQL queries without prefix 
 declarations making it easier to work with URIs. 
 
-Stardog 4 supports omitting namespace  declarations in RDF files as well. Namespaces for RDF, RDFS, OWL, and XSD vocabularies are  automatically added to Stardog databases along with a default namespace making it possible 
-to insert, delete, and query data without any prefix declarations at all.
+Stardog 4 supports omitting namespace declarations in RDF files as well.
+Namespaces for RDF, RDFS, OWL, and XSD vocabularies are automatically added to
+Stardog databases along with a default namespace making it possible to insert,
+delete, and query data without any prefix declarations at all.
 
 ## Virtual Graphs and Enterprise Integration 
 
