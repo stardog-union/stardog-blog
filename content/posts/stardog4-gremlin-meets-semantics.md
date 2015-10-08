@@ -27,6 +27,12 @@ implementation of the Apache TinkerPop 3 (TP3) APIs.
 
 ## Gremlin, SPARQL, OWL, and Rules
 
+Stardog 4 is the first TP3 implementation that seamlessly blends with reasoning and
+other semantic services. Which is to say that a Gremlin traversal can interact with
+inferred edges, nodes, and node properties.
+
+For example, consider...
+
 {Edgar writes some examples...}
 
 ## Implementation 
