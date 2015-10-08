@@ -1,7 +1,7 @@
 +++
 date = "2015-10-08T15:04:24-04:00"
 draft = true
-author = "Kendall Clark, Marko Rodriguez, and Edgar Hernandez"
+author = "Kendall Clark, Marko Rodriguez, and Edgar Rodriguez-Diaz"
 title = "Stardog 4: Gremlin Meets Semantics"
 +++
 
