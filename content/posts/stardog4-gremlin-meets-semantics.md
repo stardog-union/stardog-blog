@@ -31,7 +31,8 @@ Stardog 4 is the first TP3 implementation that seamlessly blends with reasoning
 and other semantic services. Which is to say that a Gremlin traversal can
 interact with inferred edges, nodes, and node properties.
 
-{We need a dataset and some rules and constraints...}
+{We need a dataset (use http://grouplens.org/datasets/movielens/) and some rules
+and constraints...}
 
 For example, consider...
 
