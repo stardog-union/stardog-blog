@@ -16,9 +16,9 @@ in common. Perhaps their primary similarity is fact that both types of graphs su
 labels on their edges. This enables data modelers to not only say that two
 vertices are related, but also in which way they are related. For instance,
 
-{code}
+<pre><code>
 kendall--knows-->marko
-{code}
+</pre></code>
 
 This single feature alone enables a graph to support a heterogenous set of 
 entities (vertices) connected by a heterogenous set of relationships (edges).
@@ -32,23 +32,23 @@ express a query in terms of a pattern match. For instance, the query below asks:
 
 > Which people know each other that also work for the same company?
 
-{code}
+<pre><code>
 SELECT ?a,?b WHERE {
   ?a knows ?b
   ?b worksFor ?c
   ?a worksFor ?c
 }
-{code}
+</pre></code>
 
 Gremlin also supports graph pattern-matching with the analagous query below.
 
-{code}
+<pre><code>
 g.V().match(
   as('a').out('knows').as('b'),
   as('b').out('worksFor').as('c'),
   as('a').out('worksFor').as('c')).
     select('a','c')
-{code}
+</pre></code>
 
 However, one of the primary charms of Gremlin is its ability to express graph 
 traversals. A graph traversal is an algorithmic walk over the graph structure.
@@ -56,10 +56,10 @@ The Gremlin traversal below asks:
 
 > Who does Marko know that works for Complexible?
 
-{code}
+<pre><code>
 g.V().has('name','marko').out('knows').
   where(out('worksFor').has('name','Complexible'))
-{code}
+</pre></code>
 
 Given the toy world presented in the queries above, suppose that the graph
 dataset explicitly denotes that Kendall works for Stardog. However, it also
@@ -74,7 +74,7 @@ enables implicit relationships to appear explicit (generated at query time).
 When combined with Gremlin, Gremlin has semantics!
 
 Stardog provides its customers a *semantic graph* technology for solving 
-enterprise integration problems. A result of that dual commitment is that 
+enterprise integration problems. A result of that dual commitment is that                      
 Stardog 4 seemlessly blends semantic and property graphs, SPARQL and Gremlin, 
 and with repsects to the thesis of this post, Gremlin and semantic reasoning. 
 Stardog 4 is a fully featured, TinkerPop-enabled graph database (OLTP) 
