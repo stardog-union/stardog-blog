@@ -293,6 +293,10 @@ Some things to note:
     Using the _"property graph way"_ in Stardog doesn't mean you can't use SPARQL or any other tool available is
 		Stardog, which makes everything so much flexible when working with graphs in general.
 
+Code for this example is available at the
+[TinkerPop3Example](https://github.com/Complexible/stardog-examples/blob/master/examples/api/main/src/com/complexible/stardog/examples/tinkerpop/TinkerPop3Example.java)
+in the [stardog-examples](https://github.com/Complexible/stardog-examples) repo.
+
 ## Implementation
 
 Our implementation strategy generally in Stardog is to reduce various services
