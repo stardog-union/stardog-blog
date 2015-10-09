@@ -279,19 +279,19 @@ Some things to note:
 
 * **Look ma! No SPARQL!**
 
-    Even though our data is originally in an RDF representation and contains semantics, we're *only* using traversals
-		to access the graph data.
+  Even though our data is originally in an RDF representation and contains semantics, we're *only* using traversals to
+	access the graph data.
 
 * **Reasoning and inferred information are just edges and vertices**
 
-    When using _Smart Property Graphs_ in Stardog there's really no more concepts involved other than edges, vertices
-		and traversals, which people using property graphs already know about, making it straightforward to use; really,
-		who doesn't want their graphs to be smart!?
+  When using _Smart Property Graphs_ in Stardog there's really no more concepts involved other than edges, vertices
+	and traversals, which people using property graphs already know about, making it straightforward to use; really,
+	who doesn't want their graphs to be smart!?
 
 * **Don't get locked with one approach**
 
-    Using the _"property graph way"_ in Stardog doesn't mean you can't use SPARQL or any other tool available is
-		Stardog, which makes everything so much flexible when working with graphs in general.
+  Using the _"property graph way"_ in Stardog doesn't mean you can't use SPARQL or any other tool available is
+	Stardog, which makes everything so much flexible when working with graphs in general.
 
 Code for this example is available at the
 [TinkerPop3Example](https://github.com/Complexible/stardog-examples/blob/master/examples/api/main/src/com/complexible/stardog/examples/tinkerpop/TinkerPop3Example.java)
