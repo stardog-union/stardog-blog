@@ -197,7 +197,7 @@ that makes our graph smarter, allowing it to determine which car is old or new.
 
 So if we want to retrieve old model or latest model cars from our property graph using the semantics defined in the
 schema, we just need to traverse the incoming edges of the `vh:OldModel` or `vh:LatestModel` vertex and get the source
-vertices of those in-edges:
+vertices of those in-edges, just like we did in the previous examples for `vh:Car`:
 
 > _With reasoning_
 
