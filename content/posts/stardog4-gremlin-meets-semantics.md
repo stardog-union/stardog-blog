@@ -303,7 +303,24 @@ Our implementation strategy generally in Stardog is to reduce various services
 (internally) to SPARQL query evaluation and then to optimize the hell out of
 SPARQL query evaluation. The same goes for our TP3 implementation.
 
-{Edgar says some stuff about the implementation...}
+In order to be able to represent property graphs in Stardog and query them via
+SPARQL, we needed to introduce a form of reification that would allow us to express
+edge properties in the RDF model. Stardog 4.0 introduces a reification function
+which computes an statement identifier for any RDF quad in a Stardog database,
+extending this model to have a notion of virtual "quints".
+
+Reasoning in Property Graphs via TP3 is just a natural by-product of Stardog's amazing
+reasoning capabilities and our query optimizer, which also made it easier for us to implement.
+Once we were able to represent property graph access with SPARQL queries, reasoning can
+be applied to those generated queries, letting our implementation interpret SPARQL
+results in the regular way to translate back to property graph concepts.
+There's really no specific code to handle reasoning vs non-reasoning usage of
+Stardog's TP3 implementation internally.
+You can choose to use reasoning or not with Property Graphs, given that reasoning in Stardog happens
+at query time, you only pay for what you use.
+
+More details about the internal representation and how to use TinkerPop3 with Stardog can be found in the
+[Stardog Documentation](http://docs.stardog.com/#_motivation_implementation).
 
 ## What's Next?
 
