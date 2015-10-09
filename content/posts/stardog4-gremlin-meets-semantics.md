@@ -86,7 +86,8 @@ Stardog 4 is the first TinkerPop3 (TP3) implementation that seamlessly blends wi
 and other semantic services. Which is to say that a Gremlin traversal can
 interact with inferred edges, nodes, and node properties.
 
-For example, consider the following data in [vehicles.trig](https://github.com/Complexible/stardog-examples/blob/master/examples/api/data/vehicles.trig),
+For example, consider the following data in
+[vehicles.trig](https://github.com/Complexible/stardog-examples/blob/master/examples/api/data/vehicles.trig),
 which contains a graph for the schema (tbox) and the data (abox) in the default graph:
 
 ```
@@ -152,14 +153,17 @@ vh:schema
 }
 ```
 
-The schema contains two simple rules in the [Stardog Rules Syntax](http://docs.stardog.com/#_stardog_rules_syntax). The rules determine the following:
+The schema contains two simple rules in the [Stardog Rules Syntax](http://docs.stardog.com/#_stardog_rules_syntax). The
+rules determine the following:
 
 ```
 (1) if a vehicle's year model is the current year, then it's a latest model
 (2) if a vehicle's year model more than 10 years old, then it's an old model
 ```
 
-Data in the default graph states that `:car1` and `:car2` are of type `vh:Car` and `:car3` is a `vh:SportsCar`. Every non-literal is considered a vertex in the property graph, so in order to get which elements are of type `vh:Car` we could do a traversal over the in-edges of the `vh:Car` vertex and get the source vertices:
+Data in the default graph states that `:car1` and `:car2` are of type `vh:Car` and `:car3` is a `vh:SportsCar`. Every
+non-literal is considered a vertex in the property graph, so in order to get which elements are of type `vh:Car` we
+could do a traversal over the in-edges of the `vh:Car` vertex and get the source vertices:
 
 > _Without reasoning_
 
@@ -169,9 +173,12 @@ gremlin> g2.V('http://example.org/vehicles/Car').in()
 ==>v[http://myvehicledata.com/car1]
 ```
 
-The previous results show the stated data, but common sense (and our Class hierarchy) tells us that sports cars are just cars too, so we can conclude that we have a dumb graph.
+The previous results show the stated data, but common sense (and our Class hierarchy) tells us that sports cars are
+just cars too, so we can conclude that we have a dumb graph.
 
-Property graphs with semantics provide enhanced access to your graph, taking into account your data semantics in the schema with reasoning, but allowing you to traverse and consume your graph the same way you would normally do with a property graph, using traversals, making your graphs smarter.
+Property graphs with semantics provide enhanced access to your graph, taking into account your data semantics in the
+schema with reasoning, but allowing you to traverse and consume your graph the same way you would normally do with a
+property graph, using traversals, making your graphs smarter.
 
 > _With reasoning_
 
@@ -182,9 +189,15 @@ gremlin> g.V('http://example.org/vehicles/Car').in()
 ==>v[http://myvehicledata.com/car2]
 ```
 
-Stardog Rules are applied seamlessly and triggered automatically when reasoning is performed in stardog at query time; from the point of view of the property graph it's just like edges and vertices that always have been there. E.g. there's no stated data saying if any car instance in our graph is an old model (`vh:OldModel`) or a latest model (`vh:LatestModel`), but it has a year model property for each car and our stardog rules in the schema encode the logic that makes our graph smarter, allowing it to determine which car is old or new.
+Stardog Rules are applied seamlessly and triggered automatically when reasoning is performed in stardog at query time;
+from the point of view of the property graph it's just like edges and vertices that always have been there. E.g.
+there's no stated data saying if any car instance in our graph is an old model (`vh:OldModel`) or a latest model
+(`vh:LatestModel`), but it has a year model property for each car and our stardog rules in the schema encode the logic
+that makes our graph smarter, allowing it to determine which car is old or new.
 
-So if we want to retrieve old model or latest model cars from our property graph using the semantics defined in the schema, we just need to traverse the incoming edges of the `vh:OldModel` or `vh:LatestModel` vertex and get the source vertices of those in-edges:
+So if we want to retrieve old model or latest model cars from our property graph using the semantics defined in the
+schema, we just need to traverse the incoming edges of the `vh:OldModel` or `vh:LatestModel` vertex and get the source
+vertices of those in-edges:
 
 > _With reasoning_
 
@@ -200,7 +213,8 @@ gremlin> g.V('http://example.org/vehicles/LatestModel').in().valueMap()
 ==>[yearModel:[2015], model:[Tesla]]
 ```
 
-The following table demonstrate the difference in vertices/edges of _Smart Property Graphs with Semantics_ vs. _Dumb Property Graphs_, showing all the inferred vertices/edges for the property graph with reasoning.
+The following table demonstrate the difference in vertices/edges of _Smart Property Graphs with Semantics_ vs.
+_Dumb Property Graphs_, showing all the inferred vertices/edges for the property graph with reasoning.
 
 <table>
   <tr>
@@ -265,15 +279,19 @@ Some things to note:
 
 * **Look ma! No SPARQL!**
 
-    Even though our data is originally in an RDF representation and contains semantics, we're *only* using traversals to access the graph data.
+    Even though our data is originally in an RDF representation and contains semantics, we're *only* using traversals
+		to access the graph data.
 
 * **Reasoning and inferred information are just edges and vertices**
 
-    When using _Smart Property Graphs_ in Stardog there's really no more concepts involved other than edges, vertices and traversals, which people using property graphs already know about, making it straightforward to use; really, who doesn't want their graphs to be smart!?
+    When using _Smart Property Graphs_ in Stardog there's really no more concepts involved other than edges, vertices
+		and traversals, which people using property graphs already know about, making it straightforward to use; really,
+		who doesn't want their graphs to be smart!?
 
 * **Don't get locked with one approach**
 
-    Using the _"property graph way"_ in Stardog doesn't mean you can't use SPARQL or any other tool available is Stardog, which makes everything so much flexible when working with graphs in general.
+    Using the _"property graph way"_ in Stardog doesn't mean you can't use SPARQL or any other tool available is
+		Stardog, which makes everything so much flexible when working with graphs in general.
 
 ## Implementation
 
