@@ -11,15 +11,21 @@ combination in detail.<!--more-->
 
 ## The Power of Semantic Graphs
 
-RDF and Property Graphs are two graph data structures that share many features in common. Perhaps their most striking similarity is fact that both types of graphs support labels on their edges. This enables data modelers to not only say that two vertices are related, but also in which way they are related. For instance, the edge below states the Marko vertex "knows" the Kendall vertex.
+RDF and Property Graphs are two graph data structures that share many features in common.
+Perhaps their most striking similarity is fact that both types of graphs support labels on their edges.
+This enables data modelers to not only say that two vertices are related, but also in which way they are related.
+For instance, the edge below states the Marko vertex "knows" the Kendall vertex.
 
 <pre><code>
 marko--knows-->kendall
-</pre></code>
+</pre></code'>
 
 **ADD PROVIDED IMAGE (REMOVE TEXT-EDGE ABOVE)**
 
-This single feature alone enables a graph to support a heterogenous set of entities (vertices) connected by a heterogenous set of relationships (edges) which is the hallmark of any modern data modeling structure. Furthermore, it is this feature that provides the sophisticated [reasoning](https://en.wikipedia.org/wiki/Reason) languages and capabilities adored in the RDF community.
+This single feature alone enables a graph to support a heterogenous set of entities (vertices) connected by a
+heterogenous set of relationships (edges) which is the hallmark of any modern data modeling structure.
+Furthermore, it is this feature that provides the sophisticated
+[reasoning](https://en.wikipedia.org/wiki/Reason) languages and capabilities adored in the RDF community.
 
 An interesting difference between the RDF and Property Graph communities is their
 respective query languages. In the RDF world, the _de facto_ query language is
@@ -62,7 +68,15 @@ g.V().has('name','marko').out('knows').
 
 **ADD PROVIDED IMAGE**
 
-Given the toy world presented in the queries above, suppose that the graph dataset explicitly denotes that Kendall <code>worksFor</code> Stardog. The query above would not list Kendall as a person that Marko as Kendall does not work for Complexible. However, suppose that the graph also states that Stardog is a <code>subsidiary</code> of Complexible, <code>worksFor</code> is a <code>subPropertyOf</code> <code>subsidiary</code>, and <code>subsidiary</code> is a <code>TransitiveProperty</code>. With the power of [OWL](https://en.wikipedia.org/wiki/Web_Ontology_Language) reasoning, it is inferred that Kendall <code>worksFor</code> Complexible. In this way, while the fact that Kendall works for Complexible is not explicit in the graph structure, it is implicit in the graph schema by means of the OWL ontology. With Stardog, OWL enables implicit relationships to appear explicit (generated at query time). When combined with Gremlin, Gremlin has semantics!
+Given the toy world presented in the queries above, suppose that the graph dataset explicitly denotes that Kendall
+<code>worksFor</code> Stardog. The query above would not list Kendall as a person that Marko as Kendall does not work
+for Complexible. However, suppose that the graph also states that Stardog is a <code>subsidiary</code> of Complexible,
+<code>worksFor</code> is a <code>subPropertyOf</code> <code>subsidiary</code>, and <code>subsidiary</code> is a
+<code>TransitiveProperty</code>. With the power of [OWL](https://en.wikipedia.org/wiki/Web_Ontology_Language)
+reasoning, it is inferred that Kendall <code>worksFor</code> Complexible. In this way, while the fact that Kendall
+works for Complexible is not explicit in the graph structure, it is implicit in the graph schema by means of the
+OWL ontology. With Stardog, OWL enables implicit relationships to appear explicit (generated at query time).
+When combined with Gremlin, Gremlin has semantics!
 
 Stardog provides its customers a *semantic graph* technology for solving
 enterprise integration problems. A result of that dual commitment is that                      
