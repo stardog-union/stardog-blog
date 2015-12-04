@@ -21,7 +21,13 @@ marko--knows-->kendall
 
 This single feature alone enables a graph to support a heterogenous set of entities (vertices) connected by a heterogenous set of relationships (edges) which is the hallmark of any modern data modeling structure. Furthermore, it is this feature that provides the sophisticated [reasoning](https://en.wikipedia.org/wiki/Reason) languages and capabilities adored in the RDF community.
 
-An interesting difference between the RDF and Property Graph communities is their respective query lanuages. In the RDF world, the _de facto_ query language is [SPARQL](https://en.wikipedia.org/wiki/SPARQL) of the [W3C](http://www.w3.org/). In the Property Graph world, [Gremlin](https://en.wikipedia.org/wiki/Gremlin_(programming_language)) of [Apache TinkerPop](http://tinkerpop.incubator.apache.org/). SPARQL allows the user to express a query in terms of a [pattern match](https://en.wikipedia.org/wiki/Pattern_matching). For instance, the query below asks:
+An interesting difference between the RDF and Property Graph communities is their
+respective query languages. In the RDF world, the _de facto_ query language is
+[SPARQL](https://en.wikipedia.org/wiki/SPARQL) of the [W3C](http://www.w3.org/).
+In the Property Graph world, [Gremlin](https://en.wikipedia.org/wiki/Gremlin_(programming_language)) of
+[Apache TinkerPop](http://tinkerpop.incubator.apache.org/).
+SPARQL allows the user to express a query in terms of a [pattern match](https://en.wikipedia.org/wiki/Pattern_matching).
+For instance, the query below asks:
 
 > Which people know each other that also work for the same company?
 
@@ -33,7 +39,7 @@ SELECT ?a,?b WHERE {
 }
 </pre></code>
 
-Gremlin also supports graph pattern matching with the analagous query below.
+Gremlin also supports graph pattern matching with the analogous query below.
 
 <pre><code>
 g.V().match(
@@ -43,7 +49,9 @@ g.V().match(
     select('a','b')
 </pre></code>
 
-However, one of the primary charms of Gremlin is its ability to express graph traversals. A graph traversal is an algorithmic walk over the graph structure. The Gremlin traversal below asks:
+However, one of the primary charms of Gremlin is its ability to express graph
+traversals. A graph traversal is an algorithmic walk over the graph structure.
+The Gremlin traversal below asks:
 
 > Who does Marko know that works for Complexible?
 
@@ -59,7 +67,7 @@ Given the toy world presented in the queries above, suppose that the graph datas
 Stardog provides its customers a *semantic graph* technology for solving
 enterprise integration problems. A result of that dual commitment is that                      
 Stardog 4 seemlessly blends semantic and property graphs, SPARQL and Gremlin,
-and with repsects to the thesis of this post, Gremlin and semantic reasoning.
+and with respects to the thesis of this post, Gremlin and semantic reasoning.
 Stardog 4 is a fully featured, TinkerPop-enabled graph database (OLTP)
 and processor (OLAP).
 
@@ -157,11 +165,11 @@ gremlin> g2.V('http://example.org/vehicles/Car').in()
 ```
 
 The previous results show the stated data, but common sense (and our Class hierarchy) tells us that sports cars are
-just cars too, so we can conclude that we have a dumb graph.
+just cars too.
 
 Property graphs with semantics provide enhanced access to your graph, taking into account your data semantics in the
 schema with reasoning, but allowing you to traverse and consume your graph the same way you would normally do with a
-property graph, using traversals, making your graphs smarter.
+property graph, using traversals.
 
 > _With reasoning_
 
@@ -172,11 +180,11 @@ gremlin> g.V('http://example.org/vehicles/Car').in()
 ==>v[http://myvehicledata.com/car2]
 ```
 
-Stardog Rules are applied seamlessly and triggered automatically when reasoning is performed in stardog at query time;
-from the point of view of the property graph it's just like edges and vertices that always have been there. E.g.
+Stardog Rules are applied seamlessly and triggered automatically when reasoning is performed in Stardog at query time;
+from the point of view of the property graph, it's just like edges and vertices that always have been there. E.g.
 there's no stated data saying if any car instance in our graph is an old model (`vh:OldModel`) or a latest model
-(`vh:LatestModel`), but it has a year model property for each car and our stardog rules in the schema encode the logic
-that makes our graph smarter, allowing it to determine which car is old or new.
+(`vh:LatestModel`), but it has a year model property for each car and our Stardog rules in the schema encode the logic,
+allowing it to determine which car is old or new.
 
 So if we want to retrieve old model or latest model cars from our property graph using the semantics defined in the
 schema, we just need to traverse the incoming edges of the `vh:OldModel` or `vh:LatestModel` vertex and get the source
@@ -196,14 +204,14 @@ gremlin> g.V('http://example.org/vehicles/LatestModel').in().valueMap()
 ==>[yearModel:[2015], model:[Tesla]]
 ```
 
-The following table demonstrate the difference in vertices/edges of _Smart Property Graphs with Semantics_ vs.
-_Dumb Property Graphs_, showing all the inferred vertices/edges for the property graph with reasoning.
+The following table demonstrate the difference in vertices/edges of _Semantic Property Graphs_ vs.
+_Regular Property Graphs_, showing all the inferred vertices/edges for the property graph with reasoning.
 
 <table>
   <tr>
       <th>Traversal</th>
-      <th>Smart Property Graph (With Reasoning)</th>
-      <th>Dumb Property Graph (Traditional No-Reasoning)</th>
+      <th>Semantic Property Graphs (with Reasoning)</th>
+      <th>Regular Property Graph (Traditional No-Reasoning)</th>
   </tr>
   <tr>
     <td><code>g.V()</code></td>
@@ -267,13 +275,12 @@ Some things to note:
 
 * **Reasoning and inferred information are just edges and vertices**
 
-  When using _Smart Property Graphs_ in Stardog there's really no more concepts involved other than edges, vertices
-	and traversals, which people using property graphs already know about, making it straightforward to use; really,
-	who doesn't want their graphs to be smart!?
+  When using _Semantic Property Graphs_ in Stardog there's really no more concepts involved other than edges, vertices
+	and traversals, which people using property graphs already know about, making it straightforward to use.
 
 * **Don't get locked with one approach**
 
-  Using the _"property graph way"_ in Stardog doesn't mean you can't use SPARQL or any other tool available is
+  Using the _"property graph way"_ in Stardog doesn't mean you can't use SPARQL or any other tool available in
 	Stardog, which makes everything so much flexible when working with graphs in general.
 
 Code for this example is available at the
@@ -292,7 +299,7 @@ edge properties in the RDF model. Stardog 4.0 introduces a reification function
 which computes an statement identifier for any RDF quad in a Stardog database,
 extending this model to have a notion of virtual "quints".
 
-Reasoning in Property Graphs via TP3 is just a natural by-product of Stardog's amazing
+Reasoning in Property Graphs via TP3 is just a natural by-product of Stardog's
 reasoning capabilities and our query optimizer, which also made it easier for us to implement.
 Once we were able to represent property graph access with SPARQL queries, reasoning can
 be applied to those generated queries, letting our implementation interpret SPARQL
