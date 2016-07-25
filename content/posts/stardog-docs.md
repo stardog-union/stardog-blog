@@ -5,21 +5,20 @@ author = "Kendall Clark and Jess Balint"
 title = "Unifying Unstructured Data"
 +++
 
-Our mission is to unify all enterprise data in a single, coherent graph managed
+Our mission is to unify all enterprise data in a single, coherent graph served
 by Stardog, which includes, crucially at some organizations, *unstructured
-data*. Let's preview some new features coming in Stardog to make unstructured
-data unification with Stardog much easier. <!--more-->
+data*. Let's preview upcoming Stardog features to make unstructured
+data unification much easier. <!--more-->
 
 ## Documents & Databases
 
-In the enterprise data is everywhere. Some of it is free text of
-the sort that's in every business document ever written or generated. Typically
-you don't really care whether some fact you need to do your job exists in a
-document or in some database. You just need access to the fact or, increasingly,
+In the enterprise, data is everywhere. Some of it is unstructured text contained in every business document ever written or generated. Typically
+you don't really care whether a pertinent fact needed to do your job exists in a
+document or database. Simply, access to the fact is needed or, increasingly,
 some software process or system needs to access that fact to perform some
 analytic or calculation.
 
-Since our mission is to unify *all* enterprise data, we can't ignore the
+Since Stardog's mission is to unify *all* enterprise data, we can't ignore the
 billions of enterprise documents that contain vital information.
 
 ## Making Stardog Smart about Documents
@@ -69,8 +68,7 @@ Since "extraction algorithms" of this type work best when they are trained on
 (or otherwise take advantage of) *your data*, we also need to support hooks to
 call *your NLP or mining pipeline* and then store the data that it returns in
 Stardog. The best NLP is *NLP specific to the document corpus in question*,
-which means that in Stardog optimal extraction or mining of your documents is on
-your side of the line.
+which means that in Stardog optimal extraction or mining of your documents will be implemented by your team.
 
 Extraction is done with customized Java components which are plugged
 into Stardog. These components have full access to the database which
