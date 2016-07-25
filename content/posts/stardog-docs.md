@@ -5,18 +5,18 @@ author = "Kendall Clark and Jess Balint"
 title = "Unifying Unstructured Data"
 +++
 
-Our mission is to unify all enterprise data in a single, coherent graph served
+Our mission is to unify all enterprise data in a single, coherent graph managed
 by Stardog, which includes, crucially at some organizations, *unstructured
 data*. Let's preview upcoming Stardog features to make unstructured
 data unification much easier. <!--more-->
 
 ## Documents & Databases
 
-In the enterprise, data is everywhere. Some of it is unstructured text contained in every business document ever written or generated. Typically
-you don't really care whether a pertinent fact needed to do your job exists in a
-document or database. Simply, access to the fact is needed or, increasingly,
-some software process or system needs to access that fact to perform some
-analytic or calculation.
+In the enterprise, data is everywhere. Some of it is unstructured text 
+contained in every business document ever written or generated. Typically
+you don't really care whether a pertinent fact exists in a document or database. 
+You need a fact to do your job; or, just as often, some software process that fact 
+to perform some analytic or calculation.
 
 Since Stardog's mission is to unify *all* enterprise data, we can't ignore the
 billions of enterprise documents that contain vital information.
