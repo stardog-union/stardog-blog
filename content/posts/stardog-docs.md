@@ -35,14 +35,28 @@ Facts are facts. Data is (or, if you prefer correctness, are) data. All Stardog
 services and capabilities will just work over graphs of entities, their
 properties and relations, seamlessly whatever their ultimate origin or source.
 
-But Stardog will also store and manage documents, search documents, and process 
-documents.
+But Stardog will also store and manage documents, search documents,
+and process documents. This means you can directly upload your
+in-house content without any external tools.
 
 ### Search Documents
 
-Stardog's search system ... blah blah ... 
+Stardog's search system is a full-text index based on Lucene. When
+combined with document text extraction, this becomes a search index
+over your entire document corpus. Documents are instantly search able
+and queries can range over all your data available in, or through, the
+graph. As an example, consider a database with product details. A
+query can locate products given a set of constraints. This query can
+be extended to search through documents mentioning this product. All
+in a single query.
 
-Extract "explicit metadata", too.
+Text content isn't the only content available. Stardog will also
+extract document metadata. This includes Exif metadata from JPEG
+files, embedded metadata Office documents, and standards based
+metadata such as XMP in PDF files. Asserted directly into the the
+graph, this allows querying over file formats, creation/modification
+dates, authors, keywords, titles and even f-stop and shutter speed in
+JPEG images.
 
 ### Process Documents
 
@@ -55,8 +69,17 @@ Since "extraction algorithms" of this type work best when they are trained on
 (or otherwise take advantage of) *your data*, we also need to support hooks to
 call *your NLP or mining pipeline* and then store the data that it returns in
 Stardog. The best NLP is *NLP specific to the document corpus in question*,
-which means that in Stardog optimal exraction or mining of your documents is on
+which means that in Stardog optimal extraction or mining of your documents is on
 your side of the line.
+
+Extraction is done with customized Java components which are plugged
+into Stardog. These components have full access to the database which
+allows adding relationships to, and correlating with, existing
+data. An extraction process is run on each document and expected to
+extract a set of RDF statements. This opens the possibility to
+literally anything with the document content. You can re-use pre-built
+machine learning models based on UIMA or GATE, call out to an external
+application, or even forward the processing to a remote web service.
 
 ### Store & Manage Documents
 
@@ -70,6 +93,11 @@ be retrievable for human inspection later on.
 
 If you don't need Stardog to manage the documents you send to it for processing,
 it's completely optional.
+
+All data extracted from a document, including RDF statements and
+full-text index entries, are stored in a named graph specific to that
+document. This allows for complete provenance tracking and
+fine-grained access control to documents and their extracted content.
 
 ### What's Next
 
