@@ -5,7 +5,7 @@ author = "Kendall Clark and Jess Balint"
 title = "Unifying Unstructured Data"
 +++
 
-Our mission is to unify all enterprise data in a single, coherent graph served
+Our mission is to unify all enterprise data in a single, coherent graph managed
 by Stardog, which includes, crucially at some organizations, *unstructured
 data*. Let's preview some new features coming in Stardog to make unstructured
 data unification with Stardog much easier. <!--more-->
