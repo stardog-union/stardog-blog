@@ -53,7 +53,7 @@ in one query.
 Text content isn't the only content available. Stardog will also
 extract document metadata. This includes Exif metadata from JPEG
 files, embedded metadata in Office documents, and standards-based
-metadata such as XMP in PDF files. Asserted explicit metadata directly 
+metadata such as XMP in PDF files. Asserting explicit metadata directly 
 into the graph allows querying over file formats, creation/modification
 dates, authors, keywords, titles and even f-stop and shutter speed in
 JPEG images.
