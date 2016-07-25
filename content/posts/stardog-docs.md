@@ -12,7 +12,7 @@ data unification with Stardog much easier. <!--more-->
 
 ## Documents & Databases
 
-In the enterprise data is everywhere. Some of it is unstructured, free text of
+In the enterprise data is everywhere. Some of it is free text of
 the sort that's in every business document ever written or generated. Typically
 you don't really care whether some fact you need to do your job exists in a
 document or in some database. You just need access to the fact or, increasingly,
@@ -36,25 +36,25 @@ services and capabilities will just work over graphs of entities, their
 properties and relations, seamlessly whatever their ultimate origin or source.
 
 But Stardog will also store and manage documents, search documents,
-and process documents. This means you can directly upload your
-in-house content without any external tools.
+and process documents. This means you can directly add your
+enterprise documents without any external tools.
 
 ### Search Documents
 
 Stardog's search system is a full-text index based on Lucene. When
 combined with document text extraction, this becomes a search index
-over your entire document corpus. Documents are instantly search able
+over your entire document corpus. Documents are instantly searchable
 and queries can range over all your data available in, or through, the
 graph. As an example, consider a database with product details. A
 query can locate products given a set of constraints. This query can
-be extended to search through documents mentioning this product. All
-in a single query.
+be extended to search through documents mentioning this product...all
+in one query.
 
 Text content isn't the only content available. Stardog will also
 extract document metadata. This includes Exif metadata from JPEG
-files, embedded metadata Office documents, and standards based
-metadata such as XMP in PDF files. Asserted directly into the the
-graph, this allows querying over file formats, creation/modification
+files, embedded metadata in Office documents, and standards-based
+metadata such as XMP in PDF files. Asserted explicit metadata directly 
+into the graph allows querying over file formats, creation/modification
 dates, authors, keywords, titles and even f-stop and shutter speed in
 JPEG images.
 
@@ -76,10 +76,10 @@ Extraction is done with customized Java components which are plugged
 into Stardog. These components have full access to the database which
 allows adding relationships to, and correlating with, existing
 data. An extraction process is run on each document and expected to
-extract a set of RDF statements. This opens the possibility to
-literally anything with the document content. You can re-use pre-built
-machine learning models based on UIMA or GATE, call out to an external
-application, or even forward the processing to a remote web service.
+extract and return  a set of RDF statements. This opens the possibility to
+do just about anything computable with document content. You can use pre-built
+machine learning models or NLP pipelines based on UIMA or third party 
+services like Google's TensorFlow.
 
 ### Store & Manage Documents
 
@@ -88,10 +88,9 @@ for storing and retrieving documents. Docs are not stored *in* the graph
 (because that's silly) but, rather, in AWS S3, HDFS, or local file system.
 
 Since NLP and text mining are lossy, imperfect techniques, in some use cases the
-original document context, from which structured data has been extracted, should 
-be retrievable for human inspection later on.
-
-If you don't need Stardog to manage the documents you send to it for processing,
+original document context (and content), from which structured data has 
+been extracted, should be retrievable for human inspection later on. And if you 
+don't need Stardog to manage the documents you send to it for processing,
 it's completely optional.
 
 All data extracted from a document, including RDF statements and
