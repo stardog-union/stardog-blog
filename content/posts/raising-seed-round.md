@@ -1,8 +1,8 @@
 +++
-date = "2016-07-22T15:05:23-04:00"
+date = "2016-07-27T15:05:23-04:00"
 draft = true
 author = "Kendall Clark"
-title = "Stardog Closes $2.3mm Seed Round"
+title = "Stardog Raises a Seed Round"
 +++
 
 Our mission is to unify all enterprise data in a single, coherent graph managed
