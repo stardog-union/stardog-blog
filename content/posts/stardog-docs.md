@@ -1,6 +1,6 @@
 +++
-date = "2016-07-22T15:05:23-04:00"
-draft = true
+date = "2016-07-26T15:05:23-04:00"
+draft = false
 author = "Kendall Clark and Jess Balint"
 title = "Unifying Unstructured Data"
 +++

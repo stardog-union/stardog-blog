@@ -1,6 +1,6 @@
 +++
 date = "2016-07-27T15:05:23-04:00"
-draft = true
+draft =  false
 author = "Kendall Clark"
 title = "Stardog Raises a Seed Round"
 +++
@@ -92,7 +92,7 @@ impossible. You will find a way.
 
 Enough that it makes a difference to scaling the business and enough that it
 makes the effort worthwhile. But I'm a believer in not raising too much the
-first time. You may find that sets expectations in a way that become difficulit
+first time. You may find that sets expectations too high
 to manage. There aren't too many other general rules of thumb beyond that. You
 don't want to raise again too soon. You want to raise enough that when you have
 to do it again you've made sufficient progress that you can raise on good terms.
