@@ -6,7 +6,7 @@ author = "Pavel Klinov"
 
 ## Introduction
 
-Like many database systems Stardog answers queries in two major phases
+Like many database systems Stardog answers queries in two major phases:
 determining the query plan and following that plan to obtain answers 
 from the data. The former is called _query planning_ (or 
 _query optimization_) and includes all steps required to select the most
@@ -236,7 +236,7 @@ MergeJoin(?person) [#391K]
 A reasonable thing to do would be to evaluate the join of `?article rdf:type bench:Article` and `?article dc:creator ?person` separately, i.e. as a separate query,
 to see if the estimation of `391K` is any close to reality and to get an idea about the memory pressure. This is a valuable piece of information for a performance
  problem report especially when the data cannot be shared with us. Similar analysis can be done for hash joins.
-
+ 
 In addition to pipeline breakers, there could be other clear indicators of performance problems. One of them is presence of
  `LoopJoin` nodes in the plan. It performs the [nested loops](https://en.wikipedia.org/wiki/Nested_loop_join) join algorithm 
  which evaluates the join by going through the cartesian product of the inputs. This is the slowest join algorithm which is used
@@ -285,6 +285,11 @@ different from the [solution compatibility](https://www.w3.org/TR/sparql11-query
 checking join conditions. The different manifests in the presence of numerical literals, e.g. `"1"^^xsd:integer` = `"1.0"^^xsd:float`
 while they are different RDF terms. However, as long as all names in the data are strings, one can re-formulate this query
 by renaming `?name2` to `?name` which would enable Stardog to use a more efficient join algorithm.
+
+We are working on _query hints_ functionality which will allow the users to have some control over the optimization process.
+ In particular, it will be possible to specify join algorithms, suggest a preferred join order, or a preferred sort key.
+ This mechanism could be used when the user believes the automatically selected plan is sub-optimal or just wants to experiment
+ with different ways of evaluation the query. Query hints are scheduled for Stardog 5.0.
 
 
 ## List Of Plan Operators
