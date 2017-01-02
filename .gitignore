@@ -1,4 +1,2 @@
-preflight
-bower_components
-node_modules
-hugo.log
+.idea/
+.DS_Store
