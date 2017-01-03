@@ -393,7 +393,7 @@ We are working on _query hints_ so that users may have some direct influence
 over the optimization process. It will be possible to specify join algorithms,
 to suggest a preferred join order or a preferred sort key. This mechanism could
 be used when the user believes the automatically selected plan is sub-optimal or
-just wants to experiment with different ways of evaluation the query.
+just wants to experiment with different ways of evaluating the query.
 
 ### New Memory Management
 
