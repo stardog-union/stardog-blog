@@ -4,7 +4,8 @@ date = "2017-01-03"
 author = "Pavel Klinov"
 +++
 
-Like many database systems Stardog answers queries in two major phases:
+Our mission is to unify all enterprise data in a single, coherent graph managed
+by Stardog. Like many database systems Stardog answers queries in two major phases:
 determining the query plan and executing that plan to obtain answers 
 from the data.<!--more-->
 
@@ -124,7 +125,7 @@ results before sending output. Such operators are called _pipeline breakers_,
 and they are often the culprits for performance problems, typically resulting
 from memory pressure. It is important to be able to spot them in the plan since
 they can suggest either a way to re-formulate the query to help the planner or a
-way to make the query more precise by specifying extra constants where they
+way to make the query more precise by specifying extra constraints where they
 matter.
 
 Here are some important pipeline breakers in the example plan:
@@ -405,3 +406,6 @@ memory pressure. We will have a detailed blog post about this feature soon.
 Learning how to read Stardog query plans not only gives you insight into how
 it's handling your queries against your data but will also prepare you to use
 the upcoming query hints capability to tune Stardog for maximum performance.
+
+**[Download Stardog today](http://stardog.com/) to start your free 30-day
+evaluation.**
