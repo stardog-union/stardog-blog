@@ -49,7 +49,7 @@ The query below is taken from the well-known [SP2B SPARQL benchmark](http://born
              `─ Scan[PSOC](?inproc, dc:creator, ?person) [#898K]
  ```
  
- > Note: example is this post use some visual enhancements, e.g. vertical lines,
+ > Note: example in this post use some visual enhancements, e.g. vertical lines,
  which will be released as a part of Stardog 4.2.3 or 4.3. Some other elements can also be rendered slightly differently.
  
  As you can see the plan looks like a hierarchical tree-like structure. 
@@ -64,7 +64,7 @@ The query below is taken from the well-known [SP2B SPARQL benchmark](http://born
  is at the [bottom](##List Of Plan Operators) of this post.
  
  Numbers in square brackets after each node refer to the _estimated_ cardinality of the node, i.e. how many solutions Stardog expects this operator
- to produce when the query is evaluated. Statistics-based cardinality estimation in Stardog merits a separate blog post but here're the key points for the purpose of
+ to produce when the query is evaluated. Statistics-based cardinality estimation in Stardog merits a separate blog post but here are the key points for the purpose of
  reading query plans: i) all estimations are approximate and their accuracy can vary greatly (more precise for bottom nodes, less precise for upper nodes)
  ii) estimations are only used for selecting the best plan but have no bearing on the actual results of the query, 
  iii) in most cases a sub-optimal plan can be explained by inaccurate estimations. 
