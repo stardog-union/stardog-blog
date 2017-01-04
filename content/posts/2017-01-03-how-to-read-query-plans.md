@@ -64,7 +64,7 @@ well-known
  can also be rendered slightly differently for expository purposes.
  
  As you can see, the plan looks like a hierarchical, tree-like structure. The
- nodes, called _operators_, represents units of data processing during
+ nodes, called _operators_, represent units of data processing during
  evaluation. They correspond to evaluations of graphs patterns or solution
  modifiers as defined in
  the
