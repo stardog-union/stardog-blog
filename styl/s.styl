@@ -7,8 +7,8 @@
 normalize-css()
 mypink = #444444 
 font-color = #444444 //rgba(0, 0, 0, 0.8)
-base-line-height = (font-size * 1.6)
-font-size  = 18px
+base-line-height = (font-size * 1.5)
+font-size  = 16px
 blog-font  = "Source Sans Pro", "Fira Mono"
 head1-color = font-color 
 head2-color = font-color
@@ -53,11 +53,11 @@ img
   //col(12/12, gutter: 20px)
   span()
   background-color inkbluefoot
-  border-bottom 1px solid white
+  border-bottom 1px solid inkbluefoot //white
   #logo
     col(8/12, offset:1/5, gutter: 20px)
     #title
-      fs((font-size * 3))
+      fs((font-size * 2.5))
       upcase()
       font-weight 700
       a
@@ -68,7 +68,7 @@ img
         font-weight 400
         fs((font-size * 1.33))
       #star
-        fs((font-size * 1.75))
+        fs((font-size * 1.5))
         vertical-align bottom
         color sdlime
         bold()
@@ -88,8 +88,11 @@ img
 .myicon
   margin-left 5px
   margin-right 5px
+#theSlug
+  fs(font-size * 1.125)
 #theTitle
   margin-bottom -10px
+  fs(font-size * 2)
   +below(4)
     line-height 1em
     margin-bottom 0px
@@ -149,12 +152,22 @@ pre > code
 //header#site>h1
 //  font-weight 700
 //  color head1-color
-h1,h2,h3,h4,h5,h6
-  font-weight 400
+h1,h2
+  fs(font-size * 1.5)
+  font-weight 500
   color head2-color
   +mobile()
     fs(font-size * 1.5)
     line-height (font-size * 1.4)
+h3
+  font-weight 500
+  fs(font-size * 1.33)
+h4
+  fs(font-size * 1.25)
+  font-weight 400
+h5,h6
+  fs(font-size * 1.125)
+  font-weight 400
 h1
   font-weight 500
 .inline
