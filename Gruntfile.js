@@ -117,6 +117,15 @@ module.exports = function(grunt) {
                 ]
             }
         },
+        cloudfront: {
+            options: {
+                accessKeyId: "<%= aws.secret %>",
+                secretAccessKey: "<%= aws.key %>",
+                distributionId: 'E9J6BU91BD488',
+                invalidations: ["/*"],
+            },
+            all: {},
+         },
         compress: {
             main: {
                 options: { mode: 'gzip', pretty: true, level: 9},
@@ -153,91 +162,18 @@ module.exports = function(grunt) {
         dest: "public/"
     }
   },
-  cacheBust: {
-    options: {
-        encoding: 'utf8',
-        algorithm: 'sha1',
-        length: 16,
-        baseDir: "public/"
-
-    },
-      assets: {
-          expand: true,
-          cwd: "public",
-          src: ["**/*.html"],
-          dest: "public/"
-    }
-  },
-        availabletasks: {
-            tasks: {}
-      },
-        prompt: {
-            target: {
-                options: {
-                    questions: [
-                        {
-                            config: 'config.invalidateTarget',
-                            type: 'list', // list, checkbox, confirm, input, password
-                            message: 'What do you want to invalidate?',
-                            default: 'index', // default value if nothing is entered
-                            choices: ["index", "all", "html", "none"],
-                        }
-                    ]
-                }
-            },
+        clean: {
+            build: ["public/*", "preflight/*"],
         },
-        invalidate_cloudfront: {
-          options: {
-              key: "<%= aws.secret %>",
-              secret: "<%= aws.key %>",
-              distribution: 'E9J6BU91BD488'
-            },
-            all: {
-                files: [{
-                    expand: true,
-                    cwd: 'public/',
-                    src: ['**/*'],
-                    filter: 'isFile',
-                    dest: ''
-                }]
-            },
-          index: {
-              files: [
-                  {
-                      expand: true,
-                      cwd: "preflight/",
-                      src: ["/index.html", "index.html/", "index.html"],
-                      dest: ''
-                  }
-              ]
-          },
-          html: {
-              files: [
-                  {
-                      expand: true,
-                      cwd: "preflight/",
-                      src: ["why-we--docker/", "index.html", "why-we--docker", "why-we--docker/index.html" ],
-                      dest: ''
-                  }
-              ]
-          }
-        },
-      clean: {
-          build: ["public/*", "preflight/*"],
-      },
   });
+
 
     require('matchdep').filter('grunt-*').forEach(grunt.loadNpmTasks);
     grunt.registerTask('cl', ['clean:build','shell:update']);
     grunt.registerTask("css", ["stylus","concat", "cssmin"]);
     grunt.registerTask("push_production", ["aws_s3:production", "aws_s3:gzipd"]);
-    grunt.registerTask("kill_html", ["invalidate_cloudfront:html"]);
     grunt.registerTask("hugo", ["shell:build"]);
-    grunt.registerTask('printConfig', function() {
-        grunt.log.writeln(JSON.stringify(grunt.config(), null, 2));
-    })
-    var target1 = grunt.option("invalidate") || "index";
-    grunt.registerTask("kill_cdn", ["invalidate_cloudfront:" + target1])
+    grunt.registerTask("kill", ["cloudfront:all"]);
     grunt.registerTask('dev', ['clean:build',
                                'css',
                                'shell:build',
@@ -247,10 +183,8 @@ module.exports = function(grunt) {
                                "shell:update",
                                "autoprefixer",
                                "hugo",
-           //                    "cacheBust",
                                "htmlmin",
                                "compress",//minify and compress because overkill is a thing!
                                'push_production',
-//                               'kill_cdn'
                               ]);
-};
+        };
