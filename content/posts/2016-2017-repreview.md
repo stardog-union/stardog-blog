@@ -17,8 +17,7 @@ That post is background for this one.
 
 ### Product Progress
 
-We made significant progress in Stardog *qua* product in 2016. Let's review some
-numbers.
+We made significant progress in Stardog *qua* product in 2016. Let's review.
 
 In January:
 
@@ -34,7 +33,7 @@ By December:
 
 In between January and December:
 
-* **9** releases total (which is low for us by historical standards)
+* **9** releases total (low by our historical standards)
 * **1,143** commits, which is about 8% of all total commits to Stardog
    1. **2,811** files were changed
    1. **170,673** insertions
@@ -43,12 +42,13 @@ In between January and December:
   more code than he added, about 6,600 lines. Not bad for the CTO!
 
 These statistics don't include anything that was started in 2016 but hasn't yet
-been merged to `develop`, including outstanding branches on memory management,
-cluster, and core server rewrite. There's some chance they would move our total
-code for the year from positive to deficit, which we would clearly prefer.
+been merged, including outstanding branches on memory management, cluster, and
+core server rewrite. There's some chance they would move our total code for the
+year from positive to deficit, which we would clearly prefer.
 
-In other words, we increased the Stardog codebase by about **35,000* lines, most
-but not all of which is code. That includes some non-trivial highlights:
+In other words, we only increased the Stardog codebase by about **35,000**
+lines, most but not all of which is code. That includes some non-trivial
+highlights:
 
 * reduced memory usage
 * join-order optimizations and
@@ -61,7 +61,9 @@ but not all of which is code. That includes some non-trivial highlights:
 * improve Virtual Graph performance
 * and 220 bug fixes
 
-As of this blog post, the Stardog codebase is about 575,000 lines of code.
+As of this blog post, the Stardog codebase is about 575,000 lines of code, a
+number that's been reasonably fixed for the past few years, while we've added
+significant new user-facing capability to the system.
 
 #### New Hires
 
@@ -130,10 +132,9 @@ about 4,500% this year. Two hires on the sales team were key here:
 
 ### Product Roadmap
 
-We're working on improving Stardog every day.
-
-From a software engineering perspective, we intend to return to the previous
-release pace, which was our historic norm, of about 2 releases per month.
+We're working on improving Stardog every day. From a software engineering
+perspective, we intend to return to the previous release pace, which was our
+historic norm, of about 2 releases per month.
 
 From a product management perspective, we are working on improving the user
 experience and the power of Stardog by focusing on
@@ -175,7 +176,8 @@ complements our organic growth.
 **What do we know?** We improve Stardog every day, both as a product and as a
 business, and we can attribute that growth to three facts:
 
-1. it solves a real need--data unification--that every big organization in the world has in spades
+1. it solves a real need--data unification--that every big organization in the
+   world has in spades
 1. it solves that problem in a way unlike any other enterprise offering
 1. the people responsible for the first two facts are very good at what they do
    and very passionate about doing it
