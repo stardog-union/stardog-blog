@@ -1,9 +1,9 @@
 +++
-title = "Bringing Relational Data into the Graph"
+title = "Virtual Graphs: Relational Data in Stardog"
 date = "2017-01-11"
 categories = ["R2RML", "virtual graphs", "relational databases"]
 author = "Jess Balint"
-draft = true
+draft = false
 +++
 
 When Stardog is used to unify relational data sources, it facilitates powerful
@@ -11,18 +11,18 @@ query and data management features. This post introduces Stardog's _virtual
 graph_ feature and explores how to access data from existing relational
 sources.<!--more-->
 
-Stardog--an enterprise data unification system--is based around the graph data
-model because we believe it's uniquely well-suited due to its flexibility and
-expressivity. We believe declarative reasoning is key due to its unique ability
-to map data and preserve consistency.
+Stardog is based on the graph data model because graph is uniquely well-suited
+to solving unification problems due to its flexibility and expressivity. We
+believe declarative reasoning is key due to its unique ability to describe, map,
+and preserve the consistency of data.
 
 ## Mapping and R2RML
 
 Traditional data integration tools are based on the relational data model and
 employ vendor-specific mapping languages and methods. The difficulty arises when
-combining several sources which were modeled differently and conform to
-independent sets of rules and constraints. First, a single shared data model
-must represent a global view over the sources. Second, significant manipulation
+combining several sources, which were modeled differently and conform to
+independent sets of rules and constraints. First, a single shared data model has
+to represent a global view over the sources. Second, significant manipulation
 and cleansing are typically required to transform between the source and target
 schema as well as make the source data conform to a set of standardized rules.
 
@@ -36,12 +36,11 @@ table or SQL query, to target data, a graph of RDF triples. Once the mapping is
 created, **Stardog seamlessly supports both federation (live query) and
 materialization (extraction) methods to access the relational data**.
 
-### R2RML Example
+### How to Map Relational Data into Stardog 
 
-Let's take a look at some examples of mappings and how they can be used in
-Stardog. We'll first build a mapping and create a virtual graph in Stardog.
-Then we'll show how it can be used for both federated queries and
-materialization.
+Let's look at some mappings and how they can be used in Stardog. We'll first
+build a mapping and create a virtual graph in Stardog. Then we'll show how it
+can be used for **both federated queries and materialization (ETL).**
 
 We'll use the classic RDBMS tables `EMP` and `DEPT` as
 given [here](https://www.w3.org/TR/r2rml/#example-input-database). We'll need to
@@ -104,36 +103,45 @@ We can expect that three triples will be created:
 <http://data.example.com/employee/7369> ex:department <http://data.example.com/department/10>.
 ```
 
-Hopefully it's clear how the triples are _generated_ from the input
-row, given the R2RML mappings. Now let's see how to use this type of
-mapping by creating a Stardog virtual graph.
+Hopefully it's clear how the triples are _generated_ from the input row, given
+the R2RML mappings. Now let's see how to use this type of mapping by creating a
+Stardog virtual graph.
 
 ### Working with Virtual Graphs
 
 Mapped relational sources are exposed in the same way as named graphs (i.e.,
 subgraphs accessible by name) in the RDF model. The triples representing the
 source relational data are considered to be in a named graph that is not present
-(i.e., not materialized) in the local RDF graph; hence, we say that named graph
-is _virtual_. So let's create this virtual graph. In addition to the mappings,
-we need to specify the connection information to the source relational system.
-This is basically a JDBC URL and credentials. Rather than repeat it here, I'll
-just
-[link to the documentation](http://docs.stardog.com/#_managing_virtual_graphs).
+(i.e., not materialized) in the local RDF graph; hence, we say that the named
+graph is _virtual_. 
+
+Think of the mappings as proxies for the data. With these proxies in the graph,
+and in a machine-understandable form that Stardog can process, we can turn them
+into the nodes and edges we need at any point: either eagerly (in an ETL
+fashion) or lazily (in a federated query fashion). Stardog thus subsumes the
+functionality of ETL, virtual/federated query, and system of record database in
+a single, coherent system based on declarative graphs.
+
+So let's create this virtual graph. In addition to the mappings, we need to
+specify the connection information to the source relational system. This is
+basically a JDBC URL and credentials. Rather than repeat it here, I'll
+just [link to the documentation](http://docs.stardog.com/#_managing_virtual_graphs).
 
 To create the virtual graph `dept` in Stardog, we first put the
 mappings in a file called `dept.ttl` and the connection properties in a
 file called `dept.properties`. We create the virtual graph from the
 command line as follows:
 
-```
+``` 
 $ virtual add dept.properties dept.ttl
 ```
 
-At this point, we can begin querying the relational data by way of the
-virtual graph just as easily as any other RDF data loaded into
-Stardog. The graph name we use in SPARQL queries obtained by appending
-the virtual graph to the `virtual://` prefix. We can query all
-employees and their names from the virtual graph as follows:
+At this point, we can begin querying the relational data by way of the virtual
+graph just as easily as any other data loaded directly into Stardog.
+
+The graph name we use in SPARQL queries is derived by appending the virtual
+graph to the `virtual://` prefix. We can query all employees and their names
+from the virtual graph as follows:
 
 ```
 select * where {
@@ -154,7 +162,8 @@ select * where {
 }
 ```
 
-We can join with locally maintained salary data:
+We can join with salary data that's already in Stardog:
+
 ```
 select * where {
   graph <virtual://dept> {
@@ -164,83 +173,111 @@ select * where {
 }
 ```
 
-The utility and flexibility of virtual graphs cannot be
-understated. These examples use a method of access called _federated_
-queries. This means that SPARQL evaluation includes a step to connect
-to the remote data source and request rows by way of a generated SQL
-query. Federated queries are convenient during prototyping and
-development but are not always the best choice for production
-deployments. The data is always up to date but queries are subject to
-availability and administration requirements of the source
-system. Large queries may increase the load on databases backing
-production applications. The next section examines an alternative
-access method whereby virtual graph data is materialized into Stardog.
+The utility and flexibility of virtual graphs cannot be understated. The
+preceding examples use a method of access called _federated query_. This means
+that SPARQL evaluation includes a step to connect to the remote data source and
+request rows by way of a generated SQL query. 
+
+Federated queries are convenient during prototyping and development but are not
+necessarily the best choice for production deployments. It depends on use cases
+and requirements of some app and, of course, on the nature of the data itself.
+The data is always up to date but queries are subject to availability and
+administration requirements of the source system. Large queries may increase the
+load on databases backing production applications.
+
+Next we examines an alternative access method whereby virtual graph data is
+materialized into Stardog.
 
 ### Materialization of Virtual Graphs
 
-Now that we've created a virtual graph and explored it with same basic
-queries. We'll look at another deployment option -
-materialization. Materialization consists of generating all possible
-triples that can be mapped from the source database and storing them
-directly in Stardog. Materialization contrasts to federated queries in
-a few key ways:
-* Queries over materialized data sets do not involve any communication
-  with the source system. This means query performance characteristics
-  shift as no data is transferred and all local Stardog query
-  evaluation optimizations are possible. This also means that queries
-  are not tied to availability of the source system.
-* Materialization involves a (possibly lengthy) step of generating
-  tuples and storing them in the Stardog RDF index. The view of the
-  source data is essentially "frozen" at the point in time when the
-  materialization is performance and updates must be managed
-  separately. Additionally, some Stardog features such as the text
-  search index are available over locally stored data.
+Stardog's power as a data unification rests in part on using *the right
+abstraction*, i.e., declarative graphs. The right abstraction means we can
+switch between wholly different operational models for unifying a data
+source--eager materialization or (lazy, i.e., query-time) virtual query--without
+changing code, models, or modeling.
 
-The nice thing about virtual graphs in Stardog is that there's very
-little difference between federation and materialization and it's easy
-to switch between the two. To materialize a virtual graph in Stardog,
-we use
-the [virtual import](http://docs.stardog.com/man/virtual-import.html)
-command. Materialization uses an optimized code path specifically
-designed to generate and index the triples from the remote
-source. Conveniently, it uses the same set of mappings and connection
-properties as the federated approach. Here's an example of
-materializing the employee/department data into a named graph
+Now that we've created a virtual graph and explored it with same basic queries,
+let's look at another deployment option: materialization. Think: ETL, that is,
+ETL systems are eager materialization systems. Materialization consists of
+generating all possible triples that can be mapped from (one or more) source(s),
+including relational databases, and storing them directly in Stardog.
+
+Materialization differs from federated query in a few key ways:
+
+* Evaluation of queries over materialized data does not involve any
+  communication with the source system. This means query performance
+  characteristics shift as no data is transferred and all local Stardog query
+  evaluation optimizations are possible. This also means that queries are not
+  tied to availability of the source system.
+* Materialization involves a (possibly lengthy) step of generating tuples and
+  storing them in the Stardog RDF index. The view of the source data is
+  essentially "frozen" at the point in time when the materialization is
+  performed and updates must be managed separately. Additionally, some Stardog
+  features such as the text search index are only available (currently) over
+  natively-managed data.
+
+The powerful thing about virtual graphs in Stardog is that there's very little
+difference between federation and materialization and it's easy to switch
+between the two. In fact, this choice can be made on a source by source basis.
+
+**Stardog seamlessly subsumes both ways of unifying data, federated queries and
+materialization, within an enterprise-grade system of record database.**
+
+To materialize a virtual graph in Stardog, we use
+the [virtual import](http://docs.stardog.com/man/virtual-import.html) command.
+Materialization uses an optimized code path specifically designed to generate
+and index the triples from the remote source. Conveniently, it uses the same set
+of mappings and connection properties as the federated approach. Here's an
+example of materializing the employee/department data into a named graph
 `http://data.example.com/employees` in the `emp` database:
 
 ``` bash
-$ stardog-admin virtual import -g 'http://data.example.com/employees' emp dept.properties dept.ttl
+$ stardog-admin virtual import -g \
+               'http://data.example.com/employees' emp dept.properties dept.ttl
 ```
 
-Following the completion of this command, we now have all the triples
-generated by the triples maps indexed in the
-`http://data.example.com/employees` graph. All the queries shown in
-the federated examples will work by change the graph name from
-`virtual://dept` to `http://data.example.com/employees`.
+Following the completion of this command, we now have all the triples generated
+by the triples maps indexed in the `http://data.example.com/employees` graph.
+All the queries shown in the federated examples will work by change the graph
+name from `virtual://dept` to `http://data.example.com/employees`.
 
 ## Virtual Graphs and Reasoning
 
-Virtual graphs provide a way to view data from relational sources as
-graphs. When combined with reasoning, we find a uniquely powerful data
-unification platform. Stardog's OWL 2 reasoning engine is based on
-query-time rewriting which means it works equally well with both
-federated and materialized virtual graph access. This also means
-reasoning works transparently with data combined from multiple
-sources. It's possible to model relationships across data in different
-databases with these relationships involved when queries are executed.
+Virtual graphs provide a way to view data from relational sources as graphs.
+When combined with reasoning, we find a uniquely powerful data unification
+platform. Stardog's OWL 2 reasoning engine is based on query-time rewriting
+which means it works equally well with both federated and materialized virtual
+graph access.
 
-Many have extolled the benefits of reasoning but we can look at just a
-few possibilities. It's common to require up-to-date employee data in
-large organizations. Virtual graphs provide access to "raw" data and
-reasoning provides a way to model higher-level views and
-relationships. This can be combined with project management data,
-third party performance appraisal, email, etc. The key components
-enabling data unification are available in Stardog.
+This also means reasoning works transparently with data combined from multiple
+sources. It's possible to model relationships across data in different databases
+with these relationships involved when queries are executed.
+
+Virtual graphs provide access to "raw" data and reasoning provides a way to
+model higher-level views and relationships **at the Stardog unification level**.
+In the case of employee data, this can be combined with project management data,
+third party performance appraisal, email, etc. The key components enabling data
+unification are available in Stardog.
 
 ## Conclusion
 
-We've looked at the Virtual Graph feature in Stardog. We've seen how
-to create mappings, how virtual graphs can be accessed, and how they
-can be used. Additional details are provided in
-the
-[docs](http://docs.stardog.com/#_structured_data_aka_virtual_graphs).
+We've looked at the Virtual Graph feature in Stardog. It's a key enabler of
+Stardog as an enterprise data unification platform since it subsumes the two
+primary operational patterns for doing enterprise data integration, i.e.,
+materialization (ETL) and federated query.
+
+That means your applications can couple loosely with enterprise data sources by
+being completely agnostic as to those operational details, which may (and now
+can) change in arbitrary ways. 
+
+If your app, Hadoop cluster, analytics or compliance framework doesn't know
+about those details, then it can't couple tightly to them and, thus, can't break when
+they (inevitably) change.
+
+We've seen how to create mappings, how virtual graphs can be accessed, and how
+they can be used. Additional operational details are provided in
+the [docs](http://docs.stardog.com/#_structured_data_aka_virtual_graphs).
+
+**[Download Stardog today](http://stardog.com/) to start your free 30-day
+evaluation.**
+
