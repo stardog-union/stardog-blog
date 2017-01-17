@@ -47,15 +47,17 @@
   </g>
 </svg>
       {{ partial "header.html" . }}
-      <div class="wrapper clearfix content site-content" id="content">
+<div class="wrapper clearfix content site-content" id="content">
+    {{ partial "bar.html" . }}
         <div id="topdate">
-         <h1 id="theTitle">{{ .Title }}</h1>
-         <div id="theSlug"><em>{{.Params.author}}</em>, <span id="artdate">{{ .Date.Format "2 January 2006" }}</span></b></div>
-         <a href="https://twitter.com/share" class="twitter-share-button" data-size="large">Tweet</a>
+            <h1 id="theTitle">{{ .Title }}</h1>
+
+   <!--          <div id="theSlug"><em>{{.Params.author}}</em>, <span id="artdate">{{ .Date.Format "2 January 2006" }}</span></b></div> -->
+         <div id="theTweet"><a id="tsb" href="https://twitter.com/share" class="twitter-share-button" data-size="large">Tweet</a></div>
          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         </div>
-       <div id="md">
-         {{ .Content }}
+        <div id="md">
+            {{ .Content }}
        </div>
        <div id="butt">
          <div class="media">

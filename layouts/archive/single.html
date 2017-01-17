@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{{ .Title }}</title>
+        {{ partial "fonts.html" }}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="canonical" href="http://blog.stardog.com/" />
+        <link href="/img/favicon.png" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="/css/s.css">
+    </head>
+    <body class="site">
+        {{ partial "header.html" . }}
+        <div class="wrapper site-content clearfix content" id="content">
+            {{ partial "bar.html" . }}
+            <h1 id="archivetitle">ARCHIVES by YEAR</h1>
+            {{ .Content }}
+            {{ range (where .Site.Pages.ByDate.Reverse "Type" "posts") }}
+                <h3 class="post-title"><a class="no-underline" href="{{ .Permalink }}">{{ .Title }}</a></h3>
+                <p class="frontslug">{{ .Date.Format "2 January 2006" }}</p>
+                <!-- <blockquote>{{ .Summary }}</blockquote> -->
+            {{ end }}
+        </div>
+        <div class="wrapper clearfix" id="content_foot">
+            <a href="http://stardog.com/">
+                <img id="dog" width="129" height="113" src="/img/sc3.png"></a>
+        </div>
+        {{ partial "footer.html" . }}
+    </body>
+</html>
