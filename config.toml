@@ -4,12 +4,13 @@ builddrafts = false
 title = "STARDOG★WEBLOG"
 baseurl = "/"
 canonifyurls = true
+copyright = "https://creativecommons.org/licenses/by-sa/3.0/"
 
 [permalinks]
   posts = "/:title/"
 
 [params]
   description = ""
-  author = "Complexible Inc"
+  author = "Stardog Union"
   sidebarrecentlimit = 3
   
