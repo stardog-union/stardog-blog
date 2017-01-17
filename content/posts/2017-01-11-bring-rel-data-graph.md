@@ -26,6 +26,8 @@ to represent a global view over the sources. Second, significant manipulation
 and cleansing are typically required to transform between the source and target
 schema as well as make the source data conform to a set of standardized rules.
 
+{{% figure src="/img/smap.jpg" class="inliner" %}}
+
 Stardog supports the standard [W3C R2RML](https://www.w3.org/TR/r2rml/) mapping
 language for defining how data in a relational system maps to RDF graphs. In
 addition, we've created
@@ -51,6 +53,7 @@ the form of triples. A triples map is comprised of three sections:
 1. a target subject map 
 1. a set of target predicate-object maps. 
 
+
 Each row in the source table is used to create one triple for each
 predicate-object pair. The subject is fixed for all triples built from a single
 row. We can see the basic intuition by examining how a single row maps to a set
@@ -70,10 +73,15 @@ This mapping says that we'll use the `EMP` table and that the subject of all
 triples created by rows in this table will be an IRI based on the template over
 the `EMPNO` field. Conceptually, each row represents an employee where the
 `EMPNO` field uniquely identifies the employee and the remaining fields
-(`ENAME`, `JOB`, `DEPTNO`) are attributes of the employee. Our mapping also
-specifies that an employee represented by a row in the table is a member of the
-`ex:Employee` class in our RDF model. We'll add to this two predicate-object
-maps indicating that two triples will be created for each row:
+(`ENAME`, `JOB`, `DEPTNO`) are attributes of the employee. 
+
+{{% figure src="/img/dept.jpg" class="inliner" %}}
+
+Our mapping also specifies that an employee represented by a row in the table is
+a member of the `ex:Employee` class in our RDF model. We'll add to this two
+predicate-object maps indicating that two triples will be created for each row:
+
+
 
 ```
     rr:predicateObjectMap [
@@ -85,6 +93,8 @@ maps indicating that two triples will be created for each row:
         rr:objectMap [ rr:column "ENAME" ];
     ].
 ```
+
+
 
 Finally, let's take a look at the result of applying this mapping to a single
 row from the `EMP` table. Given the row:
@@ -121,6 +131,10 @@ into the nodes and edges we need at any point: either eagerly (in an ETL
 fashion) or lazily (in a federated query fashion). Stardog thus subsumes the
 functionality of ETL, virtual/federated query, and system of record database in
 a single, coherent system based on declarative graphs.
+
+
+{{% figure src="/img/baker.jpg" class="inliner" %}}
+
 
 So let's create this virtual graph. In addition to the mappings, we need to
 specify the connection information to the source relational system. This is
@@ -178,6 +192,8 @@ preceding examples use a method of access called _federated query_. This means
 that SPARQL evaluation includes a step to connect to the remote data source and
 request rows by way of a generated SQL query. 
 
+{{% figure src="/img/joins.jpg" class="inliner" %}}
+
 Federated queries are convenient during prototyping and development but are not
 necessarily the best choice for production deployments. It depends on use cases
 and requirements of some app and, of course, on the nature of the data itself.
@@ -220,6 +236,8 @@ The powerful thing about virtual graphs in Stardog is that there's very little
 difference between federation and materialization and it's easy to switch
 between the two. In fact, this choice can be made on a source by source basis.
 
+{{% figure src="/img/material.jpg" class="inliner" %}}
+
 **Stardog seamlessly subsumes both ways of unifying data, federated queries and
 materialization, within an enterprise-grade system of record database.**
 
@@ -252,6 +270,8 @@ graph access.
 This also means reasoning works transparently with data combined from multiple
 sources. It's possible to model relationships across data in different databases
 with these relationships involved when queries are executed.
+
+{{% figure src="/img/cat.jpg" class="inliner" %}}
 
 Virtual graphs provide access to "raw" data and reasoning provides a way to
 model higher-level views and relationships **at the Stardog unification level**.

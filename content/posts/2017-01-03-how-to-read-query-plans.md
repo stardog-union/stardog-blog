@@ -12,14 +12,19 @@ from the data.<!--more-->
 The former is called _query planning_ (or _query optimization_) and includes all
 steps required to select the most efficient way to execute the query.
 Optimization is a complex computational problem and modern query optimizers can
-perform highly non-trivial transformations. In most cases, how Stardog evaluates
+perform highly non-trivial transformations. 
+
+In most cases, how Stardog evaluates
 a query can only be understood by analyzing the query plan. Query plan analysis
 is also the main tool for investigating performance issues as well as addressing
 them, in particular, by re-formulating the query to make it more amenable to
 optimization.
 
-**Learning how to understand Stardog query plans is a great way to become more
-adept at writing more performant queries.**
+{{% figure src="/img/love.jpg" class="inliner" %}}
+
+
+Learning how to understand Stardog query plans is a great way to become more
+adept at writing more performant queries.
 
 ## The "Syntax" of Query Plans
 
@@ -28,20 +33,20 @@ query plans in Stardog. The query below is taken from the
 well-known
 [SP2B SPARQL benchmark](http://borneo.informatik.uni-freiburg.de/content/publikationen/papers/sp2b.pdf):
  
- ```
- SELECT DISTINCT ?person ?name
- WHERE {
+```
+SELECT DISTINCT ?person ?name
+WHERE {
    ?article rdf:type bench:Article .
    ?article dc:creator ?person .
    ?inproc rdf:type bench:Inproceedings .
    ?inproc dc:creator ?person .
    ?person foaf:name ?name
- }
- ```
+}
+```
  
- This query returns the names of all people who have authored both a journal
- article and a paper in a conference proceedings. The query plan used by Stardog
- 4.2.2 to evaluate this query is:
+This query returns the names of all people who have authored both a journal
+article and a paper in a conference proceedings. The query plan used by Stardog
+4.2.2 to evaluate this query is:
  
  ```
  Distinct [#812K]
@@ -59,29 +64,30 @@ well-known
              `─ Scan[PSOC](?inproc, dc:creator, ?person) [#898K]
  ```
  
- > Note: examples in this post use some visual enhancements, e.g. vertical lines,
- which will be released as a part of Stardog 4.2.3 or 4.3. Some other elements
- can also be rendered slightly differently for expository purposes.
+**Note**: examples in this post use some visual enhancements, e.g. vertical lines,
+which will be released as a part of Stardog 4.2.3 or 4.3. Some other elements
+can also be rendered slightly differently for expository purposes.
+
+{{% figure src="/img/plan.jpg" class="inliner" %}}
+
+As you can see, the plan looks like a hierarchical, tree-like structure. The
+nodes, called _operators_, represent units of data processing during evaluation.
+They correspond to evaluations of graphs patterns or solution modifiers as
+defined in
+the
+[SPARQL 1.1 specification](https://www.w3.org/TR/sparql11-query/#sparqlDefinition).
+All operators can be regarded as functions which may take some data as input and
+produce some data as output. All input and and output data is represented as
+streams of [solutions](https://www.w3.org/TR/sparql11-query/#sparqlSolutions),
+that is, sets of bindings of the form `x -> value` where `x` is a variable used
+in the query and `value` is some RDF term (IRI, blank node, or literal).
+Examples of operators include scans, joins, filters, unions, etc.
  
- As you can see, the plan looks like a hierarchical, tree-like structure. The
- nodes, called _operators_, represent units of data processing during
- evaluation. They correspond to evaluations of graphs patterns or solution
- modifiers as defined in
- the
- [SPARQL 1.1 specification](https://www.w3.org/TR/sparql11-query/#sparqlDefinition).
- All operators can be regarded as functions which may take some data as input
- and produce some data as output. All input and and output data is represented
- as streams
- of [solutions](https://www.w3.org/TR/sparql11-query/#sparqlSolutions), that is,
- sets of bindings of the form `x -> value` where `x` is a variable used in the
- query and `value` is some RDF term (IRI, blank node, or literal). Examples of
- operators include scans, joins, filters, unions, etc. 
- 
- Numbers in square brackets after each node refer to the _estimated_ cardinality
- of the node, i.e. how many solutions Stardog expects this operator to produce
- when the query is evaluated. Statistics-based cardinality estimation in Stardog
- merits a separate blog post, but here are the key points for the purpose of
- reading query plans: 
+Numbers in square brackets after each node refer to the _estimated_ cardinality
+of the node, i.e. how many solutions Stardog expects this operator to produce
+when the query is evaluated. Statistics-based cardinality estimation in Stardog
+merits a separate blog post, but here are the key points for the purpose of
+reading query plans:
  
  1. all estimations are approximate and their accuracy can
  vary greatly (generally: more precise for bottom nodes, less precise for upper nodes) 
@@ -99,6 +105,9 @@ are then sent to their parent nodes up the plan. Typical examples of leaf nodes
 include scans, i.e. evaluations of triple patterns, evaluations of full-text
 search predicates,
 and [`VALUES`](https://www.w3.org/TR/sparql11-query/#inline-data) operators.
+
+{{% figure src="/img/leaf.jpg" class="inliner" %}}
+
 They contain all information required to produce output, for example, a triple
 pattern can be directly evaluated against Stardog indexes. Parent nodes, such as
 joins, unions, or filters, take solutions as inputs and send their results
@@ -127,6 +136,8 @@ from memory pressure. It is important to be able to spot them in the plan since
 they can suggest either a way to re-formulate the query to help the planner or a
 way to make the query more precise by specifying extra constraints where they
 matter.
+
+{{% figure src="/img/pipe.jpg" class="inliner" %}}
 
 Here are some important pipeline breakers in the example plan:
 
@@ -192,6 +203,8 @@ However, as it is joined with other parts of the plan, the results can be quite
 different. This is because Stardog employs optimizations to reduce the number of
 solutions produced by a node by pruning those which are incompatible with other
 solutions with which they will later be joined.
+
+{{% figure src="/img/skips.jpg" class="inliner" %}}
  
 Consider the following basic graph pattern and the corresponding plan:
  
@@ -227,6 +240,7 @@ execution and is affected by pipeline breakers. The lazy evaluation model means
 that there's usually only a limited amount of information available for
 optimization (since data isn't accumulated in memory, whenever possible).
 
+{{% figure src="/img/hash.jpg" class="inliner" %}}
 
 Pipeline breakers---e.g. sort nodes and hash joins---usually process unsorted
 data; that makes it difficult to take advantage of pruning. This means that
@@ -300,6 +314,8 @@ expects 17.7M which is fairly accurate in this case) that need to be filtered
 and examined for duplicates. Given all this information from the plan, the only
 reasonable way to address the problem would be to restrict the criteria, e.g. to
 particular journals, people, time periods, etc.
+
+{{% figure src="/img/hint.jpg" class="inliner" %}}
 
 If a query is well-formulated and selective, but performance is unsatisfactory,
 one may look closer at the pipeline breakers, e.g. this part of the query 5b
@@ -386,6 +402,9 @@ efficient join algorithm.
 
 We are working on performance, as always, for upcoming releases and two
 improvements are relevant here.
+
+{{% figure src="/img/memory.jpg" class="inliner" %}}
+
 
 ### Query Hints
 
