@@ -15,18 +15,21 @@ head2-color = font-color
 base(fonts = blog-font)
 typography()
 ligatures = true
+//colors
 sdlime =  rgba(205,237,136,100)
 text-selection(color = sdlime)
 otherblue = rgba(0,10.2,17.3,.78)
 inkblue = rgba(15, 117, 150, .78)
 inkbluefoot = rgba(15,117,150,1)
+tonguered = rgba(170,1,20,100)
 rupture.scale = 0 415px 600px 800px 1050px 1280px
 rupture.mobile-cutoff = 415px
 texture = "/img/first-aid-kit.png"
 
-body//html
+body
   //background-image url(texture)
-  background #575B5E
+  //background rgba(34,36,37,.0725) //#575B5E
+  background-image url(texture)
 
 .dummy
   color white
@@ -107,6 +110,7 @@ img
 #md
   span(1)
   margin-right 15px
+  margin-top 30px
 figure.inliner
   margin 0px
 blockquote
@@ -140,6 +144,8 @@ p > code
   color mypink
   fs(font-size * .9)
   font-family "Fira Mono"
+  color tonguered 
+  font-weight 500
 pre > code
   font-family "Fira Mono"
   fs(font-size * .9)
@@ -172,6 +178,9 @@ h1
   font-weight 500
 .inline
   inline-list()
+h1#archivetitle
+  font-weight 700
+  fs(font-size * 1.75) 
 #butt
   span(1)
   margin-bottom 30px
@@ -183,7 +192,7 @@ h1
       upcase()
 div#socialFoot
   #theSocial
-   span(1)
+     span(1)
    +mobile()
      display none
 .frontslug
@@ -222,7 +231,6 @@ div#socialFoot
 
 .media-body
   flex: 1
-  
 h3.post-title
   a
     upcase()
@@ -230,3 +238,11 @@ h3.post-title
 #disqusfeet
   +mobile()
     display none
+div#bar
+  margin-top -30px
+  margin-bottom 20px
+  text-align right
+  a:link, a:visited, a:hover, a:hover:visited
+    reset-link()
+    color  otherblue
+    font-weight 500
