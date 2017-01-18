@@ -3,6 +3,8 @@ date = "2016-09-21T10:04:29-04:00"
 draft = false 
 title = "Stardog 4.2—Docs on Lockdown!"
 author = "Kendall Clark"
+series = ["Release Announcement"]
+
 +++
 
 We're happy to announce the release of Stardog 4.2, our first major release

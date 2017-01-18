@@ -3,6 +3,7 @@ author = "Kendall Clark"
 categories = ["Stardog"]
 title = "Invitation to Stardog Beta"
 date = "2011-01-10"
+series = ["Release Announcement"]
 +++
 
 [Stardog](http://stardog.com/) is a fast, lightweight RDF

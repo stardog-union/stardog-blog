@@ -2,6 +2,8 @@
 title = "Stardog 1.0"
 date = "2012-06-18"
 author = "Kendall Clark"
+series = ["Release Announcement"]
+
 +++
 
 Today I'm happy to announce the release of [Stardog
