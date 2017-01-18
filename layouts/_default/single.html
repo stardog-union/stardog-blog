@@ -77,8 +77,11 @@
            <p class="media-body" id="slugdate">{{ .Date.Format "2 January 2006" }}</p>
          </div>
          <div id="socialFoot">
-           {{partial "social.html"}}
+           {{partial "social.html" . }}
          </div>
+       </div>
+       <div id="disgustblock">
+           {{ partial "disqus.html" . }}
        </div>
      </div>
      <div class="wrapper clearfix" id="content_foot">
