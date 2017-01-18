@@ -5,6 +5,7 @@ title = "STARDOG★WEBLOG"
 baseurl = "/"
 canonifyurls = true
 copyright = "https://creativecommons.org/licenses/by-sa/3.0/"
+disqusShortname = "stardog-union"
 
 [permalinks]
   posts = "/:title/"
@@ -14,3 +15,6 @@ copyright = "https://creativecommons.org/licenses/by-sa/3.0/"
   author = "Stardog Union"
   sidebarrecentlimit = 3
   
+[taxonomies]
+  category = "categories"
+  series = "series"
