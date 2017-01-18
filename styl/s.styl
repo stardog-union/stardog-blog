@@ -9,7 +9,8 @@ mypink = #444444
 font-color = #444444 //rgba(0, 0, 0, 0.8)
 base-line-height = (font-size * 1.5)
 font-size  = 16px
-blog-font  = "Source Sans Pro", "Fira Mono"
+//blog-font  = "Source Sans Pro", "Fira Mono"
+blog-font = "Merriweather Sans", "Source Code Pro"
 head1-color = font-color 
 head2-color = font-color
 base(fonts = blog-font)
@@ -30,6 +31,9 @@ body
   //background-image url(texture)
   //background rgba(34,36,37,.0725) //#575B5E
   background-image url(texture)
+  font-family "Source Code Pro", monospace
+  font-family "Nunito Sans", serif
+  font-weight 400
 
 .dummy
   color white
@@ -96,6 +100,7 @@ img
 #theTitle
   margin-bottom -10px
   fs(font-size * 2)
+  font-weight 500
   +below(4)
     line-height 1em
     margin-bottom 0px
@@ -142,17 +147,16 @@ blockquote
       linkUnderlines inkblue, white 
 p > code
   color mypink
-  fs(font-size * .9)
-  font-family "Fira Mono"
+  //fs(font-size * .9)
+  font-family "Source Code Pro"
   color tonguered 
-  font-weight 500
 pre > code
-  font-family "Fira Mono"
+  font-family "Source Code Pro"
   fs(font-size * .9)
   background rgba(255,255,255,0)
+  //front-weight 300
   border rgba(0,0,0,.1)
   border-radius 2px 3px / 4px 5px
-  bold()
   +mobile()
     fs(font-size / 1.5)
 //header#site>h1
@@ -179,7 +183,6 @@ h1
 .inline
   inline-list()
 h1#archivetitle
-  font-weight 700
   fs(font-size * 1.75) 
 #butt
   span(1)
@@ -235,14 +238,19 @@ h3.post-title
   a
     upcase()
     color otherblue
+#byline
+  fs(font-size * 1)
+#theBy
+  fs(font-size * 1)
 #disqusfeet
   +mobile()
     display none
 div#bar
+  fs(font-size * .9)
   margin-top -30px
   margin-bottom 20px
   text-align right
   a:link, a:visited, a:hover, a:hover:visited
     reset-link()
     color  otherblue
-    font-weight 500
+    font-weight 700
