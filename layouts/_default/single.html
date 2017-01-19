@@ -51,7 +51,7 @@
     {{ partial "bar.html" . }}
         <div id="topdate">
             <h1 id="theTitle">{{ .Title }}</h1>
-            <div id="byline"><em id="theBy">By</em> {{.Params.author}}, {{.Date.Format "2 January 2006" }}</div>
+            <div id="byline"><em id="theBy">By</em> {{.Params.author}}, {{.Date.Format "2 January 2006" }} &middot; {{.ReadingTime}} minute read</div>
 
    <!--          <div id="theSlug"><em>{{.Params.author}}</em>, <span id="artdate">{{ .Date.Format "2 January 2006" }}</span></b></div> -->
          <div id="theTweet"><a id="tsb" href="https://twitter.com/share" class="twitter-share-button" data-size="large">Tweet</a></div>
