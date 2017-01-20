@@ -4,9 +4,9 @@ date = "2017-01-20"
 author = "Alexander Toktarev"
 +++
 
-The main problem of all high-loaded Java applications which operates a huge amount of data is memory management.
+The main problem of all heavily-loaded Java applications which operate on a huge amount of data is memory management.
 
-JVM has internal garbage collector but it has two fundamental problems:
+JVM has an internal garbage collector but it has two fundamental problems:
 
 1) Resource consumption during garbage collection process (stop-the-world pauses, CPU consumption).
 
@@ -15,11 +15,11 @@ JVM has internal garbage collector but it has two fundamental problems:
 
 How can we resolve this problem ?
 
-Of course we can say "Let's re-write out product using C++" - but what if we still want write in Java.
+Of course we can say "Let's re-write our product using C++" - but what if we still want write in Java.
 
-First of all let's consider the main problem of general java approach.
+First of all, let's consider the main problem of general java approach.
 Using simple Java Objects in high-loaded application we allocate memory for the object,
-use this memory and release hard link on the corresponding object.
+use this memory and release strong reference on the corresponding object.
 If the number of such object is huge - it is very big pressure on GC and memory overflow is not under
 our control.
 
