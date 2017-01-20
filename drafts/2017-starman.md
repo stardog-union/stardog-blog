@@ -76,6 +76,7 @@ on how to create these credentials can be
 found
 [here](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html#Using_CreateAccessKey).
 Once you have obtained them you must set environment variables as shown below:
+
 ``` export AWS_ACCESS_KEY_ID=<aws access key>
 export AWS_SECRET_ACCESS_KEY=<a valid aws secret key>
 export STARDOG_CLUSTER_PASSWORD=admin
@@ -92,8 +93,7 @@ export STARDOG_CLUSTER_PASSWORD=admin
 Once those are in place simply download (available soon!) the Starman executable
 that matches your operating system and run it. A sample session is below:
 
-```
-$ ./bin/sdva launch mystardog
+```$ ./bin/sdva launch mystardog
 What version of stardog are you launching?: 4.2
 What is the path to the Stardog release?: 
 There is no base image for version 4.2.
