@@ -96,7 +96,7 @@ Once those are in place simply download (available soon!) the Graviton executabl
 that matches your operating system and run it. A sample session is below:
 
 ```
-$ ./bin/sdva launch mystardog
+$ ./bin/stardog-graviton launch mystardog
 What version of stardog are you launching?: 4.2
 What is the path to the Stardog release?: 
 There is no base image for version 4.2.
@@ -181,3 +181,7 @@ Graviton orchestrates a variety of cloud services in order to deploy
 and configure a highly-available Stardog cluster.  This is a very
 nuanced and complicated process but to its user t is a simple CLI that
 launches a stable database in the cloud.
+
+A video demonstration of Graviton is available
+[here](https://www.youtube.com/watch?v=TnzGMqj5rJI) (note that at the
+time the video was created we had not yet named the software).
