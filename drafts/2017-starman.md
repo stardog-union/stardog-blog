@@ -55,7 +55,8 @@ prompted.
  
 3. Launch the cluster. This step gets the cluster running. It starts
  up
- [Elastic Load Balancers](https://aws.amazon.com/elasticloadbalancing/), [Autoscaling Groups](https://aws.amazon.com/autoscaling/), and
+ [Elastic Load Balancers](https://aws.amazon.com/elasticloadbalancing/),
+ [Auto Scaling Groups](https://aws.amazon.com/autoscaling/), and
  other AWS components used in the cluster deployment. It runs all the needed discovery and configuration to
  get the Stardog nodes talking to each other and the Zookeeper cluster. Each node of
  both Stardog and Zookeeper will be monitored for health. If they are ever
@@ -158,8 +159,10 @@ traditional load balancer to work, a customer is presented with a
 URL for the application.  That URL points to the load balancer and 
 the load balancer fans it out to the replicated Stardog nodes.
 
-The second way we use it is to provide a name abstraction to the 
-zookeeper nodes.  (should I bother describing this?)
+Because the set of zookeeper nodes needs to be static we also use ELBs
+in a second.  They add a layer of indirection that makes each node in
+an auto-scaling group reliably addressable even when their IP addresses
+change.
 
 ### Autoscaling Groups (ASG)
 
@@ -175,7 +178,7 @@ hands free.
 ## Conclusion
 
 Starman is a intricate bit of software that interacts with a
-sophitsticated cloud in order to run a complicated highly available
+sophisticated cloud in order to run a complicated highly available
 application.  However to the user it is a simple CLI that launches
 a stable database in the cloud.  A beta release will be available soon,
 please try it out.
