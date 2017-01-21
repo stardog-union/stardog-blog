@@ -8,8 +8,9 @@ categories = ["AWS", "cloud", "cluster"]
 +++
 
 At Stardog Union the user experience is very important to us. We want our highly
-available cluster as easy to deploy as possible. For this reason we will soon be
-offering Stardog Graviton (Graviton), a single binary executable that lives on a client side machine
+available cluster as easy to deploy as possible. For this reason we have
+created [Stardog Graviton](https://github.com/stardog-union/stardog-graviton).
+Graviton compiles to a single binary executable that lives on a client side machine
 and provides a "one-click virtual appliance".
 
 Graviton works by leveraging the power
@@ -92,8 +93,11 @@ export STARDOG_CLUSTER_PASSWORD=admin
 3. A Stardog license. If you are just kicking the tires you can get a free trial
  license [here](http://stardog.com/#download).
 
-Once those are in place simply download (available soon!) the Graviton executable
-that matches your operating system and run it. A sample session is below:
+Once those are in place build Graviton as described
+[here](https://github.com/stardog-union/stardog-graviton/blob/master/README.md) 
+and run it.  (A single executable beta release will be available soon).
+
+A sample session is below:
 
 ```
 $ ./bin/stardog-graviton launch mystardog
