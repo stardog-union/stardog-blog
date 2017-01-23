@@ -10,7 +10,7 @@ JVM has an internal garbage collector but it has two fundamental problems:
 
 1) Resource consumption during garbage collection process (stop-the-world pauses, CPU consumption).
 
-2) OutOfMemoryException can be thrown in case when not enough memory for the processing.
+2) OutOfMemoryException can be thrown in case if not enough memory for the processing.
 [OutOfMemoryException cases](https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/memleaks002.html).
 
 How can we resolve this problem ?
@@ -18,7 +18,7 @@ How can we resolve this problem ?
 Of course we can say "Let's re-write our product using C++" - but what if we still want write in Java.
 
 First of all, let's consider the main problem of general java approach.
-Using simple Java Objects in high-loaded application we allocate memory for the object,
+Using simple Java Objects in heavily-loaded application we allocate memory for the object,
 use this memory and release strong reference on the corresponding object.
 If the number of such object is huge - it is a very big pressure on GC and memory overflow is not under
 our control.
@@ -66,9 +66,11 @@ in case of huge number of Java Objects this overhead will be considerable.
 
 Using described approach we implemented following collections:
 
-**Simple sequence**
+**Simple array**
 
-**Sorted sequence**
+**Sorted array**
+
+**Optimized Sorted array**
 
 **HashTable**
 
@@ -81,7 +83,7 @@ The element can be spread between blocks.
 Element can have start at one blocks and finish at another block.
 So elements of any length can we written.
 
-## Simple sequence of elements
+## Simple array
 
 All elements are being subsequently written to the chain of memory blocks.
 In case if no more block to write  - all used blocks are spilled to the disk and
@@ -109,17 +111,17 @@ Data layout:
    ----------------------------------------
 ```
 
-## Sorted sequence of elements
+## Sorted array
 
 All elements are being subsequently written to the chain of memory blocks.
-The index and offset of the element in the data layout is being subsequently written
-to the blocks of the address layout.
-If no more blocks to write pointer in address layout are being sorted in accordance
-with binary comparator. Using merge sort data are being written to the disk in the sorted format.
-On iteration data are being sorted on address layout and using merge sort elements are being emit
-as an output.
-In case if search is required there solid sorted index is build in memory if only memory was used,
-only on the disk if disk was used. Using binary search certain element can be found inside the collection
+The index and offset of the element in the data layout is being subsequently
+written to the blocks of the address layout.
+If no more blocks to write pointer in address layout, pairs <index,offset> are being sorted in accordance
+with binary comparator.
+Using merge sort data from data layout are being written to the disk in the sorted format.
+On iteration data are being sorted on address layout and using merge sort elements are being emit as an output.
+In case if search is required we build solid sorted index in memory if only memory was used,
+on the disk if disk was used. Using binary search certain element can be found inside the collection
 with O(log(N)) time complexity.
 
 
@@ -130,11 +132,11 @@ Address layout
    -----------------    ------------------       ------------------
    |index1 |offset1|    |index5 | offset5|       |index9 |offset9 |
    -----------------    ------------------       ------------------
-   |length2 | data2|    |index6 | offset6|  .... |index10|offset10|
+   |index2 |offset2|    |index6 | offset6|  .... |index10|offset10|
    -----------------    ------------------       ------------------
-   |length3 | data3|    |index7 | offset7|       |index11|offset11|
+   |index3 |offset3|    |index7 | offset7|       |index11|offset11|
    -----------------    ------------------       ------------------
-   |length4 | data4|    |index8 | offset8|       |index12|offset12|
+   |index4 |offset4|    |index8 | offset8|       |index12|offset12|
    ────────────────-    ────────────────--       ──────────────────
 
 Data layout
@@ -156,6 +158,30 @@ Data layout
    |length_1|data_1|length_2|data_2  .... |
    ----------------------------------------
 ```
+
+
+## Sorted array
+
+In case when we can compare values using only 1 long-value we write corresponding
+long-value of each element to the  address layout. It give considerable performance
+improvement because of the architecture with a good cache locality.
+
+
+```
+Address layout
+   __________________________       __________________________
+   |        MemoryBlock1    |       |        MemoryBlockN    |
+   |------------------------|       |------------------------|
+   |index1 |offset1| long_1 |       |                        |
+   |------------------------|       |                        |
+   |index2 |offset2| long_2 |   ... |          ....          |
+   |------------------------|       |                        |
+   |index3 |offset3| long_3 |       |                        |
+   |------------------------|       |------------------------|
+   |index4 |offset4| long_4 |       |indexK | offsetK |long_K|
+   |────────────────--------|       |────────────────--------|
+```
+
 
 ## HashTable
 
@@ -311,12 +337,77 @@ Data layout
 .....
 ```
 
-## Show me the numbers
+## Show me a numbers
 
+We provide compare benchmarks between generic Java collections and Stardog collections with memory management.
 
+All tests was run on the following environment:  Heap size - 2G,  2,2 GHz Intel Core i7.
 
+Each collection's element is Solution object backed by long[]-java array of length 4.
+For the sorted array elements are being sorted using first register for the long[]-array.
 
+```
+_________________________________________________________________
+|           |  Java ArrayList  |      Simple array              |
+|           |                  |                                |
+|______________________________|________________________________|
+| Elements count: 10_000_000                                    |
+|_______________________________________________________________|
+| 10_000_000|                  |                                |
+| Insertion |   1267           |        1110                    |
+|   time    |                  |                                |
+|___________|__________________|________________________________|
+|           |                  |                                |
+| Iteration |   201            |        1797                    |
+|    time   |                  |                                |
+|           |                  |                                |
+|___________|__________________|________________________________|
+| Elements count: 15_000_000                                    |
+|___________|___________________________________________________|
+|           |                  |                                |
+| Insertion |   9294           |        1932                    |
+|   time    |                  |                                |
+|___________|__________________|________________________________|
+|           |                  |                                |
+| Iteration |   187            |        2548                    |
+|    time   |                  |                                |
+|           |                  |                                |
+|___________|__________________|________________________________|
+```
 
+```
+_________________________________________________________________
+|   Time    |  Java ArrayList  |     Optimized  Sorted array    |
+|___________|__________________|________________________________|
+| Elements count:  10_000_000                                   |
+|_______________________________________________________________|
+|           |                  |                                |
+| Insertion |      1371        |           1248                 |
+|   time    |                  |                                |
+|___________|__________________|________________________________|
+| Sort Time |      133         |           460                  |
+____________|__________________|________________________________|
+|           |                  |                                |
+| Iteration |      164         |           13                   |
+|    time   |                  |                                |
+|           |                  |                                |
+|___________|__________________|________________________________|
+| Elements count:  15_000_000                                   |
+|_______________________________________________________________|
+|           |                  |                                |
+| Insertion |                  |                                |
+|   time    |      9907        |            1932                |
+|___________|__________________|________________________________|
+| Sort Time |      197         |            654                 |
+|-----------|------------------|--------------------------------|
+|           |                  |                                |
+| Iteration |      204         |            15                  |
+|    time   |                  |                                |
+|___________|__________________|________________________________|
+
+```
+
+## Conclusions
 
 
 
