@@ -196,7 +196,7 @@ the address block.
 While lookup by the key, the partition will be calculated. After that all blocks inside the
 partition are being used for the probe, plus additional block on the disk are being used for the probe.
 
-We have a plan to build special kind of index on the disk and achieve
+We have a plan to build a special kind of index on the disk and achieve
 logarithmic complexity to find the corresponding block on the disk which would provide
 huge performance improvement during lookup.
 
@@ -431,8 +431,9 @@ Time=12271 ms.
 
 ## Conclusions
 
-Described memory management approach provide good stability for the heavy-loaded application.
+Described memory management approach provides good stability for the heavy-loaded application.
 But as we can see in benchmarks sometimes simple Java Collections are faster.
 It happens for the low number of elements, however increasing number of inserted elements
-memory-management collections provides considerable performance improvement and stability.
+we can see that collections with memory management provide considerably better performance
+and stability then generic Java Collections.
 
