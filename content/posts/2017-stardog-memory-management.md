@@ -428,7 +428,9 @@ ____________|__________________|________________________________|
 ## Garbage collection behaviour
 
 Test was run on the following environment:  Heap size - 2G,  2,2 GHz Intel Core i7.
-We insert 20_000_000 elements to the Simple array and Java ArrayList
+
+We insert 20_000_000 elements to the Simple array and Java ArrayList.
+
 Each collection's element is Solution object backed by long[]-java array of length 4.
 
 
