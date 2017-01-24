@@ -434,6 +434,7 @@ Each collection's element is Solution object backed by long[]-java array of leng
 
 Simple array:
 GC logs: 2017-01-23T14:47:58.316-0300: 1.765: [GC (Allocation Failure) [PSYoungGen: 524800K->87036K(611840K)] 524800K->484051K(2010112K), 0.1956802 secs] [Times: user=0.21 sys=0.88, real=0.20 secs]
+
 Time: 2282 ms.
 
 
@@ -442,6 +443,7 @@ Java ArrayList:
 2017-01-23T14:51:56.857-0300: 1.259: [GC (Allocation Failure) [PSYoungGen: 611824K->87024K(611840K)] 1011609K->1013977K(2010112K), 1.7088052 secs] [Times: user=8.50 sys=0.40, real=1.71 secs]
 2017-01-23T14:51:58.566-0300: 2.968: [Full GC (Ergonomics) [PSYoungGen: 87024K->0K(611840K)] [ParOldGen: 926952K->1009949K(1398272K)] 1013977K->1009949K(2010112K), [Metaspace: 6484K->6484K(1056768K)], 4.6200895 secs] [Times: user=32.03 sys=0.57, real=4.62 secs]
 2017-01-23T14:52:03.273-0300: 7.676: [Full GC (Ergonomics) [PSYoungGen: 524800K->131583K(611840K)] [ParOldGen: 1009949K->1397915K(1398272K)] 1534749K->1529498K(2010112K), [Metaspace: 6484K->6484K(1056768K)], 4.9325762 secs] [Times: user=33.11 sys=0.90, real=4.93 secs]
+
 Time=12271 ms.
 
 
