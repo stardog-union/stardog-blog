@@ -25,7 +25,7 @@ our control.
 
 To prevent this problem we don't use Java Objects to store data and switch to byte-based
 representation of the data. So we operate directly with serialized data and always control number
-of allocated and used memory directly byte by byte. In case  if no more memory - we can always use disk.
+of allocated and used memory directly byte by byte. In case if no more memory - we can always use disk.
 Because we always control each byte used for our data - we can prevent OutOfMemoryException at all.
 
 We were inspired by Apache Flink approach:
@@ -41,7 +41,7 @@ Similar to Apache Flink approach we allocate memory by atomic blocks of memory.
 
 Each block of memory is represented by MemoryBlock interface and can be heap or off-heap based.
 If it is heap-based block it is backed by Java's byte[]-array.
-If it is native-based block it is backed by pointer to the native memory accessed by UNSAFE.
+If it is native-based block it is backed by native memory.
 The size of block of the memory is 32Kb by default but can be modified.
 Blocks are allocated and never released during application's work plus each block can be re-used.
 This approach considerably reduce GC pressure plus we can control block's consumption and write data
@@ -159,7 +159,6 @@ Data layout
    ----------------------------------------
 ```
 
-
 ## Sorted array
 
 In case when we can compare values using only 1 long-value we write corresponding
@@ -179,8 +178,25 @@ Address layout
    |------------------------|       |------------------------|
    |index4 |offset4| long_4 |       |indexK | offsetK |long_K|
    |────────────────--------|       |────────────────--------|
-```
 
+Data layout
+   _________________    __________________       __________________
+   |  MemoryBlock1 |    |  MemoryBlock2  |       | MemoryBlock_N  |
+   -----------------    ------------------       ------------------
+   |length1 | data1|    |     data3      |       |     ...        |
+   -----------------    ------------------       |                |
+   |length2 | data2|    |length4 | data4 |  .... |                |
+   -----------------    ------------------       |      data_K    |
+   |length3 | data3|    |                |       |                |
+   -----------------    |    ....        |       |      ...       |
+   |      data3    |    |                |       |                |
+   ────────────────-    ────────────────--       ──────────────────
+
+   File on the disk with previously spilled bytes in the sorted order
+   ----------------------------------------
+   |length_1|data_1|length_2|data_2  .... |
+   ----------------------------------------
+```
 
 ## HashTable
 
