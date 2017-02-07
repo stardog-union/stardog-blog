@@ -3,6 +3,7 @@ date = "2015-04-23T14:59:52-04:00"
 draft = false
 title = "Simpler Graphs in Stardog 3"
 author = "Kendall Clark"
+discourseUsername = "kendall"
 +++
 
 A reason many graph databases don't offer reasoning is that it is difficult to

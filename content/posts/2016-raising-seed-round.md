@@ -3,6 +3,7 @@ date = "2016-07-27T15:05:23-04:00"
 draft =  false
 author = "Kendall Clark"
 title = "Stardog Raises a Seed Round"
+discourseUsername = "kendall"
 +++
 
 Our mission is to unify all enterprise data in a single, coherent graph managed

@@ -5,6 +5,7 @@ author = "John Bresnahan"
 draft = false 
 series = [""]
 categories = ["AWS", "cloud", "cluster"]
+discourseUsername = "buzztroll"
 +++
 
 We think the user experience is crucial, even when dealing with something as

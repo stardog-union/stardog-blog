@@ -3,6 +3,7 @@ title = "The RDF Database Market"
 date = "2010-09-23"
 categories = ["RDF", "database", "business"]
 author = "Kendall Clark"
+discourseUsername = "kendall"
 +++
 
 Update: [Stardog](http://stardog.com/) is our entry into the

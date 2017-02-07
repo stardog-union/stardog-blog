@@ -4,7 +4,7 @@ draft = false
 title = "Stardog 4.2—Docs on Lockdown!"
 author = "Kendall Clark"
 series = ["Release Announcement"]
-
+discourseUsername = "kendall"
 +++
 
 We're happy to announce the release of Stardog 4.2, our first major release

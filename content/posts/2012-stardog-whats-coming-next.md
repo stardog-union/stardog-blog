@@ -2,6 +2,7 @@
 title = "Stardog: What's Coming Next?"
 date = "2012-09-27"
 author = "Kendall Clark"
+discourseUsername = "kendall"
 +++
 
 Stardog is on the move; we got <a href="http://stardog.com/">Stardog

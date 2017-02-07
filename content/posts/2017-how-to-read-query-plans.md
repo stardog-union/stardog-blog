@@ -2,6 +2,7 @@
 title = "How to Read Stardog Query Plans"
 date = "2017-01-03" 
 author = "Pavel Klinov"
+discourseUsername = "pavel"
 +++
 
 Our mission is to unify all enterprise data in a single, coherent graph managed

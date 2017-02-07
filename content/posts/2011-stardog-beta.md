@@ -4,6 +4,7 @@ categories = ["Stardog"]
 title = "Invitation to Stardog Beta"
 date = "2011-01-10"
 series = ["Release Announcement"]
+discourseUsername = "kendall"
 +++
 
 [Stardog](http://stardog.com/) is a fast, lightweight RDF

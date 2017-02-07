@@ -2,6 +2,7 @@
 title = "Stardog Performance: SP2B Benchmark"
 date = "2011-05-31"
 author = "Kendall Clark"
+discourseUsername = "kendall"
 +++
 
 As you may already know, we're working hard on

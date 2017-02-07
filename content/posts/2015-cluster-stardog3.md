@@ -3,6 +3,7 @@ date = "2015-04-09T11:43:10-04:00"
 draft = false
 title = "Stardog 3.0: High Availability Cluster"
 author = "Stardog Engineering Team"
+discourseUsername = "mike"
 +++
 
 One of the most anticipated new features in Stardog 3.0 is the High Availability

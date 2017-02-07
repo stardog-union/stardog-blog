@@ -4,6 +4,7 @@ date = "2017-01-11"
 categories = ["R2RML", "virtual graphs", "relational databases"]
 author = "Jess Balint"
 draft = false
+discourseUsername = "jess"
 +++
 
 When Stardog is used to unify relational data sources, it facilitates powerful

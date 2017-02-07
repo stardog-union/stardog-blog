@@ -3,6 +3,7 @@ date = "2015-01-22T12:28:02-05:00"
 draft = false 
 author = "Kendall Clark, Evren Sirin, Mike Grove, Fernando Hernandez, Edgar Rodriguez, and Pavel Klinov"
 title = "A Preview of Stardog 3"
+discourseUsername = "mike"
 +++
 
 Stardog 3 is the result of more than **10,000 commits** and it's

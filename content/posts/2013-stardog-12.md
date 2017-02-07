@@ -3,7 +3,7 @@ title = "Stardog 1.2"
 date = "2013-04-22"
 author = "Kendall Clark" 
 series = ["Release Announcement"]
-
+discourseUsername = "kendall"
 +++
 
 Earlier today we released [**Stardog 1.2**](http://stardog.com/) which

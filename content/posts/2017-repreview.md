@@ -2,6 +2,7 @@
 title = "Reviewing 2016, Previewing 2017"
 date = "2017-01-10" 
 author = "Kendall Clark"
+discourseUsername = "kendall"
 +++
 
 Year-end reviews, and year-beginning previews, offer us an opportunity for sober

@@ -2,6 +2,7 @@
 title = "Scalability Improvements in Stardog 2.1"
 date = "2014-01-10" 
 author = "Kendall Clark"
+discourseUsername = "kendall"
 +++
 
 The upcoming [Stardog 2.1](http://stardog.com/) release improves
