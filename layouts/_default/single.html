@@ -89,6 +89,22 @@
        <a href="http://stardog.com/">
          <img id="dog" width="129" height="113" src="/img/sc3.png"></a>
      </div>
+
+    <script type="text/javascript">
+      {{$permalink := .Permalink}}
+      {{$base := "https://blog.stardog.com"}}
+      DiscourseEmbed = {
+        discourseUrl: 'https://community.stardog.com/',
+        discourseEmbedUrl: {{print $base $permalink}},
+        discourseUserName: {{.Params.discourseUsername}}
+      };
+
+      (function () {
+        var d = document.createElement('script'); d.type = 'text/javascript'; d.async = true;
+        d.src = DiscourseEmbed.discourseUrl + 'javascripts/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(d);
+      })();
+    </script>
      {{ partial "footer.html" }}
      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
      <script>hljs.initHighlightingOnLoad()</script>
