@@ -17,6 +17,8 @@ We've started publishing blog posts about Stardog here weekly. We will keep that
 up until we've run out of things to say or...well, we're going to keep it up
 indefinitely!
 
+{{% figure src="/img/discourse.jpg" class="inliner" %}}
+
 But we don't want to monologue, so we've added blog comments here today.
 However, a few provisos are in order:
 
