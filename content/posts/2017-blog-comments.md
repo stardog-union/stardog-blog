@@ -25,8 +25,7 @@ However, a few provisos are in order:
 1. Comments should be relevant, generally speaking. We will interpret this as
    charitably as possible, but it's best to stay on topic.
 1. Comments are subject to
-   our
-   [code of conduct](https://community.stardog.com/t/stardog-community-code-of-conduct/27),
+   our [code of conduct](https://community.stardog.com/t/stardog-community-code-of-conduct/27),
    which you should read. We will moderate comments that violate the policy.
 1. Well, actually, that's it. **Be a merely decent person and everything will be fine.**
 
