@@ -15,12 +15,13 @@
         {{ partial "header.html" . }}
         <div class="wrapper site-content clearfix content" id="content">
         {{ partial "bar.html" . }}
-        {{ range first 8 .Data.Pages.ByDate.Reverse }}
+        {{ range first 12 .Data.Pages.ByDate.Reverse }}
         <h3 class="post-title">
           <a class="no-underline" href="{{ .Permalink }}">{{ .Title }}</a></h3>
           <p class="frontslug">{{ .Date.Format "2 January 2006" }}</p>
           <blockquote>{{ .Summary }}</blockquote>
-        {{ end }}
+       {{ end }}
+          <p><a href="/archive">More in the archives...</a></p>
      </div>
      <div class="wrapper clearfix" id="content_foot">
        <a href="http://stardog.com/">
