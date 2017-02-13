@@ -3,7 +3,7 @@ title = "A Path of Our Own"
 date = "2017-03-06"
 author = "Evren Sirin"
 categories = ["graph", "rdf", "knowledge graph"]
-draft = false
+draft = true
 discourseUsername = "evren"
 +++
 

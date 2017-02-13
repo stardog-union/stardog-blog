@@ -3,7 +3,7 @@ title = "Extending the Solution"
 date = "2017-02-28"
 author = "Evren Sirin"
 categories = ["graph", "rdf", "knowledge graph"]
-draft = false
+draft = true
 discourseUsername = "evren"
 +++
 
