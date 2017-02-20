@@ -86,17 +86,68 @@ it’s just that sync time does not block writes, so duration of writes being
 blocked by joins went from == sync time, to, effectively zero, just the cost of
 a couple reads and a write to ZK
 
+
+Evren's tx performance numbers
+
 ### 6. search & geospatial improvements
 
-Pedro to give me something here
+Main improvements came from optimising our Lucene index usage patterns (#3417
+and #3435). In both cases, we are talking about reducing average query time from
+several seconds to milliseconds (PRs have concrete numbers).
+
+#3417
+
+In order to cache and manage IndexSearchers, used Lucene's SearchManager
+To maintain uniqueness of IndexWriter, created IndexWriterManager
+Deleted a lot of unnecessary code and checks
+Since our patterns for inserts are batch/transaction based, makes more sense to open a new IndexWriter with each transaction, since they occupy a decent amount of memory and are only optimized on close().
+Performance
+q1 -> union of 100 textMatches
+q2 -> join of 30 textMatches
+stardog-admin perf query (mean time)
+
+Query | old | new
+q1 | 2539 | 190
+q2 | 75 | 18
+
+#3435
+
+Implements the same usage patterns from #3417 with the spatial index.
+
+Improvements on the spatial benchmark are really significant, from >10s to ms:
+
+what spatial benchmark is this?
+
+Query | Old | New
+q1 | 13015 | 10
+q2 | 12265 | 21
+q3 | 13437 | 62
+q4 | 15763 | 2583
+q5 | 10257 | 97
+
+Other improvements for which we have numbers:
+
+- #3443 Faster bulk-loading of spatial data (~82% faster)
+
+- #3499 Faster deletes with the search index (around 100% faster overall, when
+  there are several named graphs even better, transactions that took minutes now
+  take ms)
+
+- #3507 Faster indexing of search data with named graphs (around 300% faster)
 
 ### 7. query hints
+
+sp2b q5 with and without hint
 
 ## "Easy D" is for Deployment
 
 ### 8. push button AWS cluster deployments with Stardog Graviton 
 
+Point to Graviton piece and embed video
+
 ### 9. deeper Cloud Foundry integration
+
+embed video
 
 
 Stardog 5 will be the fastest, most scalable Knowledge Graph platform available anywhere.
