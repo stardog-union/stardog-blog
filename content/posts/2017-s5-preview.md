@@ -1,14 +1,14 @@
 +++
-oldtitle = "What's Coming in Stardog 5"
-title = "8 Reasons Stardog 5 is Awesome"
-date = "2017-02-28" 
 author = "Kendall Clark"
-draft = false 
-categories = []
-series = ["release-preview"]
+categories = ""
+date = "2017-02-28T00:00:00Z"
 discourseUsername = "kendall"
-+++
+draft = true
+oldtitle = "What's Coming in Stardog 5"
+series = ["release-preview"]
+title = "8 Reasons Stardog 5 is Awesome"
 
++++
 We're preparing Stardog 5 for release at the end of the month. This post
 describes the high points of the best damn enterprise knowledge graph platform
 on the planet.<!--more-->
