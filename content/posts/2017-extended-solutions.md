@@ -19,6 +19,8 @@ as edges. Unlike relational databases where the data needs to conform to a
 predefined tabular structure, the graph model can represent heterogenous data
 easily.
 
+{{% figure src="http://images.metmuseum.org/CRDImages/ma/original/DT7782.jpg" class="inliner" %}}
+
 However, when we query RDF graphs with SPARQL we get the results either as a
 table (`SELECT`-queries) or as a graph with a fixed template
 (`CONSTRUCT`-queries). There's no easy way to query a *subgraph*. The table
@@ -31,7 +33,7 @@ than necessary.
 ### Finding Paths
 
 These limitations are most obvious in the case of a basic task for graphs:
-finding paths between node. SPARQL
+finding paths between nodes. SPARQL
 provides [property paths](https://www.w3.org/TR/sparql11-query/#propertypaths)
 so one can write queries that recursively traverse the RDF graph and find two
 nodes connected via a complex path of edges. But since the results need to be
@@ -42,9 +44,7 @@ intermediate nodes and edges additional and/or more complex queries are needed.
 We need more flexible query results to support use cases where tabular results
 are not the right thing. This is exactly what we are working on right now to
 make future versions of Stardog go beyond tabular results for graph queries. We
-will next describe how we are extending the SPARQL to make this possible.
-
-{{% figure link="http://metmuseum.org/art/collection/search/438821" src="/img/p1.jpg" class="inliner" %}}
+will next describe how we are extending SPARQL to make this possible.
 
 ## Beyond Tables
 
@@ -75,7 +75,9 @@ Stardog displays the results of this query in a tabular format like this:
 :Jane   | 1963-11-03 | :Eve
 ```
 
-In these results the names of a single person is spread over multiple rows.
+In these results the names of a single person are spread over multiple rows.
+
+{{% figure src="http://images.metmuseum.org/CRDImages/ma/original/DP-824-001.jpg" class="inliner" %}}
 
 To go beyond tabular results we first need to change the definition of a
 solution such that a variable can be mapped to an array of values or to another
@@ -122,7 +124,7 @@ GROUP BY ?person
 The result would look like this:
 
 ```sql
-?person | ?bdate      | ?names
+?person | ?bdate     | ?children
 ---------------------------------------------
 :John   | 1974-02-17 | [:Alice, :Bob, :Charlie]
 :Jane   | 1963-11-03 | [:David, :Eve]
@@ -136,6 +138,8 @@ functions that would operate over arrays:
 * `length(array)`: returns the number of elements in an array
 * `get(array, index)`: returns the element at the specified index in an array
 * `contains(array, values)`: returns true if the specified element exists in an array
+
+{{% figure src="http://images.metmuseum.org/CRDImages/ma/original/DT7774.jpg" class="inliner" %}}
 
 Suppose we want to write a query that will return the eldest child for each
 person. Even though this sounds like an easy query it is not possible to use a
@@ -217,6 +221,8 @@ objects in the results.
 We started this blog post by mentioning path finding in graphs. We will talk
 about path finding in more depth in my next blog post, but we will now briefly
 mention how extended solutions relate to path finding. 
+
+{{% figure src="http://images.metmuseum.org/CRDImages/ma/original/DP-815-001.jpg" class="inliner" %}}
 
 Suppose we are trying to find paths between people in our example graph using
 child relationships. The following query uses regular SPARQL property paths to
