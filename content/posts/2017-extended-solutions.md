@@ -1,6 +1,6 @@
 +++
 title = "Extending the Solution"
-date = "2017-02-21"
+date = "2017-02-22"
 author = "Evren Sirin"
 categories = ["graph", "rdf", "knowledge graph"]
 draft = false 
@@ -24,7 +24,7 @@ easily.
 However, when we query RDF graphs with SPARQL we get the results either as a
 table (`SELECT`-queries) or as a graph with a fixed template
 (`CONSTRUCT`-queries). There's no easy way to query a *subgraph*. The table
-representation can be the exactly perfect thing, but in other cases its
+representation can be the best thing, but in other cases its
 limitations hurt the usability of query results. As a result sometimes we need
 to write multiple queries to get results or spend more effort post-processing
 query results. The limitation can even mean writing more complicated queries
@@ -57,7 +57,7 @@ dates and children. The following query returns the birth date of people along
 with their children:
 
 ```sparql
-SELECT ?person ?name ?date {
+SELECT ?person ?date ?child {
   ?person :birthDate ?date ;
           :child ?child
 }
