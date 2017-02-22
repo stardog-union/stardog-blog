@@ -16,7 +16,7 @@ fix SPARQL solutions.<!--more-->
 RDF is a flexible graph data model: entities are represented by nodes in the
 graph, and entity properties and relationships between entities are represented
 as edges. Unlike relational databases where the data needs to conform to a
-predefined tabular structure, the graph model can represent heterogenous data
+predefined tabular structure, the graph model can represent heterogeneous data
 easily.
 
 {{% figure src="http://images.metmuseum.org/CRDImages/ma/original/DT7782.jpg" class="inliner" %}}
@@ -75,12 +75,12 @@ Stardog displays the results of this query in a tabular format like this:
 :Jane   | 1963-11-03 | :Eve
 ```
 
-In these results the names of a single person are spread over multiple rows.
+In these results the children of a single person are spread over multiple rows.
 
 {{% figure src="http://images.metmuseum.org/CRDImages/ma/original/DP-824-001.jpg" class="inliner" %}}
 
 To go beyond tabular results we first need to change the definition of a
-solution such that a variable can be mapped to an array of values or to another
+solution such that a variable can be mapped to an array of values or to
 another solution. This means the definition
 of [SPARQL solutions](https://www.w3.org/TR/sparql11-query/#sparqlSolutions) has
 to be recursive. Informally, such a definition would look like this:
@@ -186,7 +186,7 @@ SELECT * {
 
 The `array(?child, ?date)` aggregate function constructs an object with two
 properties (`child` and `date`) from each row of the solutions and collects all
-those objects into an array that will be assigned to `children` variable. It is
+those objects into an array that will be assigned to the `children` variable. It is
 not easy to represent these results in a tabular format so instead we illustrate
 how these results would look in a simplified JSON results format:
 
@@ -225,7 +225,7 @@ mention how extended solutions relate to path finding.
 {{% figure src="http://images.metmuseum.org/CRDImages/ma/original/DP-815-001.jpg" class="inliner" %}}
 
 Suppose we are trying to find paths between people in our example graph using
-child relationships. The following query uses regular SPARQL property paths to
+child relationship. The following query uses regular SPARQL property paths to
 check if Alice has a famous historical person as an ancestor:
 
 ```sparql
