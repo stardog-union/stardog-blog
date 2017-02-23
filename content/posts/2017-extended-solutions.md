@@ -19,7 +19,10 @@ as edges. Unlike relational databases where the data needs to conform to a
 predefined tabular structure, the graph model can represent heterogeneous data
 easily.
 
-{{% figure src="http://images.metmuseum.org/CRDImages/ma/original/DT7782.jpg" class="inliner" %}}
+{{% figure 
+    src="http://images.metmuseum.org/CRDImages/ma/original/DT7782.jpg" 
+    class="inliner"
+%}}
 
 However, when we query RDF graphs with SPARQL we get the results either as a
 table (`SELECT`-queries) or as a graph with a fixed template
