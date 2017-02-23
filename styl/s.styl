@@ -117,7 +117,26 @@ img
   margin-right 15px
   margin-top 30px
 figure.inliner
-  margin 0px
+  +mobile()
+    display none
+  margin-left auto
+  margin-right auto
+  padding 15px
+  figcaption
+    h4
+      //border-top 1px solid gray
+      //padding-top 30px
+      font-style italic
+      text-align center
+      fs (font-size * .8725)
+      margin-top 0px
+    p
+      text-align center
+      fs (font-size * .8725)
+  img
+    margin-left auto
+    margin-right auto
+    padding 0px
 blockquote
   border 0
   p
@@ -158,7 +177,7 @@ pre > code
   border rgba(0,0,0,.1)
   border-radius 2px 3px / 4px 5px
   +mobile()
-    fs(font-size / 1.5)
+    fs((font-size / 1.5))
 //header#site>h1
 //  font-weight 700
 //  color head1-color
@@ -235,9 +254,13 @@ div#socialFoot
 .media-body
   flex: 1
 h3.post-title
-  a
-    upcase()
-    color otherblue
+  upcase()
+  +mobile()
+    line-height (font-size * .75)
+    a
+      color otherblue
+      fs(font-size * .875)
+      line-height (font-size * .75)
 #byline
   fs(font-size * 1)
 #theBy
@@ -254,3 +277,4 @@ div#bar
     reset-link()
     color  otherblue
     font-weight 700
+
