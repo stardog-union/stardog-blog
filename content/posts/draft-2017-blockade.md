@@ -1,5 +1,5 @@
 +++
-title = "Blockading Stardog: Improving Stardog Cluster by Breaking It"
+title = "Blockading Stardog: Improving Stardog Cluster with Chaos"
 date = "2017-02-24"
 author = "Paul Marshall"
 draft = true
@@ -57,11 +57,10 @@ determine the root cause.
 
 ## Controlled Chaos
 
-At Stardog, we're working on a suite of tools and tests referred to as
-controlled chaos. The idea behind these controlled chaos tests is
-to inject chaotic node and network failures in a systematic fashion so that
-bugs can be easily recreated, debugged, fixed, and added to our regression
-tests, ensuring that the issue is not reintroduced in the future.
+The idea behind our controlled chaos tests is to inject chaotic node and
+network failures in a systematic fashion so that bugs can be easily recreated,
+debugged, fixed, and added to our regression tests, ensuring that the issue is
+not reintroduced in the future.
 
 ### Blockade
 
