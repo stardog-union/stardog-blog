@@ -10,6 +10,10 @@
         <link href="/img/favicon.png" rel="icon" type="image/x-icon">
         <link rel="stylesheet" href="/css/s.css">
         {{ partial "headers.html" . }}
+        <meta property='og:title' content='{{ .Title }}'/>
+        <meta property='og:description' content="Stardog Blog: The Enterprise Knowledge Graph"/>
+        <meta name="description" content="Stardog Blog: The Enterprise Knowledge Graph"/>
+        <meta property='og:url' content="http://blog.stardog.com/" />
     </head>
     <body class="site">
         {{ partial "header.html" . }}
