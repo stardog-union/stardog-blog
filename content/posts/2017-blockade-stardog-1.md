@@ -1,6 +1,6 @@
 +++
 title = "Blockading Stardog: Creating Order from Chaos"
-date = "2017-02-24"
+date = "2017-03-06"
 author = "Paul Marshall"
 draft = false
 series = [""]
