@@ -6,6 +6,7 @@ draft = false
 series = [""]
 categories = ["cluster", "chaos", "testing"]
 discourseUsername = "pdmars"
+heroShot = "http://blog.stardog.com/img/chaos1.jpg"
 +++
 
 Scaling a knowledge graph platform, or even just a database, beyond a single node is a complex undertaking that introduces a myriad of new challenges and avenues for failure. Stardog Cluster
