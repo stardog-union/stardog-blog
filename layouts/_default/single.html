@@ -6,13 +6,13 @@
         <title>{{ .Title }}</title>
         {{ partial "fonts.html" }}
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="canonical" href="http://blog.stardog.com{{ .RelPermalink }}" />
+        <link rel="canonical" href="http://blog.stardog.com{{ .RelPermalink }}">
         <link href="/img/favicon.png" rel="icon" type="image/x-icon">
-        <link rel="stylesheet" href="/css/s.css">
-        <meta property='og:title' content='{{ .Title }}'/>
-        <meta property='og:description' content="{{ .Summary | truncate 50 }}"/>
-        <meta name="description" content="{{ .Summary | truncate 50 }}"/>
-        <meta property='og:url' content="http://blog.stardog.com/{{ .RelPermalink}}" />
+        <link rel="stylesheet" href="/css/s.css" media="screen">
+        <meta property='og:title' content='{{ .Title }}'>
+        <meta property='og:description' content="{{ .Summary | truncate 50 }}">
+        <meta name="description" content="{{ .Summary | truncate 50 }}">
+        <meta property='og:url' content="http://blog.stardog.com/{{ .RelPermalink}}">
         <meta name="twitter:card"        content="summary_large_image">
         <meta name="twitter:site"        content="@stardog_db">
         <meta name="twitter:creator"     content="@stardog_union">
