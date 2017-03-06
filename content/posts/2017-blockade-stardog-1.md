@@ -8,8 +8,7 @@ categories = ["cluster", "chaos", "testing"]
 discourseUsername = "pdmars"
 +++
 
-Scaling a database beyond a single node is a complex undertaking that introduces
-a myriad of new challenges and avenues for failure. Stardog Cluster
+Scaling a knowledge graph platform, or even just a database, beyond a single node is a complex undertaking that introduces a myriad of new challenges and avenues for failure. Stardog Cluster
 solves many of these challenges and provides a highly-available
 database that can be distributed across multiple servers in your infrastructure.<!--more-->
 
@@ -28,7 +27,7 @@ In this post we discuss the work we're doing at Stardog to solve a key challenge
 for Stardog Cluster by creating a suite of repeatable chaos tests that we call
 "controlled chaos". The tests help us simulate, quickly diagnose, and fix issues
 that may arise with Stardog Cluster as a result of unexpected node and network
-failures. The controlled chaos tests supplement our extensive set of unit and
+failures---and they help us do all of that in a *repeatable* way. The controlled chaos tests supplement our extensive set of unit and
 integration tests for Stardog.
 
 When unexpected failures happen in production it is often very difficult to fix
@@ -52,7 +51,7 @@ the process if your fix doesn't work.
 
 And, finally, you need to add a regression
 test to ensure the problem isn't reintroduced by future code.
-While not always impossible to fix bugs in this manner, it's extremely
+While it's not impossible to fix bugs in this manner, it's extremely
 time consuming and often fraught with road blocks and trial and error.
 
 Services like [Netflix's Chaos Monkey](https://github.com/Netflix/SimianArmy/wiki/Chaos-Monkey)
@@ -85,7 +84,7 @@ To introduce node and network failures we use an open source tool,
 [Blockade](https://github.com/worstcase/blockade), that is designed to insert
 failures into distributed systems. Blockade assumes the
 target application is running in Docker containers and causes failures by
-terminating a container or using system commands like `iptables` and `tc`
+terminating a container or using system commands like [`iptables`](https://en.wikipedia.org/wiki/Iptables) and [`tc`](http://tldp.org/HOWTO/Traffic-Control-HOWTO/intro.html)
 to partition the network, add latency, or drop packets between different
 groups of containers. Blockade can inject the following failures between
 containers:
@@ -154,8 +153,8 @@ and fix issues. For example, we will integrate programmatic failure events at th
 
 {{% figure src="/img/order1.jpg" class="inliner" %}}
 
-We'll also be adding tests that are even more chaotic, similar to
-Netflix Chaos Monkey, that introduce random failures (via Blockade in our case)
+We'll also be adding tests that are even more chaotic 
+that introduce random failures (via Blockade in our case)
 at completely random times on a cluster under load to demonstrate even higher
 confidence in Stardog Cluster's ability to withstand chaotic node and network
 failures. Look forward to more posts on this in the coming months!
