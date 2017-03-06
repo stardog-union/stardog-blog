@@ -3,7 +3,6 @@ title = "Blockading Stardog: Creating Order from Chaos"
 date = "2017-03-06"
 author = "Paul Marshall"
 draft = false
-series = [""]
 categories = ["cluster", "chaos", "testing"]
 discourseUsername = "pdmars"
 heroShot = "http://blog.stardog.com/img/chaos1.jpg"

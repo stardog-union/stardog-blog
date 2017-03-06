@@ -5,6 +5,7 @@ author = "Evren Sirin"
 categories = ["graph", "rdf", "knowledge graph"]
 draft = false 
 discourseUsername = "evren"
+heroShot = "http://images.metmuseum.org/CRDImages/ma/original/DT7774.jpg"
 +++
 
 We're extending Stardog's knowledge graph capabilities to include arbitrary
