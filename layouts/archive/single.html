@@ -16,9 +16,11 @@
         <div class="wrapper site-content clearfix content" id="content">
             {{ partial "bar.html" . }}
             <h1 id="archivetitle">Archives</h1>
+            <!-- leave this div here or the dom-munging will break -->
             <div id="archiveblock">
             {{ .Content }}
                 {{ range (where .Site.Pages.ByDate.Reverse "Type" "posts") }}
+                <!-- same with this one -->
                 <div class="archiveitem">
                     <h3 class="post-title"><a class="no-underline" href="{{ .Permalink }}">{{ .Title }}</a></h3>
                     <p class="frontslug">{{ .Date.Format "2 January 2006" }}</p>
