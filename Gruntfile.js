@@ -152,7 +152,20 @@ module.exports = function(grunt) {
               src: ['static/css/s.css', "node_modules/grunt-highlight/node_modules/highlight.js/styles/tomorrow.css"],
               dest: 'static/css/s.css'
           },
+        },
+   dom_munger: {
+    archive: {
+      options: {
+        read: [
+          //{selector:'link',attribute:'href',writeto:'myCssRefs',isPath:true},
+          //{selector:'script[src]',attribute:'src',writeto:'myJsRefs',isPath:true}
+        ],
+          //remove: 'div#archiveblock>div#archiveitem:first-child',
+          remove: "#archiveblock>div:first-child"
       },
+      src: 'public/archive/index.html', //could be an array of files
+    },
+  },
   highlight: {
     task: {
       options: {},
@@ -177,12 +190,14 @@ module.exports = function(grunt) {
     grunt.registerTask('dev', ['clean:build',
                                'css',
                                'shell:build',
+                               'dom_munger:archive'
                               ]);
     grunt.registerTask("pub", ['clean:build',
                                "css",
                                "shell:update",
                                "autoprefixer",
                                "hugo",
+                               "dom_munger:archive",
                                "htmlmin",
                                "compress",//minify and compress because overkill is a thing!
                                'push_production',
