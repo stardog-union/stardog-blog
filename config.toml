@@ -8,7 +8,7 @@ copyright                  = "https://creativecommons.org/licenses/by-sa/3.0/"
 disqusShortname            = "stardog-union"
 
 [permalinks]
-  post                     = "/:title/"
+  posts                    = "/:title/"
 
 [params]
   description              = ""

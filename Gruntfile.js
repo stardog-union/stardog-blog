@@ -23,7 +23,7 @@ module.exports = function(grunt) {
               }
           }
         },
-         shell: { //me with ascidoctor.js
+         shell: { 
              build: {
                  command: function () {
                      comm = "hugo"

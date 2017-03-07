@@ -15,7 +15,7 @@
         {{ partial "header.html" . }}
         <div class="wrapper site-content clearfix content" id="content">
             {{ partial "bar.html" . }}
-            <h1 id="archivetitle">Archives by Year</h1>
+            <h1 id="archivetitle">Archives</h1>
             <div id="archiveblock">
             {{ .Content }}
                 {{ range (where .Site.Pages.ByDate.Reverse "Type" "posts") }}
