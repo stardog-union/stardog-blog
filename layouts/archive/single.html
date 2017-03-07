@@ -16,12 +16,15 @@
         <div class="wrapper site-content clearfix content" id="content">
             {{ partial "bar.html" . }}
             <h1 id="archivetitle">Archives by Year</h1>
+            <div id="archiveblock">
             {{ .Content }}
-            {{ range (where .Site.Pages.ByDate.Reverse "Type" "posts") }}
-                <h3 class="post-title"><a class="no-underline" href="{{ .Permalink }}">{{ .Title }}</a></h3>
-                <p class="frontslug">{{ .Date.Format "2 January 2006" }}</p>
-                <!-- <blockquote>{{ .Summary }}</blockquote> -->
+                {{ range (where .Site.Pages.ByDate.Reverse "Type" "posts") }}
+                <div class="archiveitem">
+                    <h3 class="post-title"><a class="no-underline" href="{{ .Permalink }}">{{ .Title }}</a></h3>
+                    <p class="frontslug">{{ .Date.Format "2 January 2006" }}</p>
+                </div>
             {{ end }}
+            </div>
         </div>
         <div class="wrapper clearfix" id="content_foot">
             <a href="http://stardog.com/">
