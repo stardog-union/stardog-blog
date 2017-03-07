@@ -6,3 +6,4 @@ bower_components/
 .netlify
 preflight/
 static/.DS_Store
+static/css/s.css
