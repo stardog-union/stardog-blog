@@ -22,6 +22,7 @@
     "grunt-contrib-htmlmin": "^0.3.0",
     "grunt-contrib-stylus": "^0.20.0",
     "grunt-contrib-uglify": "^0.7.0",
+    "grunt-dom-munger": "^3.4.0",
     "grunt-filerev": "^2.1.2",
     "grunt-highlight": "0.0.1",
     "grunt-shell": "^1.1.1",
