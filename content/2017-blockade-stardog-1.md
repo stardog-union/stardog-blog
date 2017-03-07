@@ -1,12 +1,13 @@
 +++
-title = "Blockading Stardog: Creating Order from Chaos"
-type = "post"
-date = "2017-03-06"
-author = "Paul Marshall"
-draft = false
-categories = ["cluster", "chaos", "testing"]
+title             = "Blockading Stardog: Creating Order from Chaos"
+type              = "post"
+section           = "post"
+date              = "2017-03-06"
+author            = "Paul Marshall"
+draft             = false
+categories        = ["cluster", "chaos", "testing"]
 discourseUsername = "pdmars"
-heroShot = "http://blog.stardog.com/img/chaos1.jpg"
+heroShot          = "http://blog.stardog.com/img/chaos1.jpg"
 +++
 
 Scaling a knowledge graph platform, or even just a database, beyond a single
@@ -25,13 +26,15 @@ circumstances of the failure.
 
 ## Background
 
-In this post we discuss the work we're doing at Stardog to solve a key challenge of
-[chaos engineering](http://techblog.netflix.com/2014/09/introducing-chaos-engineering.html)
-for Stardog Cluster by creating a suite of repeatable chaos tests that we call
+In this post we discuss the work we're doing at Stardog to solve a key challenge
+of
+[chaos engineering](http://techblog.netflix.com/2014/09/introducing-chaos-engineering.html) for
+Stardog Cluster by creating a suite of repeatable chaos tests that we call
 "controlled chaos". The tests help us simulate, quickly diagnose, and fix issues
 that may arise with Stardog Cluster as a result of unexpected node and network
-failures---and they help us do all of that in a *repeatable* way. The controlled chaos tests supplement our extensive set of unit and
-integration tests for Stardog.
+failures---and they help us do all of that in a *repeatable* way. The controlled
+chaos tests supplement our extensive set of unit and integration tests for
+Stardog.
 
 When unexpected failures happen in production it is often very difficult to fix
 them solely from a postmortem. 

@@ -1,21 +1,20 @@
-languageCode = "en-us"
+languageCode               = "en-us"
 footnotereturnlinkcontents = "↩"
-builddrafts = false
-title = "STARDOG★WEBLOG"
-baseurl = "/"
-canonifyurls = true
-copyright = "https://creativecommons.org/licenses/by-sa/3.0/"
-disqusShortname = "stardog-union"
+builddrafts                = false
+title                      = "STARDOG★WEBLOG"
+baseurl                    = "/"
+canonifyurls               = true
+copyright                  = "https://creativecommons.org/licenses/by-sa/3.0/"
+disqusShortname            = "stardog-union"
 
 [permalinks]
-  posts = "/:title/"
+  post                     = "/:title/"
 
 [params]
-  description = ""
-  author = "Stardog Union"
-  sidebarrecentlimit = 3
+  description              = ""
+  author                   = "Stardog Union"
+  sidebarrecentlimit       = 3
   
 [taxonomies]
-  category = "categories"
-  series = "series"
-
+  category                 = "categories"
+  series                   = "series"
