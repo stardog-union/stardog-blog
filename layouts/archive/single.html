@@ -15,9 +15,9 @@
         {{ partial "header.html" . }}
         <div class="wrapper site-content clearfix content" id="content">
             {{ partial "bar.html" . }}
-            <h1 id="archivetitle">Archives by Year</h1>
+            <h1 id="archivetitle">Archive</h1>
             {{ .Content }}
-            {{ range (where .Site.Pages.ByDate.Reverse "Type" "posts") }}
+            {{ range (where .Site.Pages.ByDate.Reverse "Type" "post") }}
                 <h3 class="post-title"><a class="no-underline" href="{{ .Permalink }}">{{ .Title }}</a></h3>
                 <p class="frontslug">{{ .Date.Format "2 January 2006" }}</p>
                 <!-- <blockquote>{{ .Summary }}</blockquote> -->
