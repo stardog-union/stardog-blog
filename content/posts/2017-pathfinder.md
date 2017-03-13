@@ -8,10 +8,10 @@ discourseUsername = "evren"
 heroShot = "https://blog.stardog.com/img/pathfinder_graph.png"
 +++
 
-We're adding graph traversal, or path finding, to Stardog to support a broader
+We're adding graph traversal to Stardog to support a broader
 range of graph queries and analysis. Now that we've figured out how
 to [extend SPARQL solutions](extending-the-solution), we can more easily
-introduce a path finding extension to SPARQL.<!--more-->
+make Stardog traverse graphs to find paths and other relationships.<!--more-->
 
 ## Background
 
