@@ -57,9 +57,7 @@ time consuming and often fraught with road blocks and trial and error.
 Services like [Netflix's Chaos Monkey](https://github.com/Netflix/SimianArmy/wiki/Chaos-Monkey)
 can help inflict failures on your application by randomly terminating Amazon
 EC2 instances in your test or production environments. Killing an instance is a
-worthwhile failure to ensure your application can withstand. But it's 
-often one of the most straightforward failures to reason about and
-recover from. 
+worthwhile failure to ensure your application can withstand. 
 
 There are many other types of failures that can cause your
 application to behave unexpectedly, such as excessive latency or network

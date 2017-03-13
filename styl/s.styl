@@ -9,14 +9,11 @@ mypink = #444444
 font-color = #444444 //rgba(0, 0, 0, 0.8)
 base-line-height = (font-size * 1.5)
 font-size  = 16px
-//blog-font  = "Source Sans Pro", "Fira Mono"
-blog-font = "Merriweather Sans", "Source Code Pro"
 head1-color = font-color 
 head2-color = font-color
 base(fonts = blog-font)
 typography()
 ligatures = true
-//colors
 sdlime =  rgba(205,237,136,100)
 text-selection(color = sdlime)
 otherblue = rgba(0,10.2,17.3,.78)
@@ -28,11 +25,10 @@ rupture.mobile-cutoff = 415px
 texture = "/img/first-aid-kit.png"
 
 body
-  //background rgba(34,36,37,.0725) //#575B5E
   background-image url(texture)
-  font-family "Source Code Pro", monospace
-  font-family "Nunito Sans", serif
-  font-weight 400
+  font-family "Nunito Sans"
+  font-weight 300
+  color #4d4d4d
 
 .dummy
   color white
@@ -48,6 +44,8 @@ body
 
 a, a:hover, a:visited
   reset-link()
+  color #4d4d4d
+
 img
   max-width 100%
   height auto
@@ -100,6 +98,7 @@ img
   margin-bottom -10px
   fs(font-size * 2)
   font-weight 500
+  color #4d4d4d
   +below(4)
     line-height 1em
     margin-bottom 0px
@@ -144,7 +143,7 @@ blockquote
 #content, #content_foot
   col(8/12, offset:1/5, gutter: 20px)
   a:not(.no-underline)
-    linkUnderlines white, black
+    linkUnderlines white, #4d4d4d
   +mobile()
     col(8/12, offset: 1/6, gutter: 10px)
   background rgba(255,255,255,1)
@@ -172,7 +171,7 @@ pre > code
   font-family "Source Code Pro"
   fs(font-size * .9)
   background rgba(255,255,255,0)
-  //front-weight 300
+  //font-weight 300
   border rgba(0,0,0,.1)
   border-radius 2px 3px / 4px 5px
   +mobile()
@@ -202,7 +201,7 @@ h1
   inline-list()
 h1#archivetitle
   fs(font-size * 1.75)
-  color inkblue
+  color #4d4d4d 
 #butt
   span(1)
   margin-bottom 30px
@@ -244,6 +243,9 @@ div#socialFoot
   width: 100%;
   height: 100%;
 
+.no-underline
+  color #4d4d4d
+
 .media
   display: flex
   align-items: flex-start
@@ -255,10 +257,11 @@ div#socialFoot
   flex: 1
 h3.post-title
   upcase()
+  color #4d4d4d
   +mobile()
     line-height (font-size * .75)
     a
-      color otherblue
+      color #4d4d4d
       fs(font-size * .875)
       line-height (font-size * .75)
 #byline

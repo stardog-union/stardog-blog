@@ -184,6 +184,7 @@ module.exports = function(grunt) {
     require('matchdep').filter('grunt-*').forEach(grunt.loadNpmTasks);
     grunt.registerTask('cl', ['clean:build','shell:update']);
     grunt.registerTask("css", ["stylus","concat", "cssmin"]);
+    grunt.registerTask("cssdev", ["stylus", "concat"]);
     grunt.registerTask("push_production", ["aws_s3:production", "aws_s3:gzipd"]);
     grunt.registerTask("hugo", ["shell:build"]);
     grunt.registerTask("kill", ["cloudfront:all"]);
