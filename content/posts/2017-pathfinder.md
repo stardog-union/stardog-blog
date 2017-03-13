@@ -8,10 +8,11 @@ discourseUsername = "evren"
 heroShot = "https://blog.stardog.com/img/pathfinder_graph.png"
 +++
 
-We're adding graph traversal to Stardog to support a broader
-range of graph queries and analysis. Now that we've figured out how
-to [extend SPARQL solutions](extending-the-solution), we can more easily
-make Stardog traverse graphs to find paths and other relationships.<!--more-->
+We're adding graph traversal to Stardog to support a broader range of graph
+queries and analysis. Now that we've figured out how
+to [extend SPARQL solutions]({{< relref "2017-extended-solutions.md" >}}), we
+can more easily make Stardog traverse graphs to find paths and other
+relationships.<!--more-->
 
 ## Background
 
@@ -19,7 +20,7 @@ SPARQL is a
 powerful [graph query standard](http://www.w3.org/TR/sparql11-query/) for RDF
 that provides a SQL-like syntax that allows querying graph patterns along with
 many other features like optional patterns, unions, subqueries, aggregation, and
-negation. As we briefly discussed in a [previous post](extending-the-solution),
+negation. As we briefly discussed in a [previous post]({{< relref "2017-extended-solutions.md" >}}),
 there is one notable limitation with SPARQL: finding paths between nodes is not
 easy. Path finding is not easily achievable in SPARQL mainly because a path of
 edges cannot be naturally represented in the tabular result format of SPARQL.
@@ -82,8 +83,8 @@ equivalent to the SPARQL property path `:Alice :knows+ ?y`, but **the results
 will include the nodes in the path(s).**
 
 The results of a path query is a list of solutions, but we use
-the [extended solutions](extending-the-solution) introduced previously. The
-result of the above query would look like this:
+the [extended solutions]({{< relref "2017-extended-solutions.md" >}}) introduced
+previously. The result of the above query would look like this:
 
 ```json
 [
@@ -206,7 +207,7 @@ LIMIT 1
 We are using `ORDER BY length(?path)` to return the shortest paths first and
 `LIMIT 1` will cause the query to return a single path. Recall that the `length`
 function was defined as part
-of [extended solutions](https://blog.stardog.com/extending-the-solution/) and
+of [extended solutions]({{< relref "2017-extended-solutions.md" >}})) and
 returns the number of elements in an array which in this case is the number of
 edges in a path.
 
