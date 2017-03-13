@@ -67,12 +67,7 @@ PATH ?p FROM ?s[=startNode] TO ?e[=endNode] {
 
 Suppose we have this very simple social network where people are connected via `knows` relationship:
 
-```turtle
-:Alice :knows :Bob .
-:Bob :knows :Charlie .
-:Bob :knows :David .
-:Eve knows :David.
-```
+{{% figure src="/img/pathfinder_graph.png" class="inliner" %}}
 
 Now, suppose we want to find all the people Alice is connected to in this graph and
 how she is connected to the those people. The corresponding path query looks like this:
