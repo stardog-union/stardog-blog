@@ -9,7 +9,7 @@ discourseUsername = "evren"
 
 Path finding is not easily achievable in SPARQL mainly because a path of edges
 cannot be naturally represented in the tabular result format of SPARQL. Now that
-we [extended the SPARQL solutions](extending-the-solution), we can introduce
+we [extended SPARQL solutions](extending-the-solution), we can introduce
 a path finding extension to SPARQL.
 
 ## Background
@@ -46,8 +46,7 @@ arbitrary complexity. We codenamed this extension **Pathfinder**.
 The primary goal of Pathfinder is to have a concise syntax for path queries in SPARQL. 
 There are many different kinds of path finding problems we 
 want to address with this extension. We might want to find paths between a fixed
-pair of nodes or between all nodes (of course latter is practical only for graphs of 
-certain size). We might be looking for any path versus only shortest 
+pair of nodes or between all nodes. We might be looking for any path versus only shortest 
 paths possibly based on a weight. And sometimes there might not be an explicit edge 
 between two nodes but there might be a graph pattern corresponding to a relationship
 that links these nodes. It should be possible to find paths over these implied
@@ -89,9 +88,9 @@ The result of the above query would look like this:
 
 ```json
 [
-  {"x": ":Alice", "y', ":Bob", "p": [ {"x": ":Alice", "y": ":Bob"} ] },
-  {"x": ":Alice", "y', ":Charlie", "p": [ {"x": ":Alice", "y": ":Bob"}, {"x": ":Bob", "y": ":Charlie"} ] },
-  {"x": ":Alice", "y', ":David", "p": [ {"x": ":Alice", "y": ":Bob"}, {"x": ":Bob", "y": ":David"} ] }
+  {"x": ":Alice", "y", ":Bob", "p": [ {"x": ":Alice", "y": ":Bob"} ] },
+  {"x": ":Alice", "y", ":Charlie", "p": [ {"x": ":Alice", "y": ":Bob"}, {"x": ":Bob", "y": ":Charlie"} ] },
+  {"x": ":Alice", "y", ":David", "p": [ {"x": ":Alice", "y": ":Bob"}, {"x": ":Bob", "y": ":David"} ] }
 ]
 ```
 
@@ -178,7 +177,7 @@ The ability to use arbitrary graph patterns in path queries make this operator m
 simple path finder. It is a more general recursive graph traversal operator that can be used to 
 extract arbitrary subgraphs. 
 
-{{% figure src="https://imgs.xkcd.com/comics/paths.jpg" class="inliner" %}}
+{{% figure src="https://imgs.xkcd.com/comics/paths.jpg" link="https://imgs.xkcd.com/comics/paths.jpg" attr="https://xkcd.com/" class="inliner" %}}
 
 == Shortest path to happiness
 
@@ -246,7 +245,7 @@ to the array of values to compute the total distance.
 
 {{% figure src="https://media.makeameme.org/created/the-possibilities-theyre.jpg" class="inliner" %}}
 
-There are so many other possibilities with path queries. We mention several more examples briefly to show
+There are so many other possibilities with path queries. We mention couple more examples briefly to show
 different uses of path queries.
 
 Find cyclic dependencies in a graph:
