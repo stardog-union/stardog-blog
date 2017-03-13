@@ -58,7 +58,7 @@ but in this post we will simply describe how path queries will work using some e
 First, let's look at how the syntax of path queries looks like:
 
 ```
-PATH ?p FROM ?s[=startNode] TO ?e[=endNode] {
+PATH ?p FROM ([startNode AS] ?s) TO ([endNode AS] ?e) {
    GRAPH PATTERN
 }
 [ORDER BY condition] 
@@ -73,7 +73,7 @@ Now, suppose we want to find all the people Alice is connected to in this graph 
 how she is connected to the those people. The corresponding path query looks like this:
 
 ```sparql
-path ?p from ?x = :Alice to ?y {
+path ?p from (:Alice AS ?x) to ?y {
    ?x :knows ?y
 }
 ```
@@ -81,7 +81,7 @@ path ?p from ?x = :Alice to ?y {
 Note that we specified a start node for the path query but the end node is unrestricted
 so all the paths starting from Alice will be returned. This query is effectively equivalent
 to the SPARQL property path `:Alice :knows+ ?y` but the difference is that the results
-will include the intermediate nodes in the paths.
+will include the intermediate nodes in the paths. 
 
 The results of a path query is a list of solutions just like in a SELECT query but we
 will be using the [extended solutions](extending-the-solution) introduced before. 
@@ -89,15 +89,16 @@ The result of the above query would look like this:
 
 ```json
 [
-  {"p": [ {"x": ":Alice", "y": ":Bob"} ] },
-  {"p": [ {"x": ":Alice", "y": ":Bob"}, {"x": ":Bob", "y": ":Charlie"} ] },
-  {"p": [ {"x": ":Alice", "y": ":Bob"}, {"x": ":Bob", "y": ":David"} ] }
+  {"x": ":Alice", "y', ":Bob", "p": [ {"x": ":Alice", "y": ":Bob"} ] },
+  {"x": ":Alice", "y', ":Charlie", "p": [ {"x": ":Alice", "y": ":Bob"}, {"x": ":Bob", "y": ":Charlie"} ] },
+  {"x": ":Alice", "y', ":David", "p": [ {"x": ":Alice", "y": ":Bob"}, {"x": ":Bob", "y": ":David"} ] }
 ]
 ```
 
-In the results there is one solution for each path found. In each solution the path 
-variable `?p` is bound to one and only one array of edges. Each edge is itself a
-solution that binds the variables of the graph pattern in the graph pattern.
+In the results there is one solution for each path found. In each solution, the start and
+end variables are bound to the start and end nodes of the path respectively and the path 
+variable `?p` is bound to one and only one array of edges. Each edge is also a
+solution that binds the variables of the graph pattern. 
 
 The execution of a path query is done by recursively evaluating the graph pattern
 in the query and replacing the start variable with the binding of the end variable
@@ -111,7 +112,7 @@ want to find undirected path between Alice and Eve in this graph. Then we can
 make the graph pattern to match both outgoing and incoming edges:
 
 ```sparql
-path ?p from ?x = :Alice to ?y = :Eve {
+path ?p from (:Alice AS ?x) to (:Eve AS ?y) {
    ?x :knows|^:knows ?y
 }
 ```
@@ -120,7 +121,8 @@ This query would return:
 
 ```json
 [
-  {"p": [ {"x": ":Alice", "y": ":Bob"}, {"x": ":Bob", "y": ":David"}, {"x": ":David", "y": ":Eve"} ] }
+  {"x": ":Alice", "y": ":Eve", 
+   "p": [ {"x": ":Alice", "y": ":Bob"}, {"x": ":Bob", "y": ":David"}, {"x": ":David", "y": ":Eve"} ] }
 ]
 ```
 
@@ -128,7 +130,7 @@ But here the results don't show the direction of the relationship at each step. 
 instead use a UNION to query both directions and use another variable to indicate direction: 
  
 ```sparql
-path ?p from ?x = :Alice to ?y = :Eve {
+path ?p from (:Alice AS ?x) to (:Eve AS ?y) {
    { ?x :knows ?y BIND(true as ?forward) }
    UNION
    { ?y :knows ?x BIND(false as ?forward) }
@@ -139,7 +141,8 @@ The results for the query is as follows:
 
 ```json
 [
-  {"p": [ {"x": ":Alice", "y": ":Bob", "forward": true}, 
+  {"x": ":Alice", "y": ":Eve",
+   "p": [ {"x": ":Alice", "y": ":Bob", "forward": true}, 
           {"x": ":Bob", "y": ":David", "forward": true}, 
           {"x": ":David", "y": ":Eve", "forward": false} ] }
 ]
@@ -154,7 +157,36 @@ in the graph but there are movies in which they acted together. The path query f
 between Keanu Reeves and Kevin Bacon is as follows:
 
 ```
-PATH ?path FROM ?start = dbr:Keanu_Reeves TO ?end = dbr:Kevin_Bacon  {
+PATH ?path FROM (dbr:Keanu_Reeves As ?start) TO (dbr:Kevin_Bacon AS ?end) {
+     ?movie a dbo:Film ;
+        dbp:starring ?start ;
+        dbp:starring ?end .
+}
+```
+
+The result for the query would look like this:
+
+```
+[
+  {"start": dbr:Keanu_Reeves, "end": "dbr:Kevin_Bacon",
+   "path": [ {"movie": "dbr:The_Matrix", "start": "dbr:Keanu_Reeves", "end": "dbr:Laurence_Fishburne"},
+             {"movie": "dbr:Mystic_River_(film)", "start": "dbr:Laurence_Fishburne", "end": "dbr:Kevin_Bacon"} ] }
+]
+```
+
+The ability to use arbitrary graph patterns in path queries make this operator much more than a
+simple path finder. It is a more general recursive graph traversal operator that can be used to 
+extract arbitrary subgraphs. 
+
+{{% figure src="https://imgs.xkcd.com/comics/paths.jpg" class="inliner" %}}
+
+== Shortest path to happiness
+
+The path queries may return found path in any order so if we are interested in finding only the shortest paths
+as in the Bacon number example we need to add an ordering condition:
+
+```
+PATH ?path FROM (dbr:Keanu_Reeves As ?start) TO (dbr:Kevin_Bacon AS ?end) {
      ?movie a dbo:Film ;
         dbp:starring ?start ;
         dbp:starring ?end .
@@ -163,30 +195,22 @@ ORDER BY length(?path)
 LIMIT 1
 ```
 
-The result for the query would look like this:
-
-```
-[
-  {"path": [ {"movie": "dbr:The_Matrix", "start": "dbr:Keanu_Reeves", "end": "dbr:Laurence_Fishburne"},
-             {"movie": "dbr:Mystic_River_(film)", "start": "dbr:Laurence_Fishburne", "end": "dbr:Kevin_Bacon"} ] }
-]
-```
-
-Note that, in this query we used `ORDER BY length(?path)` to return the shortest paths first and `LIMIT 1`
+We are using `ORDER BY length(?path)` to return the shortest paths first and `LIMIT 1`
 will cause the query to return a single path. Recall that `length` function was defined as part of 
 [extended solutions](https://blog.stardog.com/extending-the-solution/) and returns the number of elements 
-in an array which is this case is the number of edges in a path.
+in an array which in this case is the number of edges in a path.
 
-If there are multiple paths with the same length then arbitrary
-one would be returned. The path query specification does not say anything about how the functionality
-will be implemented but Stardog implementation will be taking these modifiers into account to use the
+If there are multiple paths with the same length then arbitrary one would be returned. 
+The path query specification does not say anything about how the ordering functionality
+will be implemented but Stardog will be taking these modifiers into account to use the
 most efficient path finding algorithm.
 
 We can use a very similar query to compute the [Erdös_number](https://en.wikipedia.org/wiki/Erd%C5%91s_number)
 of people using the [DBLP Bibliography Database](http://dblp.l3s.de/d2r/):
+
 ```sparql
 SELECT (length(?path) AS ?erdosNumber) ?path {
-PATH ?path FROM ?start = :Evren_Sirin TO ?end = :Paul_Erdos {
+PATH ?path FROM (:Evren_Sirin AS ?start) TO (:Paul_Erdos AS ?end) {
    ?article a foaf:Document ;
      	dc:creator ?start ;
      	dc:creator ?end
@@ -198,9 +222,8 @@ LIMIT 1
 
 This query highlights the fact that just like other query types we can use path queries as subqueries.
 In this example, we are using the outer SELECT expression to assigning the length of the path to the 
-`erdosNumber` variable.
-
-{{% figure src="https://imgs.xkcd.com/comics/paths.jpg" class="inliner" %}}
+`erdosNumber` variable. Path queries will follow the general bottom-up evaluation semantics of SPARQL
+so the variables used in the graph patterns will not be visible from the outside.
 
 Shortest path problems sometimes involves assigning a weight to each edge and finding the path with
 lowest total weight. For example, the following query is for finding the shortest route between two 
@@ -223,26 +246,24 @@ to the array of values to compute the total distance.
 
 {{% figure src="https://media.makeameme.org/created/the-possibilities-theyre.jpg" class="inliner" %}}
 
-The possibilities with path queries are endless. We mention several more examples briefly to show
-different uses of path queries..
+There are so many other possibilities with path queries. We mention several more examples briefly to show
+different uses of path queries.
 
 Find cyclic dependencies in a graph:
 
 ```
 SELECT ?cycle {
-  PATH ?cycle FROM ?x TO ?y {
-     ?x :dependsOn ?y
+  PATH ?cycle FROM ?start TO ?end {
+     ?start :dependsOn ?end
   }
-  BIND (get(project(?cycle, ?x), 1) AS ?start)
-  BIND (get(project(?cycle, ?y), length(?cycle)) AS ?end) 
   FILTER (?start = ?end)
 }
 ```
 
-Admittedly this query looks much more complex than the SPARQL query `?x :dependsOn+ ?x` which would
-detect cyclic dependencies. However, the result for this SPARQL query only tells us that a cycle 
-exists but does not show the nodes involved in the cycle.
-
+This query is not very verbose but still looks more complex than the SPARQL query `?x :dependsOn+ ?x` 
+which would detect cyclic dependencies. But the SPARQL query does not return the nodes involved in the 
+cycle. One possibility we are considering is a shorthand version of path queries when the graph pattern 
+is a single triple pattern, e.g. `path ?p { ?x :dependsOn ?x }`.
 
 Retrieve the [Concise-bounded description (CBD)](https://www.w3.org/Submission/CBD/)
 of a specific `resource`:
@@ -250,7 +271,7 @@ of a specific `resource`:
 ```sparql
 CONSTRUCT { ?s ?p ?o }
 WHERE {
-  PATH ?path FROM ?s = :resource TO ?o {
+  PATH ?path FROM (:resource AS ?s) TO ?o {
      ?s ?p ?o
      FILTER (isBlank(?s) || ?s = :resource)
   }
