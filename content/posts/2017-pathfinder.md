@@ -54,7 +54,7 @@ We will publish more details about the syntax and the semantics of this
 extension later, but in this post we will simply describe how path queries will
 work using some examples. First, let's look at the syntax of path queries:
 
-```
+```sparql
 PATH ?p FROM ([startNode AS] ?s) TO ([endNode AS] ?e) {
    GRAPH PATTERN
 }
@@ -72,7 +72,7 @@ and how she is connected to them. The corresponding path query looks
 like this:
 
 ```sparql
-path ?p from (:Alice AS ?x) to ?y {
+PATH ?p FROM (:Alice AS ?x) TO ?y {
    ?x :knows ?y
 }
 ```
@@ -88,10 +88,10 @@ previously. The result of the above query would look like this:
 
 ```json
 [
-  {"x": ":Alice", "y", ":Bob", "p": [ {"x": ":Alice", "y": ":Bob"} ] },
-  {"x": ":Alice", "y", ":Charlie", 
+  {"x": ":Alice", "y": ":Bob", "p": [ {"x": ":Alice", "y": ":Bob"} ] },
+  {"x": ":Alice", "y": ":Charlie", 
         "p": [ {"x": ":Alice", "y": ":Bob"}, {"x": ":Bob", "y": ":Charlie"} ] },
-  {"x": ":Alice", "y", ":David", 
+  {"x": ":Alice", "y": ":David", 
         "p": [ {"x": ":Alice", "y": ":Bob"}, {"x": ":Bob", "y": ":David"} ] }
 ]
 ```
@@ -113,7 +113,7 @@ want to find undirected path between Alice and Eve in this graph. Then we can
 make the graph pattern to match both outgoing and incoming edges:
 
 ```sparql
-path ?p from (:Alice AS ?x) to (:Eve AS ?y) {
+PATH ?p FROM (:Alice AS ?x) TO (:Eve AS ?y) {
    ?x :knows|^:knows ?y
 }
 ```
@@ -133,7 +133,7 @@ can instead use a `UNION` to query both directions and another variable to
 indicate direction:
  
 ```sparql
-path ?p from (:Alice AS ?x) to (:Eve AS ?y) {
+PATH ?p FROM (:Alice AS ?x) TO (:Eve AS ?y) {
    { ?x :knows ?y BIND(true as ?forward) }
    UNION
    { ?y :knows ?x BIND(false as ?forward) }
@@ -265,7 +265,7 @@ examples briefly to show different uses of path queries.
 
 Let's find cyclic dependencies in a graph:
 
-```
+```sparql
 SELECT ?cycle {
   PATH ?cycle FROM ?start TO ?end {
      ?start :dependsOn ?end
