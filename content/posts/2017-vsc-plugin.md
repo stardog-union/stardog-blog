@@ -42,6 +42,8 @@ those
 [already](https://code.visualstudio.com/docs/extensions/example-hello-world).
 Just my own observations while working through my first extension.
 
+You may be wondering what I'm building; what is my motovation. It's simple, I want working with Stardog to be easy and fun, no matter what your tool chain looks like.
+
 ## Documentation
 
 The documentation manages to simultaneously be very good and not helpful at the
