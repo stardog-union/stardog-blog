@@ -9,7 +9,7 @@ heroShot = ""
 +++
 
 I'm building extensions with Visual Studio Code and I'm kinda lovin'
-it!<!--more-->
+it. <!--more-->
 
 ## Introduction
 
@@ -18,10 +18,9 @@ monoliths, vendor lock-in, "the Microsoft way", and stellar developer tooling.
 Thankfully, with the recent changes in leadership, the only thing not fading
 away is stellar developer tooling. Enter Visual Studio Code (_VSC_). Same high
 quality tool as it's elder brother, but open source, free, and infinitely
-customizable and extendable.
+customizable and extensible.
 
 {{% figure src="/img/vsc1.jpg" link="https://www.flickr.com/photos/loozrboy/3119183103/in/photolist-5KCCt2-8AA9Fq-5BBkpY-8Ax4ZZ-S6DSAS-RC7Fqz-9nj1Uk-6dGeKi-SVdJPk-ojrwjj-e1LKVj-6AKKMs-6sc4eG-rtA1BY-RYwSfN-6qxWCt-RJ4Rns-6qxTHP-SoZ3KZ-Spur1T-6sc3nw-6sc3QL-8hda9Q-6s7Xwe-qLK3CV-6s7WSe-nXPpwt-Ry85Xw-qyf2j7-SATkzN-dtGp46-7cGBV4-ojo93b-ooaY6p-7ZEobu-7GzvKP-7XpF4j-4VpoaX-6sc4ph-7XpEjJ-4VtAww-6AFBZT-7V84w5-6qd7zQ-7XpEgG-jyx7P9-4Xxi5f-2TqY4p-dfp8oV-7Xmso8" attr="Loozrboy" class="inliner" %}}
-
 
 That customization comes from two architectural decisions made by the Microsoft
 team. First, _VSC_ is an [Electron](https://electron.atom.io/) app. That means
