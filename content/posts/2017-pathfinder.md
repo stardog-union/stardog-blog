@@ -14,6 +14,10 @@ to [extend SPARQL solutions]({{< relref "2017-extended-solutions.md" >}}), we
 can more easily make Stardog traverse graphs to find paths and other
 relationships.<!--more-->
 
+**[Download Stardog today](http://stardog.com/) to start your free 30-day
+evaluation.**
+
+
 ## Background
 
 SPARQL is a
