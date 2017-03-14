@@ -5,7 +5,7 @@ author = "Evren Sirin"
 categories = ["graph", "rdf", "knowledge graph"]
 draft = false
 discourseUsername = "evren"
-heroShot = "https://blog.stardog.com/img/pathfinder_graph.png"
+heroShot = "https://blog.stardog.com/img/heropath.jpg"
 +++
 
 We're adding graph traversal to Stardog to support a broader range of graph
@@ -33,7 +33,7 @@ path query is only the *start and end nodes of the path* and does not include
 the intermediate nodes. To find the intermediate nodes additional or more
 complex queries are needed.
 
-{{% figure src="https://i.ytimg.com/vi/uWP2iFOSaoc/maxresdefault.jpg" class="inliner" %}}
+{{% figure src="/img/heropath.jpg" link="https://www.flickr.com/photos/simonmatzinger/11309720363/in/photolist-iepgQF-dbGspk-Gs4Ad3-bAmgtx-fi58aD-GGMnyB-vVcypA-oqEtrJ-avYbGC-QBnP8L-hzT9jx-kxLfGp-o8rKzE-smHqcA-pvWWnd-pQcTBL-8M5MDu-pKeJtD-Jz4Cp4-q6Q7vz-ni3jRJ-HqosF3-o7qzs8-CTD9Gd-dR8sSA-GWFTUx-JCc9KX-jubx1Z-qpq5HW-HVjQDY-nCpWfT-8M7qno-3YWCY-9n4Hxb-CqbphE-acu7go-qqPoXi-8LXbmp-acrgMi-8j4tKi-g4kJAQ-bnrrXu-8E99Ct-cjAtmS-raz8Xe-Jr2DK7-nDnqMT-p4Sjjr-GnRM95-qj4kzg" attr="Simon Matzinger" class="inliner" %}}
 
 ## Finding Our Path
 
@@ -187,7 +187,9 @@ The result for the query would look like this:
 Arbitrary graph patterns in path queries make this **a general recursive graph traversal
 operator that can be used to extract arbitrary subgraphs.**
 
-{{% figure src="https://imgs.xkcd.com/comics/paths.jpg" link="https://imgs.xkcd.com/comics/paths.jpg" attr="https://xkcd.com/" class="inliner" %}}
+{{% figure src="https://imgs.xkcd.com/comics/paths.jpg"
+link="https://imgs.xkcd.com/comics/paths.jpg" attr="https://xkcd.com/"
+class="inliner" %}}
 
 ## Shortest Path to Happiness
 
