@@ -8,9 +8,9 @@ discourseUsername = "arb"
 heroShot = "https://blog.stardog.com/img/vsc1.jpg"
 +++
 
-I want working with Stardog to be easy and fun, no matter what your tool chain
-looks like. So I'm building extensions in Visual Studio Code and I'm kinda
-lovin' it. <!--more-->
+Working with Stardog should be easy and fun, no matter what your tool chain
+looks like. So I'm building extensions in Visual Studio Code for Stardog, and
+I'm kinda lovin' it. <!--more-->
 
 ## Introduction
 
