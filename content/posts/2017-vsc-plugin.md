@@ -1,15 +1,16 @@
 +++
 draft = false
-date = "2017-03-17"
+date = "2017-03-15"
 title = "Extending Visual Studio Code"
 author = "Adam Bretz"
 categories = ["javascript", "vsc"]
 discourseUsername = "arb"
-heroShot = ""
+heroShot = "https://blog.stardog.com/img/vsc1.jpg"
 +++
 
-I'm building extensions with Visual Studio Code and I'm kinda lovin'
-it. <!--more-->
+I want working with Stardog to be easy and fun, no matter what your tool chain
+looks like. So I'm building extensions in Visual Studio Code and I'm kinda
+lovin' it. <!--more-->
 
 ## Introduction
 
@@ -25,7 +26,7 @@ customizable and extensible.
 That customization comes from two architectural decisions made by the Microsoft
 team. First, _VSC_ is an [Electron](https://electron.atom.io/) app. That means
 it's built using web technology that is very well understood and known in the
-community. It makes the barrier of entry almost non-existent. Secondly, the
+community. It makes the barrier of entry almost non-existent. Second, the
 design of Visual Studio Code embraces the concept of Extensions.
 
 A Visual Studio Code extension is a plugin that, surprise, extends the

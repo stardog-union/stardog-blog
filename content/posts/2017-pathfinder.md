@@ -1,6 +1,6 @@
 +++
 title = "A Path of Our Own"
-date = "2017-03-16"
+date = "2017-03-14"
 author = "Evren Sirin"
 categories = ["graph", "rdf", "knowledge graph"]
 draft = false
