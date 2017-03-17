@@ -159,7 +159,7 @@ The results for the query is as follows:
 src="https://i1.wp.com/www.classtools.net/blog/wp-content/uploads/2015/04/bacon.jpg?w=550"
 class="inliner" %}}
 
-Using graph patterns is when there are no direct edges between the nodes. For
+Using graph patterns is necessary when there are no direct edges between the nodes. For
 example, consider
 the
 [Six Degrees of Bacon](https://en.wikipedia.org/wiki/Six_Degrees_of_Kevin_Bacon)
