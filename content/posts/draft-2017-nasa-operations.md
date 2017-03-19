@@ -3,7 +3,7 @@ title = "Case Study: Running Stardog at NASA AMES Research Center "
 date = "2017-01-11"
 categories = ["case study", "nasa", "cloud"]
 author = "Michael Soren"
-draft = false
+draft = true
 discourseUsername = "msoren"
 +++
 

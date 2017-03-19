@@ -1,9 +1,9 @@
 +++
-title = "Building an application with Stardog in 5 Easy Steps"
+title = "Stardog Apps in 5 Easy Pieces"
 date = "2017-03-18"
 categories = ["tutorial", "java"]
 author = "Greg Coluni"
-draft = false
+draft = true
 discourseUsername = "gcoluni"
 +++
 

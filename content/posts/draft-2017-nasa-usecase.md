@@ -3,7 +3,7 @@ title = "Stardog Case Study: Engineering Data for the Mission to Mars"
 date = "2017-03-18"
 categories = ["case study", "virtual graphs", "nasa"]
 author = "Al Baker"
-draft = false
+draft = true
 discourseUsername = "albaker"
 +++
 
