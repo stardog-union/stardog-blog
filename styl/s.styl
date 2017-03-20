@@ -8,9 +8,10 @@ normalize-css()
 mypink = #444444 
 font-color = #444444 //rgba(0, 0, 0, 0.8)
 base-line-height = (font-size * 1.5)
-font-size  = 16px
+font-size  = 20px
+o = #F26936;
 head1-color = font-color 
-head2-color = font-color
+head2-color = #4d4d4d// font-color
 base(fonts = blog-font)
 typography()
 ligatures = true
@@ -23,10 +24,13 @@ tonguered = rgba(170,1,20,100)
 rupture.scale = 0 415px 600px 800px 1050px 1280px
 rupture.mobile-cutoff = 415px
 texture = "/img/first-aid-kit.png"
-
 body
-  background-image url(texture)
-  font-family "Nunito Sans"
+  //background-image url(texture)
+  font-family "Source Sans Pro"
+  /* 
+    these weights are available
+    200,300,400,400i,600,700,900
+  */
   font-weight 300
   color #4d4d4d
 
@@ -39,8 +43,8 @@ body
   flex-direction column
   height 100%
 
-.site-content
-  flex 1 0 auto
+//.site-content
+  //flex 1 0 auto
 
 a, a:hover, a:visited
   reset-link()
@@ -50,20 +54,24 @@ img
   max-width 100%
   height auto
 .inliner
-  width 50% //do I really want this?
+  width 60% //do I really want this?
   +mobile()
     display none
+
 #header
   //col(12/12, gutter: 20px)
   span()
   background-color inkbluefoot
-  border-bottom 1px solid inkbluefoot //white
+  border-bottom 4px solid sdlime 
   #logo
-    col(8/12, offset:1/5, gutter: 20px)
+    col(8/12, offset: 2/12, gutter: 10px)
     #title
+      font-weight 900
+      padding 0
+      margin-bottom 0px
+      margin-top 6px
       fs((font-size * 2.5))
       upcase()
-      font-weight 700
       a
         color white
       a:hover
@@ -74,8 +82,9 @@ img
       #star
         fs((font-size * 1.5))
         vertical-align bottom
-        color sdlime
-        bold()
+        color white//sdlime
+        +mobile()
+          fs (font-size * 1.25)
 #dog
   center()
   +mobile()
@@ -92,13 +101,23 @@ img
 .myicon
   margin-left 5px
   margin-right 5px
+#theTweet
+  float right
+  +mobile()
+    display none
+#disgustblock
+  +mobile()
+    display none
 #theSlug
   fs(font-size * 1.125)
 #theTitle
-  margin-bottom -10px
-  fs(font-size * 2)
-  font-weight 500
+  //margin-bottom -10px
+  fs(font-size * 2.5)
+  font-weight 200
   color #4d4d4d
+  line-height (font-size * 2)
+  margin-bottom 8px
+  upcase()
   +below(4)
     line-height 1em
     margin-bottom 0px
@@ -106,13 +125,14 @@ img
     fs (font-size * 1.33)
     margin-bottom 5px
     upcase()
+    margin-top 50px
 #topdate
   span(1)
   margin-top -20px
   padding 0 
 #md
   span(1)
-  margin-right 15px
+  margin-right 0px
   margin-top 30px
 figure.inliner
   +mobile()
@@ -138,16 +158,18 @@ figure.inliner
 blockquote
   border 0
   p
-    fs(font-size)
-    font-weight 400
+    fs(font-size * .9)
+
 #content, #content_foot
-  col(8/12, offset:1/5, gutter: 20px)
+  col(8/12, offset:2/12, gutter: 10px)
   a:not(.no-underline)
     linkUnderlines white, #4d4d4d
   +mobile()
     col(8/12, offset: 1/6, gutter: 10px)
   background rgba(255,255,255,1)
-  padding 30px
+  padding 0px
+  //padding-left 14px
+
 #footer
   background inkbluefoot
   //background-image url(texture)
@@ -155,60 +177,63 @@ blockquote
   +mobile()
     span(1)
     padding-left 5px
-  col(8/12, offset: 1/5, gutter: 20px)
+  col(8/12, offset: 2/12, gutter: 10px)
   padding-bottom 10px
+  padding-left 0px
   p
+    fs(font-size * .75)
     color white
     bold()
     a
       linkUnderlines inkblue, white 
+    +mobile()
+      padding-left 20px
 code
-  color mypink
-  //fs(font-size * .9)
   font-family "Source Code Pro"
-  color tonguered 
+  fs(font-size * .9)
 pre > code
   font-family "Source Code Pro"
   fs(font-size * .9)
-  background rgba(255,255,255,0)
-  //font-weight 300
   border rgba(0,0,0,.1)
   border-radius 2px 3px / 4px 5px
   +mobile()
     fs((font-size / 1.5))
-//header#site>h1
-//  font-weight 700
-//  color head1-color
-h1,h2
-  fs(font-size * 1.5)
-  font-weight 500
+
+h1
+  fs(font-size * 2)
+h2
+  fs(font-size * 1.67)
+  font-weight 300
   color head2-color
+  upcase()
   +mobile()
-    fs(font-size * 1.5)
+    fs(font-size * 1.2)
     line-height (font-size * 1.4)
 h3
-  font-weight 500
-  fs(font-size * 1.33)
+  font-weight 300
+  fs(font-size * 1.45)
+  upcase()
 h4
   fs(font-size * 1.25)
-  font-weight 400
+  font-weight 300
+  upcase()
 h5,h6
   fs(font-size * 1.125)
-  font-weight 400
-h1
-  font-weight 500
+  font-weight 200
+  upcase()
 .inline
   inline-list()
 h1#archivetitle
-  fs(font-size * 1.75)
-  color #4d4d4d 
+  fs(font-size * 2)
+  font-weight 300
+  upcase()
 #butt
   span(1)
   margin-bottom 30px
   div
-    col(1/3, cycle: 3, gutter: 1)
     +mobile()
-      stack()
+      display none
+    col(1/3, cycle: 3, gutter: 1)
     #slugdate
       upcase()
 div#socialFoot
@@ -216,9 +241,6 @@ div#socialFoot
      span(1)
    +mobile()
      display none
-.frontslug
-  margin-top -20px
-  upcase()
 #footer 
   //width: 100%
   height: 90px
@@ -255,29 +277,46 @@ div#socialFoot
 
 .media-body
   flex: 1
+.frontslug
+  upcase()
+  margin-top 0px
+  +mobile()
+    fs(font-size * .6)
+    font-weight 400
 h3.post-title
   upcase()
   color #4d4d4d
+  margin-bottom -4px
   +mobile()
     line-height (font-size * .75)
+    font-weight 400
     a
       color #4d4d4d
       fs(font-size * .875)
       line-height (font-size * .75)
 #byline
   fs(font-size * 1)
+  margin-left 2px
+.theAuthor
+  color inkblue
+  font-weight 600
 #theBy
-  fs(font-size * 1)
+  fs(font-size * .875)
 #disqusfeet
   +mobile()
     display none
 div#bar
-  fs(font-size * .9)
-  margin-top -30px
+  +mobile()
+    display none
+  font-size 16px
+  margin-top 2px
   margin-bottom 20px
   text-align right
-  a:link, a:visited, a:hover, a:hover:visited
+  text-transform uppercase
+  a:link, a:visited, a:hover:visited
     reset-link()
     color  otherblue
-    font-weight 700
+    font-weight 500
+  a:hover
+    background sdlime
 
