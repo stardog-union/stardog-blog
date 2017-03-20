@@ -18,7 +18,7 @@
     <body class="site">
         {{ partial "header.html" . }}
         <div class="wrapper site-content clearfix content" id="content">
-        {{ partial "bar.html" . }}
+        <!-- {{ partial "bar.html" . }} -->
         {{ range first 12 .Data.Pages.ByDate.Reverse }}
         <h3 class="post-title">
           <a class="no-underline" href="{{ .Permalink }}">{{ .Title }}</a></h3>
