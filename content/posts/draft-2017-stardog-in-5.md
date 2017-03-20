@@ -241,8 +241,5 @@ connectionPool.shutdown();
 
 ## Summary
 
-In conclusion, we showed you how to install Stardog on a Linux environment, create an administration connection in order to perform administrative actions, create a connection pool to the database, and use a connection from the pool to perform transactions and query’s. In the next blog, we will expand on more of the features that Stardog has to offer as well as provide an example on how to wire a Stardog client using Spring.  
-
-
-Link to GitHub for full code example
+In conclusion, we showed you how to install Stardog on a Linux environment, create an administration connection in order to perform administrative actions, create a connection pool to the database, and use a connection from the pool to perform transactions and query’s. In the next blog, we will expand on more of the features that Stardog has to offer as well as provide an example on how to wire a Stardog client using Spring. The full version of the code is located at https://github.com/stardog-union/stardog-examples/tree/develop/weblog/stardog-client.
 
