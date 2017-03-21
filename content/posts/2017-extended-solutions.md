@@ -14,8 +14,8 @@ fix SPARQL solutions.<!--more-->
 
 ## Background
 
-RDF is a flexible graph data model: entities are represented by nodes in the
-graph, and entity properties and relationships between entities are represented
+RDF is a flexible graph data model. Entities are represented by nodes in the
+graph. Entity properties and relationships between entities are represented
 as edges. Unlike relational databases where the data needs to conform to a
 predefined tabular structure, the graph model can represent heterogeneous data
 easily.

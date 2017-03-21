@@ -124,7 +124,7 @@ module.exports = function(grunt) {
                                'shell:build',
                                'dom_munger:archive'
                               ]);
-    grunt.registerTask("build", ['clean:build',
+    grunt.registerTask("build", [//'clean:build',
                                "css",
                                "shell:update",
                                "autoprefixer",
