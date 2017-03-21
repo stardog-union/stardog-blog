@@ -26,7 +26,7 @@ module.exports = function(grunt) {
          shell: { 
              build: {
                  command: function () {
-                     comm = "hugo"
+                     comm = "hugo_0.19"
                      return comm
                  },
              },
