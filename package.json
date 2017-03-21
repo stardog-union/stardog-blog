@@ -30,5 +30,8 @@
     "load-grunt-tasks": "^3.1.0",
     "rupture": "^0.6.1",
     "time-grunt": "^1.0.0"
+  },
+  "dependencies": {
+    "matchdep": "^1.0.1"
   }
 }

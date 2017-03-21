@@ -131,6 +131,6 @@ module.exports = function(grunt) {
                                "hugo",
                                "dom_munger:archive",
                                "htmlmin",
-                                 "compress",
+                               "compress",
                               ]);
         };
