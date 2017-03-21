@@ -193,14 +193,13 @@ module.exports = function(grunt) {
                                'shell:build',
                                'dom_munger:archive'
                               ]);
-    grunt.registerTask("pub", ['clean:build',
+    grunt.registerTask("build", ['clean:build',
                                "css",
                                "shell:update",
                                "autoprefixer",
                                "hugo",
                                "dom_munger:archive",
                                "htmlmin",
-                               "compress",//minify and compress because overkill is a thing!
-                               'push_production',
+                                 "compress",
                               ]);
         };
