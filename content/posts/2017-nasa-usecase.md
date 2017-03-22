@@ -33,8 +33,9 @@ relationships. Every question becomes a new study, fire drill, or project to
 make an assessment. 
 
 So why is this stuff so hard? Because **everything is connected to everything
-else**, which makes the costs and risks of change very high. **Context
-matters.**
+else**, which makes the costs and risks of change very high. 
+
+**Context matters.**
 
 ## Knowledge Graph to the Rescue
 
@@ -48,17 +49,17 @@ All day NASA engineers ask questions like this:
 We work with NASA to build this knowledge graph, using Stardog to answer these
 types of questions. 
 
-Often this means building a bottom-up, composite data model that starts as
-diagrams on a board, which gets translated to RDF. As we go through each
+Often this means building a bottom-up, composite data model that starts as a
+diagram on a board, which then get translated to RDF. As we go through each
 logical relationship, we look for a positive case that proves the relationship,
-and an incorrect example that disproves it. 
+and a negative cases that disprove it.
 
 Then the structural correctness rules in the model go into an ontology, and the
 examples of an issue with the data go into a
 Stardog
 [integrity constraint](https://docs.stardog.com/#_validating_constraints). This
 is an iterative process that introduces structure and declarative modeling in
-just the right amount. In some cases, we identify limitations in a source
+just the right amount. In some cases we identify limitations in a source
 system. For example, being able to show a cycle like the verification and
 analysis cycles used during the design of a spacecraft. In these cases, we
 use
