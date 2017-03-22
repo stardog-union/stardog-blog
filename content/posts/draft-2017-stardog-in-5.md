@@ -1,23 +1,27 @@
 +++
 title = "Stardog Apps in 5 Easy Pieces"
-date = "2017-03-18"
+date = "2017-03-22"
 categories = ["tutorial", "java"]
 author = "Greg Coluni"
 draft = true
 discourseUsername = "gcoluni"
 +++
 
-With all the great things going on at Stardog, we wanted to take a step back and introduce new users to Stardog database. A great way to get started is to work through a series of code specific blog posts which will walk you through a set of key use cases. In this first post of the series, we will walk you through creating a client application that communicates with Stardog. In this post, we will:
+Stardog makes the Enterprise Knowledge Graph fast and easy. Let's see how easy
+it is to create a client application that communicates with Stardog using Java
+and Gradle. Our five easy pieces:
 
 1.	Download and Install Stardog
 2.	Create a Java project with Gradle
-3.	Build a Database
+3.	Build a database
 4.	Import data into the database
 5.	Query and update the database
 
 ## 1. Download and Install Stardog
 
-Obviously the first thing that we need to do is download and install Stardog. We recommend installing Stardog on a Linux platform and will detail that here. If you would like to install on Windows, the instructions are available at http://docs.stardog.com/#_windows.
+Obviously the first thing that we need to do is download and install Stardog. We
+will use Linux here; OS X would be very similar. If you would like to install on
+Windows, the instructions are available http://docs.stardog.com/#_windows.
 
 1.	The Stardog download is located at http://stardog.com/#download.
 2.	Next, we have to tell Stardog where its home directory (where databases and other will be stored) is located
@@ -38,7 +42,11 @@ Obviously the first thing that we need to do is download and install Stardog. We
 
 ## 2. Setup a Gradle Project
 
-Now that Stardog is installed, lets setup our Gradle configuration. Since not all the features of Stardog are required for this post, we will start with a basic Gradle configuration and add as we go. In this example we are just connecting to Stardog over http and the only dependency that we need is com.complexible.stardog:client-http:4.2.1. The build.gradle is as follows:
+Now that Stardog is installed, lets setup our Gradle configuration. Since not
+all the features of Stardog are required for this post, we will start with a
+basic Gradle configuration and add as we go. In this example we are just
+connecting to Stardog over http and the only dependency that we need is
+com.complexible.stardog:client-http:4.2.1. The build.gradle is as follows:
 
 '''
 apply plugin:"java"
@@ -66,13 +74,24 @@ task execute(type:JavaExec) {
 
 ## 3. Build a Database
 
-We now have our Stardog instance installed and Gradle configured, let’s start building our database. The first thing we have to do is create a connection to the DBMS. This will allow us to perform administrative actions such as creating a new database, adding/removing data, etc. We will use the AdminConnectionConfiguration utility to create the connection to the DBMS. In the code snippet bellow, we create the AdminConnectionConfiguration by specifying the server url and the credentials of the user. In this case, we are using the default values of: 
+We now have our Stardog instance installed and Gradle configured, let’s start
+building our database. The first thing we have to do is create a connection to
+the DBMS. This will allow us to perform administrative actions such as creating
+a new database, adding/removing data, etc. We will use the
+AdminConnectionConfiguration utility to create the connection to the DBMS. In
+the code snippet bellow, we create the AdminConnectionConfiguration by
+specifying the server url and the credentials of the user. In this case, we are
+using the default values of:
 
 * url = http://localhost:5820
 * username = “admin”
 * password = “admin
 
-Once connected, we will print out the list of databases, default is only ‘myDB’, search for the database we are about to create (just in case the code was ran before), and create the database on disk. Stardog has the ability to create an embedded database and those examples can be found in the documentation at http://docs.stardog.com/#_examples_3.   
+Once connected, we will print out the list of databases, default is only ‘myDB’,
+search for the database we are about to create (just in case the code was ran
+before), and create the database on disk. Stardog has the ability to create an
+embedded database and those examples can be found in the documentation at
+http://docs.stardog.com/#_examples_3.
 
 '''
 /**
@@ -101,7 +120,14 @@ public static void createAdminConnection() {
 
 ## 4. Import Data
 
-Once our new database has been created, we will begin the process of importing data and running queries against said data. In order to do this, we need to create a connection to the database using a ConnectionPool. The ConnectionConfiguration will tell the pool how to create the new connections. We then pass the ConnectionConfiguration to the ConnectionPoolConfig as it is the basis of the pool. We can also provide additional detail about the pool such as min/max pool size, expiration, and block wait time. We then create the pool and return so we can start using it to obtain a Stardog connection.  
+Once our new database has been created, we will begin the process of importing
+data and running queries against said data. In order to do this, we need to
+create a connection to the database using a ConnectionPool. The
+ConnectionConfiguration will tell the pool how to create the new connections. We
+then pass the ConnectionConfiguration to the ConnectionPoolConfig as it is the
+basis of the pool. We can also provide additional detail about the pool such as
+min/max pool size, expiration, and block wait time. We then create the pool and
+return so we can start using it to obtain a Stardog connection.
 
 '''
 ConnectionConfiguration connectionConfig = ConnectionConfiguration
@@ -128,7 +154,14 @@ private static ConnectionPool createConnectionPool(ConnectionConfiguration conne
 '''
 
 
-After we obtained our Stardog connection, we will use it to populate our database. You must always enclose changes to a database within a transaction begin and commit or rollback. Changes are local until the transaction is committed or until you try and perform a query operation to inspect the state of the database within the transaction. We will use the begin and commit for our import. Below is a snippet of that data that we are importing followed by the code to import it. As you can see we perform the begin, add the data by importing the file, and finally commit the transaction. 
+After we obtained our Stardog connection, we will use it to populate our
+database. You must always enclose changes to a database within a transaction
+begin and commit or rollback. Changes are local until the transaction is
+committed or until you try and perform a query operation to inspect the state of
+the database within the transaction. We will use the begin and commit for our
+import. Below is a snippet of that data that we are importing followed by the
+code to import it. As you can see we perform the begin, add the data by
+importing the file, and finally commit the transaction.
 
 '''
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -156,7 +189,13 @@ connection.commit();
 
 ## 5. Query the Database
 
-Since we have a populated database, we will use the obtained Stardog connection to query the database. The connection provides the ability to easily build and execute SPARQL queries against the database. Using the connection, we first create the SPARQL select statement and store it in the SelectQuery. We then execute the query and store the result set in the TupleQueryResult object. The result set can be used for many different purposes, but in this case, we are just going to print it to the console using QueryResultIO. 
+Since we have a populated database, we will use the obtained Stardog connection
+to query the database. The connection provides the ability to easily build and
+execute SPARQL queries against the database. Using the connection, we first
+create the SPARQL select statement and store it in the SelectQuery. We then
+execute the query and store the result set in the TupleQueryResult object. The
+result set can be used for many different purposes, but in this case, we are
+just going to print it to the console using QueryResultIO.
 
 '''
 // Query the database to get our list of Marvel superheroes and print the results to the console
@@ -178,7 +217,15 @@ The result of our query is:
 +---------------------------------------+
 '''
 
-We will now add and remove data from the database using the API statements feature. Just like the initial data import transaction, we will use the begin and commit options to update the database. Below we will first add `IronMan` to the list of superheroes’ and then we will remove all references to `CaptainAmerica`. As you can see in the add, we have ‘IronMan’ as the subject for all the statements while using different FOAF objects for the predicate and either a FOAF object, literal, or another superhero as the object. In the remove statement, we are removing all instances where `CaptainAmerica` is either the subject or the object. 
+We will now add and remove data from the database using the API statements
+feature. Just like the initial data import transaction, we will use the begin
+and commit options to update the database. Below we will first add `IronMan` to
+the list of superheroes’ and then we will remove all references to
+`CaptainAmerica`. As you can see in the add, we have ‘IronMan’ as the subject
+for all the statements while using different FOAF objects for the predicate and
+either a FOAF object, literal, or another superhero as the object. In the remove
+statement, we are removing all instances where `CaptainAmerica` is either the
+subject or the object.
 
 '''
 // first start a transaction - This will add Tony Stark A.K.A Iron Man to the database
@@ -218,7 +265,8 @@ connection.commit();
 '''
 
 
-If we run the query to get the list of Marvel superhero’s in our database we can see the result of our code. The updated query result set is now:
+If we run the query to get the list of Marvel superhero’s in our database we can
+see the result of our code. The updated query result set is now:
 
 '''
 +---------------------------------------+
@@ -231,7 +279,8 @@ If we run the query to get the list of Marvel superhero’s in our database we c
 +---------------------------------------+
 '''
 
-Finally, we must remember to release the connection that we obtained to perform our tasks and shutdown the connection pool. 
+Finally, we must remember to release the connection that we obtained to perform
+our tasks and shutdown the connection pool.
 
 '''
 connectionPool.release(connection);
@@ -241,5 +290,11 @@ connectionPool.shutdown();
 
 ## Summary
 
-In conclusion, we showed you how to install Stardog on a Linux environment, create an administration connection in order to perform administrative actions, create a connection pool to the database, and use a connection from the pool to perform transactions and query’s. In the next blog, we will expand on more of the features that Stardog has to offer as well as provide an example on how to wire a Stardog client using Spring. The full version of the code is located at https://github.com/stardog-union/stardog-examples/tree/develop/weblog/stardog-client.
+In conclusion, we showed you how to install Stardog on a Linux environment,
+create an administration connection in order to perform administrative actions,
+create a connection pool to the database, and use a connection from the pool to
+perform transactions and query’s. In the next blog, we will expand on more of
+the features that Stardog has to offer as well as provide an example on how to
+wire a Stardog client using Spring. The full version of the code is located at
+https://github.com/stardog-union/stardog-examples/tree/develop/weblog/stardog-client.
 
