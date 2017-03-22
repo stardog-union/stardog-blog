@@ -5,7 +5,7 @@ categories = ["case study", "virtual graphs", "nasa"]
 author = "Al Baker"
 draft = false 
 discourseUsername = "albaker"
-heroShot = "https://blog.stardog.com/img/nasa1.jpg"
+heroShot = "https://blog.stardog.com/img/nasa2.jpg"
 +++
 
 Stardog is part of NASA's mission to Mars and we couldn't be prouder of that. In
