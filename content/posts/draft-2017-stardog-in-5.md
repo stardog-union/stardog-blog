@@ -25,14 +25,19 @@ Windows, the instructions are available at http://docs.stardog.com/#_windows.
 
 1.	The Stardog download is located at http://stardog.com/#download.
 2.	Next, we have to tell Stardog where its home directory (where databases and other will be stored) is located
+
 ```
 	$ export STARDOG_HOME=/data/stardog 
 ```
+
 3.	Copy the stardog-license-key.bin into the correction location 
+
 ```
 	$ cp stardog-license-key.bin $STARDOG_HOME 
 ```
+
 4.	Start the Stardog server. 
+
 ```
 	$ stardog-admin server start 
 ```
