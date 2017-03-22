@@ -21,21 +21,21 @@ and Gradle. Our five easy pieces:
 
 Obviously the first thing that we need to do is download and install Stardog. We
 will use Linux here; OS X would be very similar. If you would like to install on
-Windows, the instructions are available http://docs.stardog.com/#_windows.
+Windows, the instructions are available at http://docs.stardog.com/#_windows.
 
 1.	The Stardog download is located at http://stardog.com/#download.
 2.	Next, we have to tell Stardog where its home directory (where databases and other will be stored) is located
-'''
+```
 	$ export STARDOG_HOME=/data/stardog 
-'''
+```
 3.	Copy the stardog-license-key.bin into the correction location 
-'''
+```
 	$ cp stardog-license-key.bin $STARDOG_HOME 
-'''
+```
 4.	Start the Stardog server. 
-'''
+```
 	$ stardog-admin server start 
-'''
+```
 
 5.	Test that Stardog is running by going to  http://localhost:5820/ 
 
@@ -48,7 +48,7 @@ basic Gradle configuration and add as we go. In this example we are just
 connecting to Stardog over http and the only dependency that we need is
 com.complexible.stardog:client-http:4.2.1. The build.gradle is as follows:
 
-'''
+```groovy
 apply plugin:"java"
 
 group 'com.stardog.examples'
@@ -69,12 +69,12 @@ task execute(type:JavaExec) {
     main = "com.stardog.examples.MainApp"
     classpath = sourceSets.main.runtimeClasspath
 }
-'''
+```
 
 
 ## 3. Build a Database
 
-We now have our Stardog instance installed and Gradle configured, let’s start
+We now have our Stardog instance installed and Gradle configured; let’s start
 building our database. The first thing we have to do is create a connection to
 the DBMS. This will allow us to perform administrative actions such as creating
 a new database, adding/removing data, etc. We will use the
@@ -88,12 +88,12 @@ using the default values of:
 * password = “admin
 
 Once connected, we will print out the list of databases, default is only ‘myDB’,
-search for the database we are about to create (just in case the code was ran
+search for the database we are about to create (just in case the code was run
 before), and create the database on disk. Stardog has the ability to create an
 embedded database and those examples can be found in the documentation at
 http://docs.stardog.com/#_examples_3.
 
-'''
+```java
 /**
  *  Creates a connection to the DBMS itself so we can perform some administrative actions.
  */
@@ -115,7 +115,7 @@ public static void createAdminConnection() {
         aConn.disk(to).create();
     }
 }
-'''
+```
 
 
 ## 4. Import Data
@@ -129,7 +129,7 @@ basis of the pool. We can also provide additional detail about the pool such as
 min/max pool size, expiration, and block wait time. We then create the pool and
 return so we can start using it to obtain a Stardog connection.
 
-'''
+```java
 ConnectionConfiguration connectionConfig = ConnectionConfiguration
         .to(to)
         .server(url)
@@ -151,41 +151,38 @@ private static ConnectionPool createConnectionPool(ConnectionConfiguration conne
 
     return poolConfig.create();
 }
-'''
+```
 
 
-After we obtained our Stardog connection, we will use it to populate our
+After we have obtained our Stardog connection, we will use it to populate our
 database. You must always enclose changes to a database within a transaction
-begin and commit or rollback. Changes are local until the transaction is
+(begin followed by commit or rollback). Changes are local until the transaction is
 committed or until you try and perform a query operation to inspect the state of
 the database within the transaction. We will use the begin and commit for our
 import. Below is a snippet of that data that we are importing followed by the
 code to import it. As you can see we perform the begin, add the data by
 importing the file, and finally commit the transaction.
 
-'''
+```turtle
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 
-:incredibleHulk rdf:type foaf:Person.
-:incredibleHulk foaf:name "Robert Bruce Banner"^^xsd:string.
-:incredibleHulk foaf:title "Incredible Hulk"^^xsd:string.
-:incredibleHulk foaf:givenname "Robert"^^xsd:string.
-:incredibleHulk foaf:family_name "Banner"^^xsd:string.
-:incredibleHulk foaf:knows :captainAmerica.
-:incredibleHulk foaf:knows :blackWidow.
-:incredibleHulk foaf:knows :thor.
-:incredibleHulk foaf:knows :ironMan.
-'''
+:incredibleHulk rdf:type foaf:Person ;
+	foaf:name "Robert Bruce Banner"^^xsd:string ;
+	foaf:title "Incredible Hulk"^^xsd:string ;
+	foaf:givenname "Robert"^^xsd:string ;
+	foaf:family_name "Banner"^^xsd:string ;
+	foaf:knows :captainAmerica, :blackWidow, :thor, :ironMan .
+```
 
-'''
+```java
 // first start a transaction. This will generate the contents of the databse from the N3 file.
 connection.begin();
 // declare the transaction
 connection.add().io().format(RDFFormat.N3).stream(new FileInputStream("src/main/resources/marvel.rdf"));
 // and commit the change
 connection.commit();
-'''
+```
 
 ## 5. Query the Database
 
@@ -197,16 +194,16 @@ execute the query and store the result set in the TupleQueryResult object. The
 result set can be used for many different purposes, but in this case, we are
 just going to print it to the console using QueryResultIO.
 
-'''
+```java
 // Query the database to get our list of Marvel superheroes and print the results to the console
 SelectQuery query = connection.select("PREFIX foaf:<http://xmlns.com/foaf/0.1/> select * { ?s rdf:type foaf:Person }");
 TupleQueryResult tupleQueryResult = query.execute();
 QueryResultIO.writeTuple(tupleQueryResult, TextTableQueryResultWriter.FORMAT, System.out);
-'''
+```
 
 The result of our query is:
 
-'''
+```
 +---------------------------------------+
 |                   s                   |
 +---------------------------------------+
@@ -215,7 +212,7 @@ The result of our query is:
 | http://api.stardog.com/blackWidow     |
 | http://api.stardog.com/thor           |
 +---------------------------------------+
-'''
+```
 
 We will now add and remove data from the database using the API statements
 feature. Just like the initial data import transaction, we will use the begin
@@ -227,7 +224,7 @@ either a FOAF object, literal, or another superhero as the object. In the remove
 statement, we are removing all instances where `CaptainAmerica` is either the
 subject or the object.
 
-'''
+```java
 // first start a transaction - This will add Tony Stark A.K.A Iron Man to the database
 connection.begin();
 // declare the transaction
@@ -262,13 +259,13 @@ connection.remove()
         .statements(null, null, CaptainAmerica);
 // and commit the change
 connection.commit();
-'''
+```
 
 
-If we run the query to get the list of Marvel superhero’s in our database we can
+If we run the query to get the list of Marvel superheroes in our database we can
 see the result of our code. The updated query result set is now:
 
-'''
+```
 +---------------------------------------+
 |                   s                   |
 +---------------------------------------+
@@ -277,15 +274,15 @@ see the result of our code. The updated query result set is now:
 | http://api.stardog.com/thor           |
 | http://api.stardog.com/ironMan        |
 +---------------------------------------+
-'''
+```
 
 Finally, we must remember to release the connection that we obtained to perform
 our tasks and shutdown the connection pool.
 
-'''
+```java
 connectionPool.release(connection);
 connectionPool.shutdown();
-'''
+```
 
 
 ## Summary
