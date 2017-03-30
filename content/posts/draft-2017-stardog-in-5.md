@@ -23,7 +23,7 @@ Obviously the first thing that we need to do is download and install Stardog. We
 will use Linux here; OS X would be very similar. If you would like to install on
 Windows, the instructions are available at http://docs.stardog.com/#_windows.
 
-1.	The Stardog download is located at http://stardog.com/#download.
+1.	The Stardog download is located at http://stardog.com/#download. Once downloaded, unzip to a destination directory, in this example, '/data/stardog'.
 2.	Next, we have to tell Stardog where its home directory (where databases and other will be stored) is located
 
 ```
@@ -39,7 +39,7 @@ Windows, the instructions are available at http://docs.stardog.com/#_windows.
 4.	Start the Stardog server. 
 
 ```
-	$ stardog-admin server start 
+	$ /data/stardog/bin/stardog-admin server start 
 ```
 
 5.	Test that Stardog is running by going to  http://localhost:5820/ 
