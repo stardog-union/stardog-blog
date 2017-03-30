@@ -52,7 +52,7 @@ Now that Stardog is installed, lets setup our Gradle configuration. Since not
 all the features of Stardog are required for this post, we will start with a
 basic Gradle configuration and add as we go. In this example we are just
 connecting to Stardog over http and the only dependency that we need is
-com.complexible.stardog:client-http:4.2.2. The build.gradle is as follows:
+com.complexible.stardog:client-http:4.2.4. The build.gradle is as follows:
 
 ```groovy
 apply plugin: 'java'
@@ -69,7 +69,7 @@ repositories {
 
 dependencies {
     // Core Dependencies
-    compile ('com.complexible.stardog:client-http:4.2.2')
+    compile ('com.complexible.stardog:client-http:4.2.4')
 }
 
 mainClassName  = "com.stardog.examples.StardogClient"
