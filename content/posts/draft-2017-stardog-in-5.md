@@ -24,25 +24,26 @@ will use Linux here; OS X would be very similar. If you would like to install on
 Windows, the instructions are available at http://docs.stardog.com/#_windows.
 
 1.	The Stardog download is located at http://stardog.com/#download. Once downloaded, unzip to a destination directory, in this example, '/data/stardog'.
+
 2.	Next, we have to tell Stardog where its home directory (where databases and other will be stored) is located
 
-```
-	$ export STARDOG_HOME=/data/stardog 
-```
+    ```
+    $ export STARDOG_HOME=/data/stardog
+    ```
 
-3.	Copy the stardog-license-key.bin into the correction location 
+3.	Copy the stardog-license-key.bin into the correction location
 
-```
-	$ cp stardog-license-key.bin $STARDOG_HOME 
-```
+    ```
+    $ cp stardog-license-key.bin $STARDOG_HOME
+    ```
 
-4.	Start the Stardog server. 
+4.	Start the Stardog server.
 
-```
-	$ /data/stardog/bin/stardog-admin server start 
-```
+    ```
+    $ /data/stardog/bin/stardog-admin server start
+    ```
 
-5.	Test that Stardog is running by going to  http://localhost:5820/ 
+5.	Test that Stardog is running by going to  http://localhost:5820/
 
 
 ## 2. Setup a Gradle Project
@@ -54,7 +55,8 @@ connecting to Stardog over http and the only dependency that we need is
 com.complexible.stardog:client-http:4.2.1. The build.gradle is as follows:
 
 ```groovy
-apply plugin:"java"
+apply plugin: 'java'
+apply plugin: 'application'
 
 group 'com.stardog.examples'
 version '1.0-SNAPSHOT'
@@ -70,10 +72,7 @@ dependencies {
     compile ('com.complexible.stardog:client-http:4.2.1')
 }
 
-task execute(type:JavaExec) {
-    main = "com.stardog.examples.StardogClient"
-    classpath = sourceSets.main.runtimeClasspath
-}
+mainClassName  = "com.stardog.examples.StardogClient"
 ```
 
 
