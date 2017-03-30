@@ -71,7 +71,7 @@ dependencies {
 }
 
 task execute(type:JavaExec) {
-    main = "com.stardog.examples.MainApp"
+    main = "com.stardog.examples.StardogClient"
     classpath = sourceSets.main.runtimeClasspath
 }
 ```
