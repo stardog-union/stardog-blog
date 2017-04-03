@@ -8,8 +8,11 @@ discourseUsername = "gcoluni"
 +++
 
 Stardog makes the Enterprise Knowledge Graph fast and easy. Let's see how easy
-it is to create a client application that communicates with Stardog using Java
-and Gradle. Our five easy pieces:
+it is to create a client application that communicates with Stardog using Java.
+This blog post will cover the setup of Stardog, creating a Java client application,
+and building it with Gradle. <!--more-->
+
+Our five easy pieces:
 
 1.	Download and Install Stardog
 2.	Create a Java project with Gradle
