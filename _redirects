@@ -1,2 +1,2 @@
 # Redirect with a 301 (permanently)
-/         https://stardog.com/blog/:splat              301
+/*         https://stardog.com/blog/:splat              301
