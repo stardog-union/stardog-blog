@@ -130,6 +130,7 @@ module.exports = function(grunt) {
                                'shell:build',
                                'dom_munger:archive'
                               ]);
+    grunt.registerTask("redir", ["shell:redirects"]);
     grunt.registerTask("build", [//'clean:build',
                                "css",
                                "shell:update",
