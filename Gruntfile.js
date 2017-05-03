@@ -23,7 +23,13 @@ module.exports = function(grunt) {
               }
           }
         },
-         shell: { 
+        shell: {
+            redirects : {
+                command: function () {
+                    comm = "cp _redirects public/"
+                    return comm
+                }
+            },
              build: {
                  command: function () {
                      comm = "hugo_0.19"
@@ -131,6 +137,7 @@ module.exports = function(grunt) {
                                "hugo",
                                "dom_munger:archive",
                                "htmlmin",
+                               "shell:redirects",
                                "compress",
                               ]);
         };
